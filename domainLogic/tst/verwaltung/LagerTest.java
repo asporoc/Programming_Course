@@ -2,8 +2,10 @@ package verwaltung;
 
 import cargo.Cargo;
 import cargo.DryBulkCargo;
+import cargo.testCargo;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,9 +15,7 @@ class LagerTest {
     @Test
     void einfuegen() {
         Lager lagerZuTesten = new Lager();
-        int a = lagerZuTesten.used;
-        lagerZuTesten.einfuegen(new DryBulkCargo(){
-        });
+        assertTrue(lagerZuTesten.einfuegen(new testCargo()));
     }
 
     @Test
