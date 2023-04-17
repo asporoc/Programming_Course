@@ -6,6 +6,7 @@ import cargo.testCargo;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,6 +17,7 @@ class LagerTest {
     void einfuegen() {
         Lager lagerZuTesten = new Lager();
         assertTrue(lagerZuTesten.einfuegen(new testCargo()));
+
     }
 
     @Test
@@ -28,4 +30,10 @@ class LagerTest {
         assertEquals(0, result.size());
 
     }
+    @Test
+    void inspectionTest(){
+        Lager lagerZuTesten = new Lager();
+        assertEquals(new Date(),lagerZuTesten.inspection());
+    }
+
 }
