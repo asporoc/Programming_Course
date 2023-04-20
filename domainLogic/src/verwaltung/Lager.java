@@ -1,35 +1,51 @@
 package verwaltung;
 
 import administration.Customer;
+import administration.Storable;
 import cargo.Cargo;
-import cargo.DryBulkCargo;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 
-public class Lager {
+public class Lager<T extends Storable & Cargo> {
     public List<Customer> customerList;
-    public List<Cargo> cargoList;
+    public List<T> cargoList = new ArrayList<>();
     int maxsize;
-    boolean full;
+    boolean full = false;
     int used;
-    public boolean einfuegen(DryBulkCargo cargo){
-        try{
+
+    public boolean einfuegen(T cargo) {
+        if (!full) {
+            cargo.setStorageLocation(cargoList.size());
             cargoList.add(cargo);
+
+            if (cargoList.size() == maxsize) {
+                full = true;
+            }
             return true;
-        }catch(Exception e){
+        } else {
             return false;
         }
+    }
 
+    public List<T> abrufen() {
+        return cargoList;
     }
-    public List<DryBulkCargo> abrufen(){
-        return new ArrayList<>();
+
+    public boolean entfernen(T cargo) {
+        try {
+            cargoList.remove(cargo.getStorageLocation());
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
-    public boolean entfernen(DryBulkCargo Cargo){
-        throw new IllegalStateException();
-    }
-    public Date inspection(){
+
+    public Date inspection() {
+
         return new Date();
     }
 }
+
