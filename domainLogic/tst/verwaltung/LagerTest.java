@@ -1,7 +1,7 @@
 package verwaltung;
 
-import cargo.Cargo;
 import cargos.dryBulkCargo;
+import cargos.storableCargo;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
@@ -25,7 +25,7 @@ class LagerTest {
     @Test
     void abrufenLeeresLager(){
         Lager lagerZuTesten = new Lager();
-        List<Cargo> result = lagerZuTesten.abrufen();
+        List<storableCargo> result = lagerZuTesten.abrufen();
         assertEquals(0, result.size());
 
     }
