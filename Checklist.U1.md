@@ -11,14 +11,14 @@ Flüchtige Quellen, wie Sprachmodelle, sind per screen shot zu dokumentieren.
 - [ ] Quellen angegeben
 - [ ] zip Archiv
 - [X] IntelliJ-Projekt (kein Gradle, Maven o.ä.)
-- [ ] JUnit5 und Mockito als Testframeworks (soweit verwendet)
+- [X] JUnit5 und Mockito als Testframeworks (soweit verwendet)
 - [X] keine weiteren Bibliotheken außer JavaFX
 - [X] keine Umlaute, Sonderzeichen, etc. in Datei- und Pfadnamen
-- [ ] kompilierbar
+- [X] kompilierbar
 - [X] Trennung zwischen Test- und Produktiv-Code
 - [X] main-Methoden nur im default package des module belegProg3
-- [ ] ausführbar
-- [ ] CRUD für eine Frachtart
+- [X] ausführbar
+- [X] CRUD für eine Frachtart
 - [X] mindestens ein Test
 ###empfohlene Realisierungen als Vorbereitung auf den Beleg
 werden überprüft (aber nicht bewertet), wenn hier in der vorgegebenen Reihenfolge als bearbeitet angegeben

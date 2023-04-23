@@ -1,18 +1,19 @@
-package cargo;
+package cargos;
 
 import administration.Customer;
+import cargo.DryBulkCargo;
+import cargo.Hazard;
 
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
 
-public class DryBulkTestCargo implements DryBulkCargo {
-    private Date lastInspectionDate;
-    private int storageLocation;
-
+public class dryBulkCargo implements DryBulkCargo, storableCargo {
 
     private Duration durationOfStorage;
+    public int storageLocation;
+    public Date lastInspectionDate;
     @Override
     public Customer getOwner() {
         return null;
@@ -48,15 +49,4 @@ public class DryBulkTestCargo implements DryBulkCargo {
         return 0;
     }
 
-    @Override
-    public void setStorageLocation(int location) {
-        storageLocation = location;
-
-    }
-
-    @Override
-    public void setLastInspectionDate(Date lastInspection) {
-        lastInspectionDate = lastInspection;
-
-    }
 }

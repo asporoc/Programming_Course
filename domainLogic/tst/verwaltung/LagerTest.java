@@ -1,20 +1,21 @@
 package verwaltung;
 
 import cargo.Cargo;
-import cargo.DryBulkTestCargo;
+import cargos.dryBulkCargo;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class LagerTest {
 
     @Test
     void einfuegen() {
         Lager lagerZuTesten = new Lager();
-        assertTrue(lagerZuTesten.einfuegen(new DryBulkTestCargo()));
+        assertTrue(lagerZuTesten.einfuegen(new dryBulkCargo()));
 
     }
 
@@ -36,7 +37,7 @@ class LagerTest {
     @Test
     void entfernenTest(){
         Lager lagerZuTesten = new Lager();
-        DryBulkTestCargo doodle = new DryBulkTestCargo();
+        dryBulkCargo doodle = new dryBulkCargo();
         lagerZuTesten.einfuegen(doodle);
         assertTrue(lagerZuTesten.entfernen(doodle));
     }
