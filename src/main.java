@@ -6,7 +6,7 @@ public class main {
         System.out.println(testLager.maxsize);
         dryBulkCargo testCargo = new dryBulkCargo();
         testLager.einfuegen(testCargo);
-        testLager.abrufen();
+        System.out.println(testLager.abrufen());
         testLager.entfernen(testCargo);
     }
 }

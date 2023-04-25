@@ -21,6 +21,8 @@ class LagerTest {
 
     @Test
     void abrufen() {
+        Lager lagerZuTesten = new Lager();
+        assertEquals(this, lagerZuTesten.abrufen());
     }
     @Test
     void abrufenLeeresLager(){

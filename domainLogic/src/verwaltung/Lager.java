@@ -27,6 +27,7 @@ public class Lager{
 
     public boolean einfuegen(storableCargo cargo) {
         if (!full) {
+            //cast cargo as drybulkcargo because only implemented in dryBulkCargo
             ((dryBulkCargo)cargo).storageLocation=cargoList.size();
             cargoList.add(cargo);
 
@@ -40,11 +41,11 @@ public class Lager{
     }
 
     public List<storableCargo> abrufen() {
-        for(storableCargo x : cargoList){
+        /*for(storableCargo x : cargoList){
             int i = 0;
             System.out.println(cargoList.get(i));
             i++;
-        }
+        }*/
         return cargoList;
     }
 
@@ -57,7 +58,9 @@ public class Lager{
         }
     }
 
-    public Date inspection() {
+    public Date inspection(storableCargo cargo) {
+        //cast cargo as drybulkcargo because only implemented in dryBulkCargo
+        ((dryBulkCargo)cargo).lastInspectionDate = new Date();
 
         return new Date();
     }
