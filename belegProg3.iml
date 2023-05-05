@@ -10,5 +10,15 @@
     <orderEntry type="library" scope="TEST" name="mockito.core" level="project" />
     <orderEntry type="module" module-name="domainLogic" />
     <orderEntry type="module" module-name="contract" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES />
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/userInterface/src" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module" module-name="userInterface" />
   </component>
 </module>
