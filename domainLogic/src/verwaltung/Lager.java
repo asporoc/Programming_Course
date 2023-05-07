@@ -6,13 +6,15 @@ import cargos.storableCargo;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 
 public class Lager{
     public List<Customer> customerList = new ArrayList<>();
     //anstelle von List struktur eine Map implementieren...
-    public List<storableCargo> cargoList = new ArrayList<>();
+    public HashMap<Integer,storableCargo> cargoList = new HashMap<>();
+    private ArrayList<Integer> freeStorageLocations = new ArrayList<>();
     public int maxsize;
     boolean full = false;
     int used;
@@ -23,6 +25,8 @@ public class Lager{
         if(maxsize==0){
             full = true;
         }
+        freeStorageLocations = storageLocationsInit(maxsize);
+
     }
     public Lager(){
         this(10);
@@ -30,29 +34,25 @@ public class Lager{
 
 
     public <T extends storableCargo> boolean einfuegen(T cargo) {
-        if(cargo != null && !full){
-            cargoList.add(cargo);
-            if (cargoList.size() == maxsize) {
-                full = true;
+        for (Customer o : customerList) {
+            if (o.getName().equals(cargo.getOwner().getName())) {
+                if (cargo != null && !full) {
+                    int storageLocation = freeStorageLocations.get(0);
+                    cargoList.put(storageLocation, cargo);
+                    ((dryBulkCargoImpl)cargo).setStorageLocation(storageLocation);
+                    freeStorageLocations.remove(storageLocation);
+                    if (freeStorageLocations.size() == 0) {
+                        full = true;
+                    }
+                    return true;
+                } else {
+                    return false;
+                }
             }
-            return true;
-
-        }else{
-            return false;
         }
-        /*if (!full) {
-            //cast cargo as drybulkcargo because storageLocation only implemented in dryBulkCargo
-            ((dryBulkCargoImpl)cargo).storageLocation=cargoList.size();
-            cargoList.add(cargo);
-
-            if (cargoList.size() == maxsize) {
-                full = true;
-            }
-            return true;
-        } else {
-            return false;
-        }*/
+        return false;
     }
+
     public boolean einfuegen(String name){
         for(Customer c: customerList){
             if(c.getName().equals(name)){
@@ -63,7 +63,7 @@ public class Lager{
         return true;
     }
 
-    public List<storableCargo> abrufen() {
+    public HashMap<Integer, storableCargo> abrufen() {
         return cargoList;
     }
     public storableCargo abrufen(int storageLocation){
@@ -84,6 +84,12 @@ public class Lager{
         ((dryBulkCargoImpl)cargo).lastInspectionDate = new Date();
 
         return new Date();
+    }
+    private ArrayList<Integer> storageLocationsInit(int maxsize){
+        for(int i = 0; i<maxsize;i++){
+            freeStorageLocations.add(i+1);
+        }
+        return freeStorageLocations;
     }
 
 }

@@ -13,20 +13,29 @@ import java.util.Date;
 public class dryBulkCargoImpl implements DryBulkCargo, storableCargo {
 
     private Duration durationOfStorage;
-    public int storageLocation;
+    private int storageLocation;
     public Date lastInspectionDate;
-    private Customer owner;
+    private Kunde owner;
     private Date storageDate;
     private BigDecimal value;
     private int grainSize;
     private Hazard[] hazards;
-    public dryBulkCargoImpl(int storageLocation, Kunde owner, BigDecimal value, int grainSize, Hazard hazard){
+
+    public void setStorageLocation(int storageLocation) {
+        this.storageLocation = storageLocation;
+    }
+
+    public dryBulkCargoImpl(Kunde owner, BigDecimal value, int grainSize, Hazard[] hazards){
+        this.owner = owner;
+        this.value = value;
+        this.grainSize = grainSize;
+        this.hazards=hazards;
 
     }
 
     @Override
     public Customer getOwner() {
-        return null;
+        return owner;
     }
 
     @Override
