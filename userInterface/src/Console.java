@@ -18,7 +18,7 @@ public class Console {
             do{
                 System.out.println("enter command:");
                 Command c = new Command(sc.next());
-                dryBulkCargoImpl cargo = new dryBulkCargoImpl(new Kunde("henry"),new BigDecimal(1),89, new Hazard[]{Hazard.flammable});
+                dryBulkCargoImpl cargo = new dryBulkCargoImpl("henry",new BigDecimal(1),89, new Hazard[]{Hazard.flammable});
                 Scanner u = new Scanner(System.in);
                 switch (c.operator){
                     case c:

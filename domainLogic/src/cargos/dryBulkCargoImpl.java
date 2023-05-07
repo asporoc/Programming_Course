@@ -25,8 +25,8 @@ public class dryBulkCargoImpl implements DryBulkCargo, storableCargo {
         this.storageLocation = storageLocation;
     }
 
-    public dryBulkCargoImpl(Kunde owner, BigDecimal value, int grainSize, Hazard[] hazards){
-        this.owner = owner;
+    public dryBulkCargoImpl(String ownerName, BigDecimal value, int grainSize, Hazard[] hazards){
+        this.owner = new Kunde(ownerName);
         this.value = value;
         this.grainSize = grainSize;
         this.hazards=hazards;

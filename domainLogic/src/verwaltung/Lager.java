@@ -37,10 +37,11 @@ public class Lager{
         for (Customer o : customerList) {
             if (o.getName().equals(cargo.getOwner().getName())) {
                 if (cargo != null && !full) {
+                    //for(int locations: freeStorageLocations){
                     int storageLocation = freeStorageLocations.get(0);
                     cargoList.put(storageLocation, cargo);
                     ((dryBulkCargoImpl)cargo).setStorageLocation(storageLocation);
-                    freeStorageLocations.remove(storageLocation);
+                    freeStorageLocations.remove(0);
                     if (freeStorageLocations.size() == 0) {
                         full = true;
                     }
@@ -64,6 +65,7 @@ public class Lager{
     }
 
     public HashMap<Integer, storableCargo> abrufen() {
+        System.out.println(cargoList.toString());
         return cargoList;
     }
     public storableCargo abrufen(int storageLocation){

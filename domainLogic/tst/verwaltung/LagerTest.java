@@ -16,13 +16,24 @@ class LagerTest {
     @Test
     void einfuegen() {
         Lager lagerZuTesten = new Lager();
-        assertTrue(lagerZuTesten.einfuegen(new dryBulkCargoImpl(new Kunde("Heinz"), new BigDecimal(6),2, new Hazard[]{Hazard.flammable})));
+        lagerZuTesten.einfuegen("Heinz");
+        assertTrue(lagerZuTesten.einfuegen(new dryBulkCargoImpl("Heinz", new BigDecimal(6),2, new Hazard[]{Hazard.flammable})));
 
     }
     @Test
     void einfuegenKunde() {
         Lager lagerZuTesten = new Lager();
         assertTrue(lagerZuTesten.einfuegen("Jonathan"));
+    }
+    @Test
+    void sizeTest() {
+        Lager lagerZuTesten = new Lager();
+        lagerZuTesten.einfuegen("Heinz");
+        for(int i = 0; i<10; i++){
+            lagerZuTesten.einfuegen(new dryBulkCargoImpl("Heinz", new BigDecimal(6),2, new Hazard[]{Hazard.flammable}));
+        }
+        assertFalse(lagerZuTesten.einfuegen(new dryBulkCargoImpl("Heinz", new BigDecimal(6),2, new Hazard[]{Hazard.flammable})));
+
     }
     @Test
     void kundenMitGleichemNamen() {
@@ -48,13 +59,13 @@ class LagerTest {
     @Test
     void inspectionTest(){
         Lager lagerZuTesten = new Lager();
-        assertEquals(new Date(),lagerZuTesten.inspection(new dryBulkCargoImpl(new Kunde("Heinz") ,new BigDecimal(6),2, new Hazard[]{Hazard.flammable})));
+        assertEquals(new Date(),lagerZuTesten.inspection(new dryBulkCargoImpl("Heinz" ,new BigDecimal(6),2, new Hazard[]{Hazard.flammable})));
         // abhängig von System geschwindigkeit einschränkung weniger hart formulieren
     }
     @Test
     void entfernenTest(){
         Lager lagerZuTesten = new Lager();
-        dryBulkCargoImpl doodle = new dryBulkCargoImpl(new Kunde("Heinz"),new BigDecimal(6),2, new Hazard[]{Hazard.flammable});
+        dryBulkCargoImpl doodle = new dryBulkCargoImpl("Heinz",new BigDecimal(6),2, new Hazard[]{Hazard.flammable});
         lagerZuTesten.einfuegen(doodle);
         assertTrue(lagerZuTesten.entfernen(doodle.getStorageLocation()));
     }
@@ -62,14 +73,14 @@ class LagerTest {
     void einfuegenKundeExistiert() {
         Lager lagerZuTesten = new Lager();
         lagerZuTesten.einfuegen("Jonathan");
-        dryBulkCargoImpl doodle = new dryBulkCargoImpl(new Kunde("Jonathan"),new BigDecimal(6),2, new Hazard[]{Hazard.flammable});
+        dryBulkCargoImpl doodle = new dryBulkCargoImpl("Jonathan",new BigDecimal(6),2, new Hazard[]{Hazard.flammable});
         assertTrue(lagerZuTesten.einfuegen(doodle));
 
     }
     @Test
     void einfuegenKundeExistiertNicht() {
         Lager lagerZuTesten = new Lager();
-        dryBulkCargoImpl doodle = new dryBulkCargoImpl(new Kunde("Jonathan"),new BigDecimal(6),2, new Hazard[]{Hazard.flammable});
+        dryBulkCargoImpl doodle = new dryBulkCargoImpl("Jonathan",new BigDecimal(6),2, new Hazard[]{Hazard.flammable});
         assertFalse(lagerZuTesten.einfuegen(doodle));
 
     }
