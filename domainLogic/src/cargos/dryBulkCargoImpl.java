@@ -20,16 +20,19 @@ public class dryBulkCargoImpl implements DryBulkCargo, storableCargo {
     private BigDecimal value;
     private int grainSize;
     private Hazard[] hazards;
+    private String type;
 
     public void setStorageLocation(int storageLocation) {
         this.storageLocation = storageLocation;
     }
 
-    public dryBulkCargoImpl(String ownerName, BigDecimal value, int grainSize, Hazard[] hazards){
+    public dryBulkCargoImpl(String type,String ownerName, BigDecimal value, Hazard[] hazards, int grainSize){
         this.owner = new Kunde(ownerName);
         this.value = value;
         this.grainSize = grainSize;
-        this.hazards=hazards;
+        this.hazards = hazards;
+        this.type = type;
+        this.lastInspectionDate = new Date();
 
     }
 

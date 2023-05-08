@@ -18,12 +18,12 @@ public class Console {
             do{
                 System.out.println("enter command:");
                 Command c = new Command(sc.next());
-                dryBulkCargoImpl cargo = new dryBulkCargoImpl("henry",new BigDecimal(1),89, new Hazard[]{Hazard.flammable});
+                //dryBulkCargoImpl cargo = new dryBulkCargoImpl("henry",new BigDecimal(1),89, new Hazard[]{Hazard.flammable});
                 Scanner u = new Scanner(System.in);
                 switch (c.operator){
                     case c:
                         einfuegenPrompt();
-                        this.logic.einfuegen("Heinz");
+                        this.logic.einfuegen(u.nextLine());
                         break;
                     case d:
                         entfernenPrompt();
@@ -35,7 +35,7 @@ public class Console {
                         break;
                     case u:
                         inspectionPrompt();
-                        this.logic.inspection(cargo);
+                        this.logic.inspection(u.nextInt());
                         break;
                     case p:
                         //persistenzmodus Implementierung
