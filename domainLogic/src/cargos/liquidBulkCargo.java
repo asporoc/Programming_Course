@@ -1,12 +1,13 @@
 package cargos;
 
 import administration.Customer;
+import cargo.Hazard;
+import cargo.LiquidBulkCargo;
 
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
-import cargo.*;
 
 public class liquidBulkCargo implements LiquidBulkCargo, storableCargo {
     @Override

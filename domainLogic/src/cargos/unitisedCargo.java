@@ -1,12 +1,13 @@
 package cargos;
 
 import administration.Customer;
+import cargo.Hazard;
+import cargo.UnitisedCargo;
 
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
-import cargo.*;
 
 public class unitisedCargo implements UnitisedCargo, storableCargo {
     @Override

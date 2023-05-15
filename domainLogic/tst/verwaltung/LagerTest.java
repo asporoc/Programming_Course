@@ -1,11 +1,8 @@
 package verwaltung;
 
-import cargo.Hazard;
-import cargos.dryBulkCargoImpl;
 import cargos.storableCargo;
 import org.junit.jupiter.api.Test;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -17,7 +14,7 @@ class LagerTest {
     void einfuegen() {
         Lager lagerZuTesten = new Lager();
         lagerZuTesten.einfuegen("Heinz");
-        assertTrue(lagerZuTesten.einfuegen(new dryBulkCargoImpl("Heinz", new BigDecimal(6),2, new Hazard[]{Hazard.flammable})));
+        assertTrue(lagerZuTesten.einfuegen("DryBulkCargo Heinz 123 , true false 13"));
 
     }
     @Test
@@ -30,9 +27,9 @@ class LagerTest {
         Lager lagerZuTesten = new Lager();
         lagerZuTesten.einfuegen("Heinz");
         for(int i = 0; i<10; i++){
-            lagerZuTesten.einfuegen(new dryBulkCargoImpl("Heinz", new BigDecimal(6),2, new Hazard[]{Hazard.flammable}));
+            lagerZuTesten.einfuegen("DryBulkCargo Heinz 123 , true false 13");
         }
-        assertFalse(lagerZuTesten.einfuegen(new dryBulkCargoImpl("Heinz", new BigDecimal(6),2, new Hazard[]{Hazard.flammable})));
+        assertFalse(lagerZuTesten.einfuegen("DryBulkCargo Heinz 123 , true false 13"));
 
     }
     @Test
@@ -46,7 +43,7 @@ class LagerTest {
     @Test
     void abrufen() {
         Lager lagerZuTesten = new Lager();
-        assertEquals(lagerZuTesten.cargoList,lagerZuTesten.abrufen());
+        assertEquals(lagerZuTesten.getCargoList(),lagerZuTesten.abrufen());
 
     }
     @Test
@@ -59,29 +56,30 @@ class LagerTest {
     @Test
     void inspectionTest(){
         Lager lagerZuTesten = new Lager();
-        assertEquals(new Date(),lagerZuTesten.inspection(new dryBulkCargoImpl("Heinz" ,new BigDecimal(6),2, new Hazard[]{Hazard.flammable})));
-        // abhängig von System geschwindigkeit einschränkung weniger hart formulieren
+        lagerZuTesten.einfuegen("Heinz");
+        lagerZuTesten.einfuegen("DryBulkCargo Heinz 123 , true false 13");
+        Date currentDate = new Date();
+        assertTrue((lagerZuTesten.inspection(1).getTime() - currentDate.getTime()) < 1000L);
+        //test so ändern das datum im Verhältnis zum vorherigen Inspection Date(ist nach vorherigen Inspection date?)
     }
     @Test
     void entfernenTest(){
         Lager lagerZuTesten = new Lager();
-        dryBulkCargoImpl doodle = new dryBulkCargoImpl("Heinz",new BigDecimal(6),2, new Hazard[]{Hazard.flammable});
-        lagerZuTesten.einfuegen(doodle);
-        assertTrue(lagerZuTesten.entfernen(doodle.getStorageLocation()));
+        lagerZuTesten.einfuegen("Heinz");
+        lagerZuTesten.einfuegen("DryBulkCargo Heinz 123 , true false 13");
+        assertTrue(lagerZuTesten.entfernen(1));
     }
     @Test
     void einfuegenKundeExistiert() {
         Lager lagerZuTesten = new Lager();
         lagerZuTesten.einfuegen("Jonathan");
-        dryBulkCargoImpl doodle = new dryBulkCargoImpl("Jonathan",new BigDecimal(6),2, new Hazard[]{Hazard.flammable});
-        assertTrue(lagerZuTesten.einfuegen(doodle));
+        assertTrue(lagerZuTesten.einfuegen("DryBulkCargo Jonathan 123 , true false 13"));
 
     }
     @Test
     void einfuegenKundeExistiertNicht() {
         Lager lagerZuTesten = new Lager();
-        dryBulkCargoImpl doodle = new dryBulkCargoImpl("Jonathan",new BigDecimal(6),2, new Hazard[]{Hazard.flammable});
-        assertFalse(lagerZuTesten.einfuegen(doodle));
+        assertFalse(lagerZuTesten.einfuegen("DryBulkCargo Heinz 123 , true false 13"));
 
     }
 }

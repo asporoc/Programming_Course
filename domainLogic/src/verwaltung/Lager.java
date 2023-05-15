@@ -13,12 +13,12 @@ import java.util.List;
 
 
 public class Lager{
-    public List<Customer> customerList = new ArrayList<>();
+    private List<Customer> customerList = new ArrayList<>();
     
-    public HashMap<Integer,storableCargo> cargoList = new HashMap<>();
+    private HashMap<Integer,storableCargo> cargoList = new HashMap<>();
     private ArrayList<Integer> freeStorageLocations = new ArrayList<>();
-    public int maxsize;
-    boolean full = false;
+    private int maxsize;
+    private boolean full = false;
     int used;
 
 
@@ -60,7 +60,6 @@ public class Lager{
                         hazards[i] = Hazard.explosive;
                         break;
                     default:
-
                 }
             }
         }else{
@@ -71,10 +70,9 @@ public class Lager{
             for (Customer o : customerList) {
                 if (o.getName().equals(cargo.getOwner().getName())) {
                     if (cargo != null && !full) {
-                        //for(int locations: freeStorageLocations){
                         int storageLocation = freeStorageLocations.get(0);
                         cargoList.put(storageLocation, cargo);
-                        ((dryBulkCargoImpl) cargo).setStorageLocation(storageLocation);
+                        cargo.setStorageLocation(storageLocation);
                         freeStorageLocations.remove(0);
                         if (freeStorageLocations.size() == 0) {
                             full = true;
@@ -100,7 +98,6 @@ public class Lager{
     }
 
     public HashMap<Integer, storableCargo> abrufen() {
-        System.out.println(cargoList.toString());
         return cargoList;
     }
     public storableCargo abrufen(int storageLocation){
@@ -111,6 +108,7 @@ public class Lager{
         try {
             cargoList.remove(storageLocation);
             freeStorageLocations.add(storageLocation);
+            full = false;
             return true;
         } catch (Exception e) {
             return false;
@@ -129,5 +127,8 @@ public class Lager{
         return freeStorageLocations;
     }
 
+    public HashMap<Integer, storableCargo> getCargoList() {
+        return cargoList;
+    }
 }
 

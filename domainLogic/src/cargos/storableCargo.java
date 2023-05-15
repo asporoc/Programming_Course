@@ -1,7 +1,7 @@
 package cargos;
-import cargo.Cargo;
 
 import administration.Storable;
+import cargo.Cargo;
 
 public interface storableCargo extends Storable,Cargo{
 }

@@ -19,27 +19,27 @@ Flüchtige Quellen, wie Sprachmodelle, sind per screen shot zu dokumentieren.
 1 Punkt für die Erfüllung des Pflichtteils
 
 ### Pflichtteil
-- [ ] Quellen angegeben
-- [ ] zip Archiv
-- [ ] IntelliJ-Projekt (kein Gradle, Maven o.ä.)
-- [ ] JUnit5 und Mockito als Testframeworks (soweit verwendet)
-- [ ] keine weiteren Bibliotheken außer JavaFX
-- [ ] keine Umlaute, Sonderzeichen, etc. in Datei- und Pfadnamen
-- [ ] kompilierbar
-- [ ] Trennung zwischen Test- und Produktiv-Code
-- [ ] main-Methoden nur im default package des module belegProg3
-- [ ] ausführbar
-- [ ] Benutzeroberfläche und Geschäftslogik korrekt aufgeteilt
-- [ ] prototypisches CLI (nicht notwendig, wenn umfangreicheres  CLI realisiert ist)
+- [X] Quellen angegeben
+- [X] zip Archiv
+- [X] IntelliJ-Projekt (kein Gradle, Maven o.ä.)
+- [X] JUnit5 und Mockito als Testframeworks (soweit verwendet)
+- [X] keine weiteren Bibliotheken außer JavaFX
+- [X] keine Umlaute, Sonderzeichen, etc. in Datei- und Pfadnamen
+- [X] kompilierbar
+- [X] Trennung zwischen Test- und Produktiv-Code
+- [X] main-Methoden nur im default package des module belegProg3
+- [X] ausführbar
+- [X] Benutzeroberfläche und Geschäftslogik korrekt aufgeteilt
+- [X] prototypisches CLI (nicht notwendig, wenn umfangreicheres  CLI realisiert ist)
 
 ### empfohlene Realisierungen als Vorbereitung auf den Beleg
 werden überprüft (aber nicht bewertet), wenn hier in der vorgegebenen Reihenfolge als bearbeitet angegeben
-- [ ] event-System für die Kommunikation vom CLI zur GL realisiert
+- [X] event-System für die Kommunikation vom CLI zur GL realisiert _Versucht gerne feedback dazu_
 - [ ] Beobachter realisiert
 - [ ] event-System für die Kommunikation von der GL zum CLI realisiert
 - [ ] zwei Tests für Beobachter realisiert
 - [ ] zwei Tests für listener realisiert
-- [ ] angemessene Aufzählungstypen verwendet
+- [X] angemessene Aufzählungstypen verwendet _Soweit ich das beurteilen kann sind meine Aufzählungstypen angemessen_
 - [ ] nach MVC strukturiert
 - [ ] vollständiger Befehlssatz
 
