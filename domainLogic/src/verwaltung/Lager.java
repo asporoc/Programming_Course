@@ -6,17 +6,15 @@ import cargos.dryBulkCargoImpl;
 import cargos.storableCargo;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 
-public class Lager{
+public class Lager extends Observable {
+    private final Object monitor = new Object();
     private List<Customer> customerList = new ArrayList<>();
     
     private HashMap<Integer,storableCargo> cargoList = new HashMap<>();
-    private ArrayList<Integer> freeStorageLocations = new ArrayList<>();
+    //private ArrayList<Integer> freeStorageLocations = new ArrayList<>();
     private int maxsize;
     private boolean full = false;
     int used;
@@ -27,8 +25,6 @@ public class Lager{
         if(maxsize==0){
             full = true;
         }
-        freeStorageLocations = storageLocationsInit(maxsize);
-
     }
     public Lager(){
         this(10);
@@ -37,6 +33,9 @@ public class Lager{
 
     public <T extends storableCargo> boolean einfuegen(String einfuegenString) {
         String[] text = einfuegenString.split(" ");
+        if (full) {
+            return false;
+        }
         if (text.length > 3 && text.length < 11) {
             Hazard[] hazards = new Hazard[0];
         String value = null;
@@ -69,18 +68,28 @@ public class Lager{
 
             for (Customer o : customerList) {
                 if (o.getName().equals(cargo.getOwner().getName())) {
-                    if (cargo != null && !full) {
-                        int storageLocation = freeStorageLocations.get(0);
-                        cargoList.put(storageLocation, cargo);
-                        cargo.setStorageLocation(storageLocation);
-                        freeStorageLocations.remove(0);
-                        if (freeStorageLocations.size() == 0) {
-                            full = true;
+
+                        if (cargo != null) {
+                            for (int location = 0; location < maxsize; location++) {
+                                if (cargoList.get(location) == null) {
+                                    if (location == maxsize - 1) {
+                                        full = true;
+                                        setChanged();
+                                        notifyObservers("Das Lager ist jetzt Voll.");
+                                    }
+                                    cargoList.put(location, cargo);
+                                    cargo.setStorageLocation(location);
+                                    setChanged();
+                                    notifyObservers("Das Frachtstück vom Typ: "+ text[0] + " wurde eingefügt von Kunde: " +text[1]);
+                                    return true;
+                                }
+                            }
+                        } else {
+                            setChanged();
+                            notifyObservers("Das neue Frachtstück konnte nicht eingefügt werden.");
+                            return false;
                         }
-                        return true;
-                    } else {
-                        return false;
-                    }
+
                 }
             }
             return false;
@@ -91,8 +100,12 @@ public class Lager{
                 }
             }
             customerList.add(new Kunde(text[0]));
+            setChanged();
+            notifyObservers("Ein neuer Kunde mit dem Namen "+ text[0] +" wurde der Liste von Kunden hinzugefügt.");
             return true;
         } else {
+            setChanged();
+            notifyObservers("Der Kunde konnte der Kunden Liste nicht hinzugefügt werden.");
             return false;
         }
     }
@@ -105,30 +118,37 @@ public class Lager{
     }
 
     public boolean entfernen(int storageLocation) {
-        try {
-            cargoList.remove(storageLocation);
-            freeStorageLocations.add(storageLocation);
-            full = false;
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+            try {
+                if (cargoList.get(storageLocation) == null && cargoList.size() < 1) {
+                    setChanged();
+                    notifyObservers("Der eingegebene Lagerort: "+storageLocation+" enthält kein Frachtstück.");
+                    return false;
+                }
+                cargoList.remove(storageLocation);
+                full = false;
+                setChanged();
+                notifyObservers("Das Frachtstück was sich an Lagerort: "+ storageLocation+ " befunden hat wurde erfolgreich entfernt.");
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
     }
 
     public Date inspection(int storageLocation) {
         //cast cargo as drybulkcargo because only implemented in dryBulkCargo
-        ((dryBulkCargoImpl)cargoList.get(storageLocation)).lastInspectionDate = new Date();
-        return new Date();
-    }
-    private ArrayList<Integer> storageLocationsInit(int maxsize){
-        for(int i = 0; i<maxsize;i++){
-            freeStorageLocations.add(i+1);
-        }
-        return freeStorageLocations;
+        Date newDate = new Date();
+        ((dryBulkCargoImpl)cargoList.get(storageLocation)).lastInspectionDate = newDate;
+        setChanged();
+        notifyObservers("Letztes Inspektionsdatum wurde neu gesetzt: "+newDate);
+        return newDate;
     }
 
     public HashMap<Integer, storableCargo> getCargoList() {
         return cargoList;
+    }
+
+    public int getMaxsize() {
+        return maxsize;
     }
 }
 

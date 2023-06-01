@@ -11,7 +11,6 @@ public class EventHandler<T extends CRUDEventListener> {
     public void addListener(T listener) {
         this.listenerList.add(listener);
     }
-
     public void removeListener(T listener) {
         this.listenerList.remove(listener);
     }

@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/contract/contract.iml" filepath="$PROJECT_DIR$/contract/contract.iml" />
       <module fileurl="file://$PROJECT_DIR$/domainLogic/domainLogic.iml" filepath="$PROJECT_DIR$/domainLogic/domainLogic.iml" />
       <module fileurl="file://$PROJECT_DIR$/eventSystem/eventSystem.iml" filepath="$PROJECT_DIR$/eventSystem/eventSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/observerPattern/observerPattern.iml" filepath="$PROJECT_DIR$/observerPattern/observerPattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/twoLayered/twoLayered.iml" filepath="$PROJECT_DIR$/twoLayered/twoLayered.iml" />
     </modules>
   </component>
