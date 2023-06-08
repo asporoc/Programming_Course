@@ -1,14 +1,14 @@
-package simulation1;
-import cargo.*;
-import cargos.dryBulkCargoImpl;
-import cargos.storableCargo;
+import cargo.Hazard;
+import simulation1.SimulationObserver;
 import verwaltung.Lager;
 
-import java.math.BigDecimal;
 import java.util.Observable;
 import java.util.Random;
+import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class Simulation1Main {
+public class Simulation2Main {
     private static final Object monitor = new Object();
     public String[] cargoTypes = {"DryBulkCargo", "DryBulkUnitisedCargo", "LiquidBulkCargo", "LiquidBulkAndUnitisedCargo", "LiquidAndDryBulkCargo", "UnitisedCargo"};
     public String[] kunden = {"Heinz", "Jonathan", "Lennart", "Hugo", "Bernhard", "Maurice", "Hermann"};
@@ -16,9 +16,9 @@ public class Simulation1Main {
 
 
     public static
-    class simulation1Create extends Observable implements Runnable {
+    class simulation2Create extends Observable implements Runnable {
         private Lager lager;
-        private Simulation1Main outerInstance; // Reference to the outer class instance
+        private Simulation2Main outerInstance; // Reference to the outer class instance
 
         @Override
         public void run() {
@@ -26,28 +26,29 @@ public class Simulation1Main {
             while (true) {
 
                 String insertString = generateRandCargo(outerInstance.cargoTypes, outerInstance.kunden, outerInstance.allHazards);
-                    synchronized (monitor) {
-                        boolean i = lager.einfuegen(insertString);
-                        if(i){
-                            setChanged();
-                            notifyObservers("Objekt wurde erfolgreich eingefuegt");
-                        }else{
-                            setChanged();
-                            notifyObservers("Objekt konnte nicht eingefuegt werden.");
-                        }
-
+                synchronized (monitor) {
+                    boolean i = lager.einfuegen(insertString);
+                    if (i) {
+                        setChanged();
+                        notifyObservers("Objekt wurde erfolgreich eingefuegt");
+                    } else {
+                        setChanged();
+                        notifyObservers("Objekt konnte nicht eingefuegt werden.");
                     }
+
+                }
             }
         }
 
-        simulation1Create(Lager lager, Simulation1Main outerInstance) {
+        simulation2Create(Lager lager, Simulation2Main outerInstance) {
             this.lager = lager;
             this.outerInstance = outerInstance;
         }
+    }
 
-        public static class simulation1Delete extends Observable implements Runnable {
+        public static class simulation2Delete extends Observable implements Runnable {
             private Lager lager;
-            simulation1Delete(Lager lager){
+            simulation2Delete(Lager lager){
                 this.lager = lager;
 
             }
@@ -57,7 +58,7 @@ public class Simulation1Main {
                 while (true) {
                     int storageLocation = randStorageLocation(lager);
                     synchronized (monitor){
-                    boolean i=lager.entfernen(storageLocation);
+                        boolean i=lager.entfernen(storageLocation);
                         if(i){
                             setChanged();
                             notifyObservers("Objekt wurde erfolgreich entfernt");
@@ -65,7 +66,7 @@ public class Simulation1Main {
                             setChanged();
                             notifyObservers("Objekt konnte nicht entfernt werden.");
                         }
-                }
+                    }
 
 
                 }
@@ -89,7 +90,7 @@ public class Simulation1Main {
             }
             for (int i = 0; i < numberOfHazards; i++) {
                 if (numberOfHazards == 0) {
-                   hazards = " , "; //value,flammable
+                    hazards = " , "; //value,flammable
                 } else {
                     hazards = hazards.concat("," + allHazards[i].name());
                 }
@@ -102,23 +103,32 @@ public class Simulation1Main {
         }
 
 
-        public static void main(String[] args) {
-            Lager simuLager = new Lager();
-            Simulation1Main simulation1Main = new Simulation1Main();
-            for(String kunde : simulation1Main.kunden){
-                simuLager.einfuegen(kunde);
-            }
+    public static void main(String[] args) {
+        Lager simuLager = new Lager();
+        Simulation2Main simulation2Main = new Simulation2Main();
+        for(String kunde : simulation2Main.kunden){
+            simuLager.einfuegen(kunde);
+        }
 
 
-            simulation1Create createSimulation = new simulation1Create(simuLager, simulation1Main);
-            simulation1Delete deleteSimulation = new simulation1Delete(simuLager);
+        Simulation2Main.simulation2Create createSimulation = new Simulation2Main.simulation2Create(simuLager, simulation2Main);
+        Simulation2Main.simulation2Delete deleteSimulation = new Simulation2Main.simulation2Delete(simuLager);
+        Scanner sc = new Scanner(System.in);
+        int threadCount = sc.nextInt();
+
+        ExecutorService executorService = Executors.newFixedThreadPool(threadCount);
+
+        for (int i = 0; i < threadCount; i++) {
             Thread create = new Thread(createSimulation);
             Thread delete = new Thread(deleteSimulation);
-            Simulation1Observer simuObserver = new Simulation1Observer();
-            createSimulation.addObserver(simuObserver);
-            deleteSimulation.addObserver(simuObserver);
-            create.start();
-            delete.start();
+            executorService.submit(createSimulation);
+            executorService.submit(deleteSimulation);
         }
+        SimulationObserver simuObserver = new SimulationObserver();
+        createSimulation.addObserver(simuObserver);
+        deleteSimulation.addObserver(simuObserver);
     }
 }
+
+
+

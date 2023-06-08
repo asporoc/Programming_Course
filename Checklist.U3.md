@@ -16,26 +16,26 @@ Flüchtige Quellen, wie Sprachmodelle, sind per screen shot zu dokumentieren.
 1 Punkt für die Erfüllung des Pflichtteils
 
 ### Pflichtteil
-- [ ] Quellen angegeben
-- [ ] zip Archiv
-- [ ] IntelliJ-Projekt (kein Gradle, Maven o.ä.)
-- [ ] JUnit5 und Mockito als Testframeworks (soweit verwendet)
-- [ ] keine weiteren Bibliotheken außer JavaFX
-- [ ] keine Umlaute, Sonderzeichen, etc. in Datei- und Pfadnamen
-- [ ] kompilierbar
-- [ ] Trennung zwischen Test- und Produktiv-Code
-- [ ] main-Methoden nur im default package des module belegProg3
-- [ ] ausführbar
-- [ ] Simulation 1
-- [ ] Trennung zwischen GL und Simulationslogik
-- [ ] Aktionen der threads produzieren Ausgaben auf der Konsole
+- [X] Quellen angegeben
+- [X] zip Archiv
+- [X] IntelliJ-Projekt (kein Gradle, Maven o.ä.)
+- [X] JUnit5 und Mockito als Testframeworks (soweit verwendet)
+- [X] keine weiteren Bibliotheken außer JavaFX
+- [X] keine Umlaute, Sonderzeichen, etc. in Datei- und Pfadnamen
+- [X] kompilierbar
+- [X] Trennung zwischen Test- und Produktiv-Code
+- [X] main-Methoden nur im default package des module belegProg3 _Ich wusste nicht ob sich das auch auf die Simulations Mains bezieht von daher sind diese in einem simulation 1 bzw. 2 Package_
+- [X] ausführbar
+- [X] Simulation 1
+- [X] Trennung zwischen GL und Simulationslogik
+- [X] Aktionen der threads produzieren Ausgaben auf der Konsole
 
 ### empfohlene Realisierungen als Vorbereitung auf den Beleg
 werden überprüft (aber nicht bewertet), wenn hier in der vorgegebenen Reihenfolge als bearbeitet angegeben
 - [ ] keine Verwendung von Thread.sleep o.Ä. bzw. nur mit 0-Werten
-- [ ] Änderungen an der Geschäftslogik produzieren Ausgaben auf der Konsole
+- [X] Änderungen an der Geschäftslogik produzieren Ausgaben auf der Konsole _mittels observer_
 - [ ] deterministische Funktionalität testbar
-- [ ] Simulation 2
+- [X] Simulation 2 _nach start der Applikation wird eine Menge an Threads angegeben und diese wird dann ausgeführt_
 - [ ] mindestens je ein Test für alle in der Simulation verwendeten Methoden die auf die Geschäftslogik zugreifen
 - [ ] Simulation 3
 - [ ] alle Tests sind deterministisch

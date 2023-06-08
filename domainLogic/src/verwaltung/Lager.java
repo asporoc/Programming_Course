@@ -12,7 +12,7 @@ import java.util.*;
 public class Lager extends Observable {
     private final Object monitor = new Object();
     private List<Customer> customerList = new ArrayList<>();
-    
+
     private HashMap<Integer,storableCargo> cargoList = new HashMap<>();
     //private ArrayList<Integer> freeStorageLocations = new ArrayList<>();
     private int maxsize;
@@ -32,63 +32,65 @@ public class Lager extends Observable {
 
 
     public <T extends storableCargo> boolean einfuegen(String einfuegenString) {
+        boolean fragile;
+        boolean pressurized;
         String[] text = einfuegenString.split(" ");
         if (full) {
             return false;
         }
         if (text.length > 3 && text.length < 11) {
             Hazard[] hazards = new Hazard[0];
-        String value = null;
+            String value = null;
 
-        if (text[2].contains(",")) {
-            String[] hazardText = text[2].split(",");
-            value = hazardText[0];
-            hazards = new Hazard[hazardText.length];
-            for (int i = 0; i < hazards.length; i++) {
-                switch (hazardText[i]) {
-                    case "flammable":
-                        hazards[i] = Hazard.flammable;
-                        break;
-                    case "toxic":
-                        hazards[i] = Hazard.toxic;
-                        break;
-                    case "radioactive":
-                        hazards[i] = Hazard.radioactive;
-                        break;
-                    case "explosive":
-                        hazards[i] = Hazard.explosive;
-                        break;
-                    default:
+            if (text[2].contains(",")) {
+                String[] hazardText = text[2].split(",");
+                value = hazardText[0];
+                hazards = new Hazard[hazardText.length];
+                for (int i = 0; i < hazards.length; i++) {
+                    switch (hazardText[i]) {
+                        case "flammable":
+                            hazards[i] = Hazard.flammable;
+                            break;
+                        case "toxic":
+                            hazards[i] = Hazard.toxic;
+                            break;
+                        case "radioactive":
+                            hazards[i] = Hazard.radioactive;
+                            break;
+                        case "explosive":
+                            hazards[i] = Hazard.explosive;
+                            break;
+                        default:
+                    }
                 }
+            }else{
+                value = text[2];
             }
-        }else{
-            value = text[2];
-        }
-        dryBulkCargoImpl cargo = new dryBulkCargoImpl(text[0], text[1], new BigDecimal(value), hazards,Integer.parseInt(text[text.length-1]));
+            dryBulkCargoImpl cargo = new dryBulkCargoImpl(text[0], text[1], new BigDecimal(value), hazards,Boolean.parseBoolean(text[text.length-3]),Boolean.parseBoolean(text[text.length-2]),Integer.parseInt(text[text.length-1]));
 
             for (Customer o : customerList) {
                 if (o.getName().equals(cargo.getOwner().getName())) {
 
-                        if (cargo != null) {
-                            for (int location = 0; location < maxsize; location++) {
-                                if (cargoList.get(location) == null) {
-                                    if (location == maxsize - 1) {
-                                        full = true;
-                                        setChanged();
-                                        notifyObservers("Das Lager ist jetzt Voll.");
-                                    }
-                                    cargoList.put(location, cargo);
-                                    cargo.setStorageLocation(location);
+                    if (cargo != null) {
+                        for (int location = 0; location < maxsize; location++) {
+                            if (cargoList.get(location) == null) {
+                                if (location == maxsize - 1) {
+                                    full = true;
                                     setChanged();
-                                    notifyObservers("Das Frachtstück vom Typ: "+ text[0] + " wurde eingefügt von Kunde: " +text[1]);
-                                    return true;
+                                    notifyObservers("Das Lager ist jetzt Voll.");
                                 }
+                                cargoList.put(location, cargo);
+                                cargo.setStorageLocation(location);
+                                setChanged();
+                                notifyObservers("Das Frachtstück vom Typ: "+ text[0] + " wurde eingefügt von Kunde: " +text[1]);
+                                return true;
                             }
-                        } else {
-                            setChanged();
-                            notifyObservers("Das neue Frachtstück konnte nicht eingefügt werden.");
-                            return false;
                         }
+                    } else {
+                        setChanged();
+                        notifyObservers("Das neue Frachtstück konnte nicht eingefügt werden.");
+                        return false;
+                    }
 
                 }
             }
@@ -118,20 +120,20 @@ public class Lager extends Observable {
     }
 
     public boolean entfernen(int storageLocation) {
-            try {
-                if (cargoList.get(storageLocation) == null && cargoList.size() < 1) {
-                    setChanged();
-                    notifyObservers("Der eingegebene Lagerort: "+storageLocation+" enthält kein Frachtstück.");
-                    return false;
-                }
-                cargoList.remove(storageLocation);
-                full = false;
+        try {
+            if (cargoList.get(storageLocation) == null && cargoList.size() < 1) {
                 setChanged();
-                notifyObservers("Das Frachtstück was sich an Lagerort: "+ storageLocation+ " befunden hat wurde erfolgreich entfernt.");
-                return true;
-            } catch (Exception e) {
+                notifyObservers("Der eingegebene Lagerort: "+storageLocation+" enthält kein Frachtstück.");
                 return false;
             }
+            cargoList.remove(storageLocation);
+            full = false;
+            setChanged();
+            notifyObservers("Das Frachtstück was sich an Lagerort: "+ storageLocation+ " befunden hat wurde erfolgreich entfernt.");
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public Date inspection(int storageLocation) {
