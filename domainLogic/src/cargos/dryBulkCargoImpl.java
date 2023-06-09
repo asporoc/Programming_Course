@@ -24,11 +24,21 @@ public class dryBulkCargoImpl implements DryBulkCargo, storableCargo {
     private boolean fragile;
     private boolean pressurized;
 
+    public void setEinfuegenString(String einfuegenString) {
+        this.einfuegenString = einfuegenString;
+    }
+
+    public String getEinfuegenString() {
+        return einfuegenString;
+    }
+
+    private String einfuegenString;
+
     public void setStorageLocation(int storageLocation) {
         this.storageLocation = storageLocation;
     }
 
-    public dryBulkCargoImpl(String type,String ownerName, BigDecimal value, Hazard[] hazards,boolean fragile,boolean pressurized, int grainSize){
+    public dryBulkCargoImpl(String type,String ownerName, BigDecimal value, Hazard[] hazards,boolean fragile,boolean pressurized, int grainSize,String einfuegenString){
         this.owner = new Kunde(ownerName);
         this.value = value;
         this.grainSize = grainSize;
@@ -37,6 +47,7 @@ public class dryBulkCargoImpl implements DryBulkCargo, storableCargo {
         this.lastInspectionDate = new Date();
         this.fragile = fragile;
         this.pressurized = pressurized;
+        this.einfuegenString = einfuegenString;
 
     }
 
@@ -75,4 +86,8 @@ public class dryBulkCargoImpl implements DryBulkCargo, storableCargo {
         return 0;
     }
 
+    @Override
+    public String cargoToString() {
+        return einfuegenString;
+    }
 }

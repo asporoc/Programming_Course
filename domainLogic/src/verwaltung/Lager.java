@@ -66,7 +66,7 @@ public class Lager extends Observable {
             }else{
                 value = text[2];
             }
-            dryBulkCargoImpl cargo = new dryBulkCargoImpl(text[0], text[1], new BigDecimal(value), hazards,Boolean.parseBoolean(text[text.length-3]),Boolean.parseBoolean(text[text.length-2]),Integer.parseInt(text[text.length-1]));
+            dryBulkCargoImpl cargo = new dryBulkCargoImpl(text[0], text[1], new BigDecimal(value), hazards,Boolean.parseBoolean(text[text.length-3]),Boolean.parseBoolean(text[text.length-2]),Integer.parseInt(text[text.length-1]),einfuegenString);
 
             for (Customer o : customerList) {
                 if (o.getName().equals(cargo.getOwner().getName())) {

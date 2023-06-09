@@ -44,4 +44,9 @@ public class liquidBulkCargo implements LiquidBulkCargo, storableCargo {
     public boolean isPressurized() {
         return false;
     }
+
+    @Override
+    public String cargoToString() {
+        return null;
+    }
 }

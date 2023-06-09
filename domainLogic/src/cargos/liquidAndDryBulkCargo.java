@@ -49,4 +49,9 @@ public class liquidAndDryBulkCargo implements LiquidAndDryBulkCargo, storableCar
     public boolean isPressurized() {
         return false;
     }
+
+    @Override
+    public String cargoToString() {
+        return null;
+    }
 }

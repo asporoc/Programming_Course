@@ -49,4 +49,9 @@ public class dryBulkAndUnitisedCargo implements DryBulkAndUnitisedCargo, storabl
     public boolean isFragile() {
         return false;
     }
+
+    @Override
+    public String cargoToString() {
+        return null;
+    }
 }

@@ -9,7 +9,7 @@
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
 
          <children>
-            <ListView id="List" prefHeight="398.0" prefWidth="175.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <ListView id="List" fx:id="cargoListView" prefHeight="398.0" prefWidth="175.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="254.0">
          <children>

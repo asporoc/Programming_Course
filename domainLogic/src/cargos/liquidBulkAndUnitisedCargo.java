@@ -49,4 +49,9 @@ public class liquidBulkAndUnitisedCargo implements LiquidBulkAndUnitisedCargo, s
     public boolean isFragile() {
         return false;
     }
+
+    @Override
+    public String cargoToString() {
+        return null;
+    }
 }

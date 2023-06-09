@@ -25,5 +25,24 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/JavaFX17/javafx-sdk-17.0.7/lib/javafx-swt.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/JavaFX17/javafx-sdk-17.0.7/lib/javafx.web.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/JavaFX17/javafx-sdk-17.0.7/lib/javafx.base.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/JavaFX17/javafx-sdk-17.0.7/lib/javafx.fxml.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/JavaFX17/javafx-sdk-17.0.7/lib/javafx.media.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/JavaFX17/javafx-sdk-17.0.7/lib/javafx.swing.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/JavaFX17/javafx-sdk-17.0.7/lib/javafx.controls.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/JavaFX17/javafx-sdk-17.0.7/lib/javafx.graphics.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <NATIVE>
+          <root url="file://$USER_HOME$/Downloads/JavaFX17/javafx-sdk-17.0.7/lib" />
+        </NATIVE>
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

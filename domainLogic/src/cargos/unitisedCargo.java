@@ -44,4 +44,9 @@ public class unitisedCargo implements UnitisedCargo, storableCargo {
     public boolean isFragile() {
         return false;
     }
+
+    @Override
+    public String cargoToString() {
+        return null;
+    }
 }
