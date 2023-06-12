@@ -1,6 +1,4 @@
 package baseGUI;
-import administration.Storable;
-import cargos.storableCargo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,7 +10,6 @@ import java.util.ArrayList;
 
 public class viewModel {
 
-    @FXML private Button einfuegenButton;
     @FXML private Button entfernenButton;
     @FXML private Button ueberpruefenButton;
     @FXML private Button abrufenButton;

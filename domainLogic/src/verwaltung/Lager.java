@@ -11,10 +11,10 @@ import java.util.*;
 
 public class Lager extends Observable {
     private final Object monitor = new Object();
-    private List<Customer> customerList = new ArrayList<>();
+    private List<Customer> customerList = new LinkedList<>();
 
     private HashMap<Integer,storableCargo> cargoList = new HashMap<>();
-    //private ArrayList<Integer> freeStorageLocations = new ArrayList<>();
+
     private int maxsize;
     private boolean full = false;
     int used;
@@ -33,7 +33,7 @@ public class Lager extends Observable {
 
     public <T extends storableCargo> boolean einfuegen(String einfuegenString) {
         boolean fragile;
-        boolean pressurized;
+        boolean pressurized; //parsen nicht teil der Logic gehört zum view! Warum überhaupt parsen?
         String[] text = einfuegenString.split(" ");
         if (full) {
             return false;
@@ -106,14 +106,14 @@ public class Lager extends Observable {
             notifyObservers("Ein neuer Kunde mit dem Namen "+ text[0] +" wurde der Liste von Kunden hinzugefügt.");
             return true;
         } else {
-            setChanged();
+            setChanged();//so werden observer nicht benutzt dies wäre ein fall für eventhandler
             notifyObservers("Der Kunde konnte der Kunden Liste nicht hinzugefügt werden.");
             return false;
         }
     }
 
     public HashMap<Integer, storableCargo> abrufen() {
-        return cargoList;
+        return cargoList; //cargoList nicht übergeben zerstört kapselung!!
     }
     public storableCargo abrufen(int storageLocation){
         return cargoList.get(storageLocation);
@@ -130,7 +130,7 @@ public class Lager extends Observable {
             full = false;
             setChanged();
             notifyObservers("Das Frachtstück was sich an Lagerort: "+ storageLocation+ " befunden hat wurde erfolgreich entfernt.");
-            return true;
+            return true;//notify observer so falsch kein arg
         } catch (Exception e) {
             return false;
         }

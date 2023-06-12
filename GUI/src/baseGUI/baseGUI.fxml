@@ -129,13 +129,13 @@
                      </VBox.margin></Button>
                   <AnchorPane prefHeight="69.0" prefWidth="619.0">
                      <children>
-                        <ComboBox fx:id="entfernenLagerOrt" layoutX="235.0" layoutY="11.0" prefWidth="150.0" promptText="Lagerort" />
+                        <ComboBox fx:id="entfernenLagerOrt" layoutX="235.0" layoutY="11.0" prefWidth="150.0" promptText="Lagerort" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="234.0" />
                      </children>
                   </AnchorPane>
                   <Button id="ueberpruefenButton" fx:id="ueberpruefenButton" mnemonicParsing="false" onAction="#ueberpruefenClick" prefHeight="26.0" prefWidth="165.0" text="Ueberpruefen" />
                   <AnchorPane prefHeight="78.0" prefWidth="619.0">
                      <children>
-                        <ComboBox fx:id="ueberpruefenLagerOrt" layoutX="235.0" layoutY="16.0" prefWidth="150.0" promptText="Lagerort" />
+                        <ComboBox fx:id="ueberpruefenLagerOrt" layoutX="235.0" layoutY="16.0" prefWidth="150.0" promptText="Lagerort" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="234.0" />
                      </children>
                   </AnchorPane>
                   <Button id="abrufenButton" fx:id="abrufenButton" mnemonicParsing="false" onAction="#abrufenClick" prefHeight="26.0" prefWidth="165.0" text="Abrufen" />
@@ -144,7 +144,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                      <children>
-                        <ComboBox fx:id="abrufenLagerOrt" layoutX="235.0" layoutY="11.0" prefWidth="150.0" promptText="Lagerort" />
+                        <ComboBox fx:id="abrufenLagerOrt" layoutX="235.0" layoutY="11.0" prefWidth="150.0" promptText="Lagerort" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="234.0" />
                      </children>
                   </AnchorPane>
                </children>
