@@ -14,26 +14,26 @@ Flüchtige Quellen, wie Sprachmodelle, sind per screen shot zu dokumentieren.
 1 Punkt für die Erfüllung des Pflichtteils
 
 ### Pflichtteil
-- [ ] Quellen angegeben
-- [ ] zip Archiv
-- [ ] IntelliJ-Projekt (kein Gradle, Maven o.ä.)
-- [ ] JUnit5 und Mockito als Testframeworks (soweit verwendet)
-- [ ] keine weiteren Bibliotheken außer JavaFX
-- [ ] keine Umlaute, Sonderzeichen, etc. in Datei- und Pfadnamen
-- [ ] kompilierbar
-- [ ] Trennung zwischen Test- und Produktiv-Code
-- [ ] main-Methoden nur im default package des module belegProg3
-- [ ] ausführbar
-- [ ] CRUD für mindestens einen Frachttyp in der GUI
-- [ ] Geschäfts- und Darstellungslogik getrennt
+- [X] Quellen angegeben
+- [X] zip Archiv
+- [X] IntelliJ-Projekt (kein Gradle, Maven o.ä.)
+- [X] JUnit5 und Mockito als Testframeworks (soweit verwendet)
+- [X] keine weiteren Bibliotheken außer JavaFX
+- [X] keine Umlaute, Sonderzeichen, etc. in Datei- und Pfadnamen
+- [X] kompilierbar
+- [X] Trennung zwischen Test- und Produktiv-Code
+- [X] main-Methoden nur im default package des module belegProg3
+- [X] ausführbar
+- [X] CRUD für mindestens einen Frachttyp in der GUI _darstellung der eingelagerten Hazards mittels abruf funktioniert leider noch nicht_
+- [X] Geschäfts- und Darstellungslogik getrennt
 
 ### empfohlene Realisierungen als Vorbereitung auf den Beleg
 werden überprüft (aber nicht bewertet), wenn hier in der vorgegebenen Reihenfolge als bearbeitet angegeben
-- [ ] Auflistungen sind immer sichtbar und werden automatisch aktualisiert
-- [ ] FXML verwendet
-- [ ] sortierbare Darstellung der Frachtstücke mit Platz, Kund*in, Inspektionsdatum und Einlagerungsdauer _gibt fertige implementierung googlen!_
-- [ ] skalierbare Darstellung _container nutzen_
-- [ ] data binding verwendet
-- [ ] Benutzeroberfläche wird nicht gesperrt (Nebenläufigkeit)
-- [ ] Austausch der Plätze mittels drag&drop
+- [X] Auflistungen sind immer sichtbar und werden automatisch aktualisiert _bei jedem Knopfdruck jedenfalls, bei der Sortierung leider nicht_
+- [X] FXML verwendet
+- [X] sortierbare Darstellung der Frachtstücke mit Platz, Kund*in, Inspektionsdatum und Einlagerungsdauer _gibt fertige implementierung googlen!_
+- [X] skalierbare Darstellung _container nutzen_
+- [X] data binding verwendet _im CargoItem um die Storage Location beim drag&drop anzupassen_
+- [ ] Benutzeroberfläche wird nicht gesperrt (Nebenläufigkeit) _ich glaube die Oberfläche wird nicht gesperrt, weiß nicht so richtig was damit gemeint ist_
+- [X] Austausch der Plätze mittels drag&drop
 

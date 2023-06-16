@@ -3,42 +3,40 @@ package cargos;
 import administration.Customer;
 import cargo.DryBulkCargo;
 import cargo.Hazard;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import verwaltung.Kunde;
 
 import java.math.BigDecimal;
 import java.time.Duration;
-import java.util.Collection;
-import java.util.Date;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
+import java.util.*;
 
 public class dryBulkCargoImpl implements DryBulkCargo, storableCargo {
 
     private Duration durationOfStorage;
-    private int storageLocation;
+    private IntegerProperty storageLocation;
     public Date lastInspectionDate;
-    private Kunde owner;
-    private Date storageDate;
+    final Kunde owner;
+    final Date storageDate = new Date();
     private BigDecimal value;
-    private int grainSize;
+    final int grainSize;
     private Hazard[] hazards;
-    private String type;
-    private boolean fragile;
-    private boolean pressurized;
+    final String type;
+    final boolean fragile;
+    final boolean pressurized;
 
-    public void setEinfuegenString(String einfuegenString) {
-        this.einfuegenString = einfuegenString;
-    }
-
-    public String getEinfuegenString() {
-        return einfuegenString;
-    }
 
     private String einfuegenString;
 
     public void setStorageLocation(int storageLocation) {
-        this.storageLocation = storageLocation;
+        this.storageLocation.set(storageLocation);
     }
 
-    public dryBulkCargoImpl(String type,String ownerName, BigDecimal value, Hazard[] hazards,boolean fragile,boolean pressurized, int grainSize,String einfuegenString){
+
+    public dryBulkCargoImpl(String type, String ownerName, BigDecimal value, Hazard[] hazards, boolean fragile, boolean pressurized, int grainSize, String einfuegenString) {
         this.owner = new Kunde(ownerName);
         this.value = value;
         this.grainSize = grainSize;
@@ -48,7 +46,7 @@ public class dryBulkCargoImpl implements DryBulkCargo, storableCargo {
         this.fragile = fragile;
         this.pressurized = pressurized;
         this.einfuegenString = einfuegenString;
-
+        this.storageLocation = new SimpleIntegerProperty();
     }
 
     @Override
@@ -58,27 +56,29 @@ public class dryBulkCargoImpl implements DryBulkCargo, storableCargo {
 
     @Override
     public Duration getDurationOfStorage() {
-        return null;
+        return Duration.between(storageDate.toInstant(), new Date().toInstant());
     }
 
     @Override
     public Date getLastInspectionDate() {
         return lastInspectionDate;
     }
-
-    @Override
-    public int getStorageLocation() {
+    public IntegerProperty storageLocationProperty() {
         return storageLocation;
     }
 
     @Override
-    public BigDecimal getValue() {
-        return null;
+    public int getStorageLocation() {
+        return storageLocation.get();
     }
 
     @Override
+    public BigDecimal getValue() {
+        return value;}
+
+    @Override
     public Collection<Hazard> getHazards() {
-        return null;
+        return Arrays.asList(hazards);
     }
 
     @Override

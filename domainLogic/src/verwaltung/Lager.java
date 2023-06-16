@@ -13,12 +13,16 @@ public class Lager extends Observable {
     private final Object monitor = new Object();
     private List<Customer> customerList = new LinkedList<>();
 
-    private HashMap<Integer,storableCargo> cargoList = new HashMap<>();
+
+
+    private HashMap<Integer,dryBulkCargoImpl> cargoList = new HashMap<>();
 
     private int maxsize;
     private boolean full = false;
     int used;
-
+    public List<Customer> getCustomerList() {
+        return customerList;
+    }
 
     public Lager(int maxsize){
         this.maxsize = maxsize;
@@ -112,10 +116,10 @@ public class Lager extends Observable {
         }
     }
 
-    public HashMap<Integer, storableCargo> abrufen() {
-        return cargoList; //cargoList nicht übergeben zerstört kapselung!!
+    public Object abrufen() {
+        return cargoList.clone(); //cargoList nicht übergeben zerstört kapselung!!
     }
-    public storableCargo abrufen(int storageLocation){
+    public dryBulkCargoImpl abrufen(int storageLocation){
         return cargoList.get(storageLocation);
     }
 
@@ -137,15 +141,14 @@ public class Lager extends Observable {
     }
 
     public Date inspection(int storageLocation) {
-        //cast cargo as drybulkcargo because only implemented in dryBulkCargo
         Date newDate = new Date();
-        ((dryBulkCargoImpl)cargoList.get(storageLocation)).lastInspectionDate = newDate;
+        (cargoList.get(storageLocation)).lastInspectionDate = newDate;
         setChanged();
         notifyObservers("Letztes Inspektionsdatum wurde neu gesetzt: "+newDate);
         return newDate;
     }
 
-    public HashMap<Integer, storableCargo> getCargoList() {
+    public HashMap<Integer, dryBulkCargoImpl> getCargoList() {
         return cargoList;
     }
 

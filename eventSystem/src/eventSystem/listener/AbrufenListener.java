@@ -12,7 +12,7 @@ public class AbrufenListener implements CRUDEventListener {
     }
     @Override
     public void onEvent(EventObject event) {
-        this.cargoList.abrufen();
+        this.cargoList.getCargoList();
 
 
     }

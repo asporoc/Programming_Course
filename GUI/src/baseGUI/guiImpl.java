@@ -11,9 +11,9 @@ public class guiImpl extends Application {
     public void start(Stage mainStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("baseGUI.fxml"));
         Parent root = loader.load();
-        viewModel controller = loader.getController();
+        Controller controller = loader.getController();
         mainStage.setTitle("Storage Manager");
-        mainStage.setScene(new Scene(root,950,440));
+        mainStage.setScene(new Scene(root,1200,640));
         mainStage.show();
 
     }
