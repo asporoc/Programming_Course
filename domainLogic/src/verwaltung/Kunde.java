@@ -2,7 +2,9 @@ package verwaltung;
 
 import administration.Customer;
 
-public class Kunde implements Customer {
+import java.io.Serializable;
+
+public class Kunde implements Customer, Serializable {
     private String name;
     public Kunde(String name){
         this.name = name;

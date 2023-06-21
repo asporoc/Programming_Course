@@ -1,7 +1,6 @@
 package eventSystem.viewControl;
 
 import eventSystem.infrastructure.*;
-
 import util.Command;
 import verwaltung.Lager;
 

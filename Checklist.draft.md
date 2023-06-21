@@ -21,8 +21,8 @@ Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nic
   - [ ] Anzeigen von Kund*innen über das CLI _getestete Klassen angeben_
   - [ ] ein Beobachter bzw. dessen alternative Implementierung _getestete Klassen angeben_
   - [ ] deterministische Funktionalität der Simulationen _getestete Klassen angeben_
-  - [ ] Speichern via JOS oder JBP _getestete Klassen angeben_
-  - [ ] Laden via JOS oder JBP _getestete Klassen angeben_
+  - [ ] Speichern via JOS.josItem oder JBP _getestete Klassen angeben_
+  - [ ] Laden via JOS.josItem oder JBP _getestete Klassen angeben_
 - [ ] **Mockito richtig verwendet** (4)
 - [ ] Spy- / Verhaltens-Tests (3)
 - [ ] keine unbeabsichtigt fehlschlagenden Test (1)
@@ -58,7 +58,7 @@ Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nic
 - [ ] data binding verwendet (1)
 - [ ] Änderung der Fachnummer mittels drag&drop (1)
 - [ ] Einfügen von Kuchen via GUI sperrt nicht (1)
-- [ ] JBP und JOS (2)
+- [ ] JBP und JOS.josItem (2)
 - [ ] TCP und UDP (1)
 - [ ] Server unterstützt konkurierende Clients für TCP oder UDP (2)
 

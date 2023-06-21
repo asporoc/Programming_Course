@@ -13,7 +13,7 @@ public class guiImpl extends Application {
         Parent root = loader.load();
         Controller controller = loader.getController();
         mainStage.setTitle("Storage Manager");
-        mainStage.setScene(new Scene(root,1200,640));
+        mainStage.setScene(new Scene(root,1200,500));
         mainStage.show();
 
     }

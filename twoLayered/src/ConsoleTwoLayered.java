@@ -1,10 +1,11 @@
+import JOS.JOSItemSerializationUtils;
 import util.Command;
 import verwaltung.Lager;
 
 import java.util.Scanner;
 
 public class ConsoleTwoLayered {
-    final Lager logic;
+    private Lager logic;
     public ConsoleTwoLayered(Lager logic){
         this.logic = logic;
     }
@@ -20,7 +21,6 @@ public class ConsoleTwoLayered {
                         "\n :u Lagerort des Frachtstücks das sie inspizieren wollen" +
                         "\n :r Gibt den derzeitigen Inhalt des gesamten Lagers wieder");
                 Command c = new Command(sc.nextLine());
-                //dryBulkCargoImpl cargo = new dryBulkCargoImpl("henry",new BigDecimal(1),89, new Hazard[]{Hazard.flammable});
                 switch (c.operator){
                     case c:
                         //einfuegen mittels Scanner möglich erfordert jedoch korrekt formulierte strings
@@ -40,7 +40,8 @@ public class ConsoleTwoLayered {
                         this.logic.inspection(c.commandoInt);
                         break;
                     case p:
-                        //persistenzmodus Implementierung
+                        //JOS.JOSItemSerializationUtils.serialize("test.ser",logic);
+                        logic = JOSItemSerializationUtils.deserialize("test.ser");
                         break;
                     case Error:
                         throw notImplementedException;

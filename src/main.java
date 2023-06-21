@@ -10,10 +10,8 @@ import verwaltung.Lager;
 public class main {
     public static void main(String[] args) throws Exception {
         Lager testLager = new Lager();
-        lagerObserver observer = new lagerObserver();
-        testLager.addObserver(observer);
         /* twoLayered approach */
-       /* ConsoleTwoLayered testConsoleTwoLayered = new ConsoleTwoLayered(testLager);
+        /*ConsoleTwoLayered testConsoleTwoLayered = new ConsoleTwoLayered(testLager);
         testConsoleTwoLayered.execute();*/
         /*Versuch der Implementierung von Event-System Abrufmethode funktioniert beidngt durch fehlenden Rückgabewert nicht*/
         ConsoleEventSystem testConsoleEventSystem = new ConsoleEventSystem(testLager);

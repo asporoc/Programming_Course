@@ -1,13 +1,13 @@
 package verwaltung;
 
-import cargo.DryBulkCargo;
+import administration.Customer;
 import cargos.dryBulkCargoImpl;
-import cargos.storableCargo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -17,10 +17,9 @@ class LagerTest {
             void setUp(){
         lagerZuTesten = new Lager();
         lagerZuTesten.einfuegen("Heino");
+        lagerZuTesten.einfuegen("Hugo");
         lagerZuTesten.einfuegen("DryBulkCargo Heino 33,flammable,explosive true false 33");
     }
-
-
 
     @Test
     void einfuegen() {
@@ -51,7 +50,14 @@ class LagerTest {
     @Test
     void abrufen() {
         assertEquals(lagerZuTesten.getCargoList().clone(),lagerZuTesten.abrufen());
-
+    }
+    @Test
+    void abrufenNotNull() {
+        assertNotNull(lagerZuTesten.abrufen());
+    }
+    @Test
+    void abrufenNotOriginal() {
+        assertNotSame(lagerZuTesten.abrufen(),lagerZuTesten.getCargoList());
     }
     @Test
     void abrufenLeeresLager(){
@@ -84,4 +90,31 @@ class LagerTest {
         assertFalse(lagerZuTesten.einfuegen("DryBulkCargo Heinz 123 , true false 13"));
 
     }
+    @Test
+    void getMaxSizeTest(){
+        Lager sizeLager = new Lager(14);
+        assertEquals(14, sizeLager.getMaxsize());
+    }
+    @Test
+    void defaultMaxSizeTest(){
+        Lager sizeLager = new Lager();
+        assertEquals(10, sizeLager.getMaxsize());
+    }
+    @Test
+    void getCargoList(){
+        HashMap<Integer,dryBulkCargoImpl> test = lagerZuTesten.getCargoList();
+        assertSame(test,lagerZuTesten.getCargoList());
+    }
+    @Test
+    void getCustomerList(){
+        List<Customer> test = lagerZuTesten.getCustomerList();
+        assertNotNull(test);
+        assertEquals(test.get(0).getName(),"Heino");
+        assertEquals(test.get(1).getName(),"Hugo");
+    }
+    @Test
+    void abrufenCargo(){
+        assertEquals(lagerZuTesten.abrufen(0),lagerZuTesten.getCargoList().get(0));
+    }
+
 }

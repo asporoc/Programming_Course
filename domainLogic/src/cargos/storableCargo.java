@@ -3,7 +3,9 @@ package cargos;
 import administration.Storable;
 import cargo.Cargo;
 
-public interface storableCargo extends Storable,Cargo{
+import java.io.Serializable;
+
+public interface storableCargo extends Storable,Cargo, Serializable {
     public String cargoToString();
 
 }

@@ -16,6 +16,8 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import verwaltung.Lager;
+import JOS.*;
+
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -25,6 +27,8 @@ import java.util.*;
 
 public class Controller {
 
+    @FXML private Button saveButton;
+    @FXML private Button loadButton;
     @FXML private ComboBox<String> abrufenComboBox;
     @FXML private AnchorPane anchorpane;
     @FXML private TableColumn<CargoItem,Integer> storageLocationTab;
@@ -254,10 +258,6 @@ public class Controller {
         }
     }
 
-
-
-
-
     public void einfuegenClick(ActionEvent actionEvent) {
         String owner = ownerTextField.getText().trim();
         String selectedOption = cargoTypeComboBox.getValue();
@@ -323,5 +323,15 @@ public class Controller {
         guiLager.entfernen(entfernenLagerOrt.getValue());
         updateItems();
         updateStorageLocations();
+    }
+
+    public void saveClick(ActionEvent actionEvent) {
+        JOSItemSerializationUtils.serialize("test.ser",guiLager);
+
+    }
+
+    public void loadClick(ActionEvent actionEvent) {
+        guiLager=JOSItemSerializationUtils.deserialize("test.ser");
+        updateItems();
     }
 }
