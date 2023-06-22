@@ -10,4 +10,5 @@ public class LiquidBulkCargo_Beschreibung{
     public boolean isPressurized(){
         return pressurized;
     }
+
 }

@@ -3,20 +3,20 @@ package cargos;
 import administration.Customer;
 import administration.Storable;
 import cargo.Cargo;
-import cargo.DryBulkCargo;
 import cargo.Hazard;
+import cargo.UnitisedCargo;
 
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
 
-public class DryBulkCargoImpl implements Cargo, Storable, DryBulkCargo, storableCargo {
-    Cargo_Beschreibung cargoBeschreibung;
-    Storable_Beschreibung storableBeschreibung;
-    DryBulkCargo_Beschreibung dryBulkCargoBeschreibung;
-    public DryBulkCargoImpl(Customer owner, BigDecimal value, Collection<Hazard> hazards, int grainSize ){
-        this.dryBulkCargoBeschreibung = new DryBulkCargo_Beschreibung(grainSize);
+public class UnitisedCargoImpl implements Cargo, Storable, UnitisedCargo, storableCargo {
+    private Storable_Beschreibung storableBeschreibung;
+    private Cargo_Beschreibung cargoBeschreibung;
+    private UnitisedCargo_Beschreibung unitisedCargoBeschreibung;
+    public UnitisedCargoImpl(Customer owner, BigDecimal value, Collection<Hazard> hazards,boolean fragile ){
+        this.unitisedCargoBeschreibung = new UnitisedCargo_Beschreibung(fragile);
         this.cargoBeschreibung = new Cargo_Beschreibung(value);
         this.storableBeschreibung = new Storable_Beschreibung(owner);
     }
@@ -52,8 +52,8 @@ public class DryBulkCargoImpl implements Cargo, Storable, DryBulkCargo, storable
     }
 
     @Override
-    public int getGrainSize() {
-        return dryBulkCargoBeschreibung.getGrainSize();
+    public boolean isFragile() {
+        return unitisedCargoBeschreibung.isFragile();
     }
     public void setStorageLocation(int location){
         storableBeschreibung.setStorageLocation(location);

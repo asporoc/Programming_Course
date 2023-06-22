@@ -12,9 +12,8 @@ public class Storable_Beschreibung implements Storable {
     Date lastInspectionDate;
     int storageLocation;
     Date storageDate = new Date();
-    public Storable_Beschreibung(Customer owner, int storageLocation){
+    public Storable_Beschreibung(Customer owner){
         this.owner=owner;
-        this.storageLocation=storageLocation;
         lastInspectionDate=storageDate;
 
 
@@ -39,5 +38,9 @@ public class Storable_Beschreibung implements Storable {
     @Override
     public int getStorageLocation() {
         return storageLocation;
+    }
+
+    public void setStorageLocation(int storageLocation) {
+        this.storageLocation = storageLocation;
     }
 }

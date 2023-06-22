@@ -3,24 +3,26 @@ package cargos;
 import administration.Customer;
 import administration.Storable;
 import cargo.Cargo;
-import cargo.DryBulkCargo;
 import cargo.Hazard;
+import cargo.LiquidAndDryBulkCargo;
 
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
 
-public class DryBulkCargoImpl implements Cargo, Storable, DryBulkCargo, storableCargo {
+public class LiquidAndDryBulkCargoImpl implements Storable, Cargo, LiquidAndDryBulkCargo,storableCargo {
     Cargo_Beschreibung cargoBeschreibung;
     Storable_Beschreibung storableBeschreibung;
     DryBulkCargo_Beschreibung dryBulkCargoBeschreibung;
-    public DryBulkCargoImpl(Customer owner, BigDecimal value, Collection<Hazard> hazards, int grainSize ){
-        this.dryBulkCargoBeschreibung = new DryBulkCargo_Beschreibung(grainSize);
-        this.cargoBeschreibung = new Cargo_Beschreibung(value);
+    LiquidBulkCargo_Beschreibung liquidBulkCargoBeschreibung;
+    public LiquidAndDryBulkCargoImpl(Customer owner, BigDecimal value, Collection<Hazard> hazards, boolean pressurized, int grainSize){
+        this.cargoBeschreibung = new Cargo_Beschreibung(value/*,hazards*/);
         this.storableBeschreibung = new Storable_Beschreibung(owner);
-    }
+        this.liquidBulkCargoBeschreibung = new LiquidBulkCargo_Beschreibung(pressurized);
+        this.dryBulkCargoBeschreibung = new DryBulkCargo_Beschreibung(grainSize);
 
+    }
     @Override
     public Customer getOwner() {
         return storableBeschreibung.getOwner();
@@ -54,6 +56,11 @@ public class DryBulkCargoImpl implements Cargo, Storable, DryBulkCargo, storable
     @Override
     public int getGrainSize() {
         return dryBulkCargoBeschreibung.getGrainSize();
+    }
+
+    @Override
+    public boolean isPressurized() {
+        return liquidBulkCargoBeschreibung.isPressurized();
     }
     public void setStorageLocation(int location){
         storableBeschreibung.setStorageLocation(location);

@@ -13,7 +13,7 @@ import java.util.*;
 public class Lager implements Serializable {
     private transient Object monitor = new Object();
     private List<Customer> customerList = new LinkedList<>();
-    private HashMap<Integer,dryBulkCargoImpl> cargoList = new HashMap<>();
+    private HashMap<Integer,storableCargo> cargoList = new HashMap<>();
     private int maxsize;
 
     public List<Customer> getCustomerList() {
@@ -30,14 +30,14 @@ public class Lager implements Serializable {
     }
 
 
-    public <T extends storableCargo> boolean einfuegen(String einfuegenString) {
+    public <T extends storableCargo> boolean einfuegen(storableCargo cargo) {
         boolean fragile;
         boolean pressurized; //parsen nicht teil der Logic gehört zum view! Warum überhaupt parsen?
-        String[] text = einfuegenString.split(" ");
+        //String[] text = einfuegenString.split(" ");
         if (cargoList.size()==maxsize) {
             return false;
         }
-        if (text.length > 3 && text.length < 11) {
+        /*if (text.length > 3 && text.length < 11) {
             Hazard[] hazards = new Hazard[0];
             String value = null;
 
@@ -66,7 +66,7 @@ public class Lager implements Serializable {
                 value = text[2];
             }
             dryBulkCargoImpl cargo = new dryBulkCargoImpl(text[0], text[1], new BigDecimal(value), hazards,Boolean.parseBoolean(text[text.length-3]),Boolean.parseBoolean(text[text.length-2]),Integer.parseInt(text[text.length-1]),einfuegenString);
-
+*/
             for (Customer o : customerList) {
                 if (o.getName().equals(cargo.getOwner().getName())) {
 
@@ -76,6 +76,7 @@ public class Lager implements Serializable {
                                 if (location == maxsize - 1) {
                                 }
                                 cargoList.put(location, cargo);
+
                                 cargo.setStorageLocation(location);
                                 return true;
                             }
@@ -87,7 +88,7 @@ public class Lager implements Serializable {
                 }
             }
             return false;
-        } else if (text.length == 1) {
+        }/* else if (text.length == 1) {
             for (Customer c : customerList) {
                 if (c.getName().equals(text[0])) {
                     return false;
@@ -98,12 +99,12 @@ public class Lager implements Serializable {
         } else {
             return false;
         }
-    }
+    }*/
 
     public Object abrufen() {
         return cargoList.clone();
     }
-    public dryBulkCargoImpl abrufen(int storageLocation){
+    public storableCargo abrufen(int storageLocation){
         return cargoList.get(storageLocation);
     }
 
@@ -126,7 +127,7 @@ public class Lager implements Serializable {
         return newDate;
     }
 
-    public HashMap<Integer, dryBulkCargoImpl> getCargoList() {
+    public HashMap<Integer, storableCargo> getCargoList() {
         return cargoList;
     }
 

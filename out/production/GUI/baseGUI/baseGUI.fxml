@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<SplitPane dividerPositions="0.5042194092827004" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="492.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseGUI.Controller">
+    <items>
+    <AnchorPane fx:id="anchorpane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+         <children>
+            <TableView fx:id="cargoTableView" layoutX="47.0" layoutY="53.0" prefHeight="438.0" prefWidth="324.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columns>
+                <TableColumn fx:id="storageLocationTab" text="Storage Location" />
+                 <TableColumn fx:id="ownerTab" text="Owner" />
+                 <TableColumn fx:id="lastInspectionDateTab" text="Inspection Date" />
+                 <TableColumn fx:id="storageDurationTab" text="Storage Duration" />
+
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="254.0">
+         <children>
+            <VBox alignment="CENTER" layoutX="-1.0" prefHeight="398.0" prefWidth="351.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-71.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <SplitPane dividerPositions="0.5024311183144247" prefHeight="160.0" prefWidth="200.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <Button id="einfuegenButton" fx:id="einfuegenButton" alignment="CENTER" mnemonicParsing="false" onAction="#einfuegenClick" prefHeight="26.0" prefWidth="165.0" text="Einfuegen" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="61.0" AnchorPane.topAnchor="7.0" />
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="40.0" prefWidth="364.0">
+                           <children>
+                              <SplitPane dividerPositions="0.5" prefHeight="40.0" prefWidth="304.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                       <children>
+                                          <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveClick" text="Speichern" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="7.0" />
+                                       </children>
+                                    </AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                       <children>
+                                          <Button fx:id="loadButton" mnemonicParsing="false" onAction="#loadClick" text="Laden" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="7.0" />
+                                       </children>
+                                    </AnchorPane>
+                                </items>
+                              </SplitPane>
+                           </children></AnchorPane>
+                    </items>
+                  </SplitPane>
+                  <AnchorPane prefHeight="94.0" prefWidth="674.0">
+                     <children>
+                        <VBox prefHeight="94.0" prefWidth="674.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <HBox prefHeight="94.0" prefWidth="627.0" spacing="20.0">
+                                 <children>
+                                    <AnchorPane prefHeight="94.0" prefWidth="182.0">
+                                       <children>
+                                          <VBox prefHeight="94.0" prefWidth="106.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <Label text="Fracht Typ" />
+                                                <ComboBox fx:id="cargoTypeComboBox" prefHeight="26.0" prefWidth="181.0" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="94.0" prefWidth="110.0">
+                                       <children>
+                                          <VBox prefHeight="94.0" prefWidth="71.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <Label text="Besitzer" />
+                                                <TextField id="ownerTextField" fx:id="ownerTextField" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="403.0" layoutY="10.0" prefHeight="94.0" prefWidth="110.0">
+                                       <children>
+                                          <VBox prefHeight="94.0" prefWidth="71.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <Label text="Grain Size" />
+                                                <TextField id="grainSizeTextField" fx:id="grainSizeTextField" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="403.0" layoutY="10.0" prefHeight="94.0" prefWidth="110.0">
+                                       <children>
+                                          <VBox prefHeight="94.0" prefWidth="71.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <Label text="Wert" />
+                                                <TextField id="valueTextField" fx:id="valueTextField" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox layoutX="10.0" layoutY="10.0" prefHeight="94.0" prefWidth="627.0" spacing="5.0">
+                                 <children>
+                                    <AnchorPane prefHeight="56.0" prefWidth="134.0">
+                                       <children>
+                                          <CheckBox fx:id="flammableCheckBox" mnemonicParsing="false" prefHeight="56.0" prefWidth="115.0" text="flammable" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="56.0" prefWidth="125.0">
+                                       <children>
+                                          <CheckBox fx:id="explosiveCheckBox" mnemonicParsing="false" prefHeight="56.0" prefWidth="106.0" text="explosive" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="20.0" layoutY="10.0" prefHeight="56.0" prefWidth="114.0">
+                                       <children>
+                                          <CheckBox fx:id="radioactiveCheckBox" mnemonicParsing="false" prefHeight="56.0" prefWidth="96.0" text="radioactive" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="160.0" layoutY="10.0" prefHeight="56.0" prefWidth="81.0">
+                                       <children>
+                                          <CheckBox fx:id="toxicCheckBox" mnemonicParsing="false" prefHeight="56.0" prefWidth="63.0" text="toxic" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="20.0" layoutY="10.0" prefHeight="94.0" prefWidth="120.0">
+                                       <children>
+                                          <CheckBox fx:id="pressurizedCheckBox" mnemonicParsing="false" prefHeight="56.0" prefWidth="102.0" text="pressurized" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="277.0" layoutY="10.0" prefHeight="94.0" prefWidth="120.0">
+                                       <children>
+                                          <CheckBox fx:id="fragileCheckBox" mnemonicParsing="false" prefHeight="56.0" prefWidth="102.0" text="fragile" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                                 <padding>
+                                    <Insets left="10.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </AnchorPane>
+                  <Button id="entfernenButton" fx:id="entfernenButton" mnemonicParsing="false" onAction="#entfernenClick" prefHeight="26.0" prefWidth="165.0" text="Entfernen">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin></Button>
+                  <AnchorPane prefHeight="46.0" prefWidth="619.0">
+                     <children>
+                        <ComboBox fx:id="entfernenLagerOrt" layoutX="235.0" layoutY="1.0" prefWidth="150.0" promptText="Lagerort" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="234.0" />
+                     </children>
+                  </AnchorPane>
+                  <Button id="ueberpruefenButton" fx:id="ueberpruefenButton" mnemonicParsing="false" onAction="#ueberpruefenClick" prefHeight="26.0" prefWidth="165.0" text="Ueberpruefen" />
+                  <AnchorPane prefHeight="31.0" prefWidth="619.0">
+                     <children>
+                        <ComboBox fx:id="ueberpruefenLagerOrt" layoutX="235.0" layoutY="1.0" prefWidth="150.0" promptText="Lagerort" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="234.0" />
+                     </children>
+                  </AnchorPane>
+                  <Button id="abrufenButton" fx:id="abrufenButton" mnemonicParsing="false" onAction="#abrufenClick" prefHeight="26.0" prefWidth="165.0" text="Abrufen" />
+                  <AnchorPane prefHeight="52.0" prefWidth="619.0">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                     <children>
+                        <ComboBox fx:id="abrufenComboBox" layoutX="235.0" prefHeight="27.0" prefWidth="150.0" promptText="Art des Abrufs" AnchorPane.bottomAnchor="128.0" AnchorPane.leftAnchor="235.0" AnchorPane.rightAnchor="234.0" AnchorPane.topAnchor="0.0" />
+                        <ListView fx:id="abrufenListView" layoutY="32.0" prefHeight="123.0" prefWidth="620.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets left="70.0" />
+         </padding></AnchorPane>
+  </items>
+</SplitPane>
