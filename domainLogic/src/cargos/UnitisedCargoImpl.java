@@ -17,7 +17,7 @@ public class UnitisedCargoImpl implements Cargo, Storable, UnitisedCargo, storab
     private Storable_Beschreibung storableBeschreibung;
     private Cargo_Beschreibung cargoBeschreibung;
     private UnitisedCargo_Beschreibung unitisedCargoBeschreibung;
-    public UnitisedCargoImpl(Customer owner, BigDecimal value, Collection<Hazard> hazards,boolean fragile ){
+    public UnitisedCargoImpl(Customer owner, BigDecimal value, Collection<Hazard> hazards,boolean fragile){
         this.unitisedCargoBeschreibung = new UnitisedCargo_Beschreibung(fragile);
         this.cargoBeschreibung = new Cargo_Beschreibung(value,hazards);
         this.storableBeschreibung = new Storable_Beschreibung(owner);

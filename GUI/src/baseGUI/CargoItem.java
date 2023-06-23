@@ -1,7 +1,6 @@
 package baseGUI;
 
 import cargos.UtilityClass;
-import cargos.dryBulkCargoImpl;
 import cargos.storableCargo;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.*;

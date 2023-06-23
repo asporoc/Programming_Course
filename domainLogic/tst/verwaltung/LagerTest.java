@@ -1,7 +1,6 @@
 package verwaltung;
 
 import administration.Customer;
-import cargos.dryBulkCargoImpl;
 import cargos.storableCargo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
