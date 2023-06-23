@@ -2,7 +2,7 @@ package baseGUI;
 
 import administration.Customer;
 import cargo.Hazard;
-import cargos.dryBulkCargoImpl;
+import cargos.*;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -15,10 +15,12 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
+import verwaltung.Kunde;
 import verwaltung.Lager;
 import JOS.*;
 
 
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -62,7 +64,7 @@ public class Controller {
         cargoItems.clear();
         for (int i = 0; i < guiLager.getMaxsize(); i++) {
             if (guiLager.abrufen(i) != null) {
-                dryBulkCargoImpl cargo = guiLager.abrufen(i);
+                storableCargo cargo = guiLager.abrufen(i);
                 cargoItems.add(new CargoItem(cargo));
             }
         }
@@ -167,8 +169,8 @@ public class Controller {
                     draggedStorageLocation.set(targetStorageLocation.get());
                     targetStorageLocation.set(draggedLocation);
 
-                    dryBulkCargoImpl draggedCargo = draggedItem.getDryBulkCargoImpl();
-                    dryBulkCargoImpl targetCargo = targetItem.getDryBulkCargoImpl();
+                    storableCargo draggedCargo = draggedItem.getDryBulkCargoImpl();
+                    storableCargo targetCargo = targetItem.getDryBulkCargoImpl();
                     draggedItem.setDryBulkCargoImpl(targetCargo);
                     targetItem.setDryBulkCargoImpl(draggedCargo);
 
@@ -188,7 +190,7 @@ public class Controller {
     private Map<String, Integer> getCustomerInfo() {
         Map<String, Integer> customerCargoMap = new HashMap<>();
 
-        for (dryBulkCargoImpl cargo : guiLager.getCargoList().values()) {
+        for (storableCargo cargo : guiLager.getCargoList().values()) {
             String customerName = cargo.getOwner().getName();
 
             if (customerCargoMap.containsKey(customerName)) {
@@ -227,7 +229,7 @@ public class Controller {
     private Map<Hazard, Integer> getHazardInfo() {
         Map<Hazard, Integer> hazardCountMap = new HashMap<>();
 
-        for (dryBulkCargoImpl cargo : guiLager.getCargoList().values()) {
+        for (storableCargo cargo : guiLager.getCargoList().values()) {
             Collection<Hazard> hazards = cargo.getHazards();
 
             for (Hazard hazard : hazards) {
@@ -259,6 +261,8 @@ public class Controller {
     }
 
     public void einfuegenClick(ActionEvent actionEvent) {
+        storableCargo cargo=null;
+        EnumSet<Hazard> hazards = EnumSet.noneOf(Hazard.class);
         String owner = ownerTextField.getText().trim();
         String selectedOption = cargoTypeComboBox.getValue();
         if (selectedOption != null && !selectedOption.equals("")) {
@@ -272,25 +276,41 @@ public class Controller {
             boolean radioactive = radioactiveCheckBox.isSelected();
             if(flammable||toxic||radioactive||explosive){
                 if(flammable){
-                    einfuegenString+=","+"flammable";
+                    hazards.add(Hazard.flammable);
                 }
                 if (toxic) {
-                    einfuegenString+=","+"toxic";
+                    hazards.add(Hazard.toxic);
                 }
                 if (explosive) {
-                    einfuegenString+=","+"explosive";
+                    hazards.add(Hazard.explosive);
                 }
                 if (radioactive) {
-                    einfuegenString += "," + "radioactive";
+                    hazards.add(Hazard.radioactive);
                 }
             }else { einfuegenString+=" ,";
             }
             einfuegenString+= " "+ fragileCheckBox.isSelected() +" "+ pressurizedCheckBox.isSelected();
             einfuegenString+= " "+grainSizeTextField.getText();
-            guiLager.einfuegen(einfuegenString);
+            switch(selectedOption) {
+                case "DryBulkCargo":
+                    cargo = new DryBulkCargoImpl(new Kunde(owner), new BigDecimal(value), hazards, Integer.parseInt(grainSizeTextField.getText()));
+                    break;
+                case "DryBulkAndUnitisedCargo":
+                    cargo = new DryBulkAndUnitisedCargoImpl(new Kunde(owner), new BigDecimal(value), hazards, Integer.parseInt(grainSizeTextField.getText()), fragileCheckBox.isSelected());
+                    guiLager.einfuegen(cargo);
+                    break;
+                case "LiquidAndDryBulkCargo":
+                    cargo = new LiquidAndDryBulkCargoImpl(new Kunde(owner), new BigDecimal(value), hazards, pressurizedCheckBox.isSelected(), Integer.parseInt(grainSizeTextField.getText()));
+                    break;
+                case "LiquidBulkCargo":
+                    cargo = new LiquidBulkCargoImpl(new Kunde(owner), new BigDecimal(value), hazards, pressurizedCheckBox.isSelected());
+                    break;
+                case "UnitisedCargo":
+                    cargo = new UnitisedCargoImpl(new Kunde(owner), new BigDecimal(value), hazards, fragileCheckBox.isSelected());
+            }
+            guiLager.einfuegen(cargo);
         } else {
-            einfuegenString+=owner;
-            guiLager.einfuegen(einfuegenString);
+            guiLager.einfuegen(owner);
         }
         einfuegenString="";
         updateItems();

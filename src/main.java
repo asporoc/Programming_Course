@@ -15,15 +15,15 @@ import java.util.Collection;
 public class main {
     public static void main(String[] args) throws Exception {
         Lager testLager = new Lager();
-        LiquidBulkCargoImpl testliquid = new LiquidBulkCargoImpl(new Kunde("Hinz"),2, new BigDecimal(3),false);
+        /*LiquidBulkCargoImpl testliquid = new LiquidBulkCargoImpl(new Kunde("Hinz"),2, new BigDecimal(3),false);
         LiquidBulkCargoImpl test = new LiquidBulkCargoImpl(new Kunde("Hinz"),2, new BigDecimal(7),false);
         System.out.println(testliquid.getCargoBeschreibung().getValue());
-        System.out.println(test.getCargoBeschreibung().getValue());
+        System.out.println(test.getCargoBeschreibung().getValue());*/
         /* twoLayered approach */
-        ConsoleTwoLayered testConsoleTwoLayered = new ConsoleTwoLayered(testLager);
-        testConsoleTwoLayered.execute();
+        /*ConsoleTwoLayered testConsoleTwoLayered = new ConsoleTwoLayered(testLager);
+        testConsoleTwoLayered.execute();*/
         /*Versuch der Implementierung von Event-System Abrufmethode funktioniert beidngt durch fehlenden Rückgabewert nicht*/
-        /*ConsoleEventSystem testConsoleEventSystem = new ConsoleEventSystem(testLager);
+        ConsoleEventSystem testConsoleEventSystem = new ConsoleEventSystem(testLager);
         EventHandler einfuegenHandler = new EventHandler();
         EinfuegenListener einfuegenListener = new EinfuegenListener(testLager);
         einfuegenHandler.addListener(einfuegenListener);
@@ -38,7 +38,7 @@ public class main {
         InspectionListener inspectionListener = new InspectionListener(testLager);
         inspectionHandler.addListener(inspectionListener);
         testConsoleEventSystem.setStorageLocationHandler(inspectionHandler);
-        testConsoleEventSystem.execute();*/
+        testConsoleEventSystem.execute();
 
 
 

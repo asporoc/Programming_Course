@@ -2,6 +2,8 @@ package cargos;
 
 import administration.Customer;
 import administration.Storable;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 import java.time.Duration;
 import java.util.Date;
@@ -10,7 +12,7 @@ public class Storable_Beschreibung implements Storable {
     Customer owner;
     Duration durationOfStorage;
     Date lastInspectionDate;
-    int storageLocation;
+    private transient IntegerProperty storageLocation;
     Date storageDate = new Date();
     public Storable_Beschreibung(Customer owner){
         this.owner=owner;
@@ -18,6 +20,9 @@ public class Storable_Beschreibung implements Storable {
 
 
 
+    }
+    public IntegerProperty storageLocationProperty() {
+        return storageLocation;
     }
     @Override
     public Customer getOwner() {
@@ -32,15 +37,20 @@ public class Storable_Beschreibung implements Storable {
 
     @Override
     public Date getLastInspectionDate() {
-        return null;
+        return lastInspectionDate;
     }
 
     @Override
     public int getStorageLocation() {
-        return storageLocation;
+        return storageLocation.get();
     }
 
     public void setStorageLocation(int storageLocation) {
-        this.storageLocation = storageLocation;
+        this.storageLocation = new SimpleIntegerProperty(storageLocation);
+
+    }
+
+    public void setLastInspectionDate(Date date) {
+        this.lastInspectionDate = date;
     }
 }

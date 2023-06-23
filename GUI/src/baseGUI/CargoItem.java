@@ -1,6 +1,8 @@
 package baseGUI;
 
+import cargos.UtilityClass;
 import cargos.dryBulkCargoImpl;
+import cargos.storableCargo;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.*;
 
@@ -14,11 +16,11 @@ public class CargoItem {
     private final StringProperty owner;
     private final ObjectProperty<Duration> durationOfStorage;
     private final StringProperty lastInspectionDate;
-    private dryBulkCargoImpl cargo;
+    private storableCargo cargo;
     private IntegerProperty storageLocation;
-    private dryBulkCargoImpl dryBulkCargo;
+    private storableCargo dryBulkCargo;
 
-    public CargoItem(dryBulkCargoImpl cargo) {
+    public CargoItem(storableCargo cargo) {
         this.cargo = cargo;
         this.storageLocation = new SimpleIntegerProperty(cargo.getStorageLocation());
         this.owner = new SimpleStringProperty(cargo.getOwner().getName());
@@ -28,7 +30,7 @@ public class CargoItem {
         updateDurationOfStorage(duration);
 
 
-        Bindings.bindBidirectional(storageLocation, cargo.storageLocationProperty());
+        Bindings.bindBidirectional(storageLocation, UtilityClass.storageLocationProperty(cargo));
     }
 
 
@@ -44,7 +46,7 @@ public class CargoItem {
         return durationOfStorage;
     }
 
-    public void setDryBulkCargoImpl(dryBulkCargoImpl dryBulkCargo) {
+    public void setDryBulkCargoImpl(storableCargo dryBulkCargo) {
         this.dryBulkCargo = dryBulkCargo;
     }
 
@@ -52,7 +54,7 @@ public class CargoItem {
         this.durationOfStorage.set(Duration.parse(duration.toString()));
     }
 
-    public dryBulkCargoImpl getDryBulkCargoImpl() {
+    public storableCargo getDryBulkCargoImpl() {
         return cargo;
     }
     public String getLastInspectionDate() {

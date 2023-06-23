@@ -13,7 +13,7 @@ public class EinfuegenListener implements CRUDEventListener {
     }
     @Override
     public void onEvent(EventObject event) {
-        this.cargoList.einfuegen(((EinfuegenEvent) event).getEinfuegenString());
+        this.cargoList.einfuegen(((EinfuegenEvent) event).getObject());
 
     }
 }

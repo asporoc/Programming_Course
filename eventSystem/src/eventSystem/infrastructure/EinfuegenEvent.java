@@ -1,15 +1,17 @@
 package eventSystem.infrastructure;
 
+import cargos.storableCargo;
+
 import java.util.EventObject;
 
 public class EinfuegenEvent extends EventObject {
 
-    private String einfuegenString;
-    public EinfuegenEvent(Object source, String einfuegenString) {
+    private storableCargo object;
+    public EinfuegenEvent(Object source, storableCargo object) {
         super(source);
-        this.einfuegenString = einfuegenString;
+        this.object = object;
     }
-    public String getEinfuegenString(){
-        return einfuegenString;
+    public storableCargo getObject(){
+        return object;
     }
 }

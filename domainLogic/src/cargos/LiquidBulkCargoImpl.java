@@ -5,6 +5,7 @@ import administration.Storable;
 import cargo.Cargo;
 import cargo.Hazard;
 import cargo.LiquidBulkCargo;
+import javafx.beans.property.IntegerProperty;
 
 import java.math.BigDecimal;
 import java.time.Duration;
@@ -17,7 +18,7 @@ public class LiquidBulkCargoImpl implements Cargo, Storable, LiquidBulkCargo, st
     LiquidBulkCargo_Beschreibung liquidBulkCargoBeschreibung;
 
     public LiquidBulkCargoImpl(Customer owner, BigDecimal value, Collection<Hazard> hazards, boolean pressurized){
-        this.cargoBeschreibung = new Cargo_Beschreibung(value/*,hazards*/);
+        this.cargoBeschreibung = new Cargo_Beschreibung(value,hazards);
         this.storableBeschreibung = new Storable_Beschreibung(owner);
         this.liquidBulkCargoBeschreibung = new LiquidBulkCargo_Beschreibung(pressurized);
 
@@ -72,5 +73,11 @@ public class LiquidBulkCargoImpl implements Cargo, Storable, LiquidBulkCargo, st
     }
     public void setStorageLocation(int location){
         storableBeschreibung.setStorageLocation(location);
+    }
+    public void setLastInspectionDate(Date date){
+        storableBeschreibung.setLastInspectionDate(date);
+    }
+    public IntegerProperty storageLocationProperty() {
+        return storableBeschreibung.storageLocationProperty();
     }
 }

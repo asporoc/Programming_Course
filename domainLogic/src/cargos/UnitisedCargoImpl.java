@@ -5,6 +5,7 @@ import administration.Storable;
 import cargo.Cargo;
 import cargo.Hazard;
 import cargo.UnitisedCargo;
+import javafx.beans.property.IntegerProperty;
 
 import java.math.BigDecimal;
 import java.time.Duration;
@@ -17,7 +18,7 @@ public class UnitisedCargoImpl implements Cargo, Storable, UnitisedCargo, storab
     private UnitisedCargo_Beschreibung unitisedCargoBeschreibung;
     public UnitisedCargoImpl(Customer owner, BigDecimal value, Collection<Hazard> hazards,boolean fragile ){
         this.unitisedCargoBeschreibung = new UnitisedCargo_Beschreibung(fragile);
-        this.cargoBeschreibung = new Cargo_Beschreibung(value);
+        this.cargoBeschreibung = new Cargo_Beschreibung(value,hazards);
         this.storableBeschreibung = new Storable_Beschreibung(owner);
     }
 
@@ -57,5 +58,11 @@ public class UnitisedCargoImpl implements Cargo, Storable, UnitisedCargo, storab
     }
     public void setStorageLocation(int location){
         storableBeschreibung.setStorageLocation(location);
+    }
+    public void setLastInspectionDate(Date date){
+        storableBeschreibung.setLastInspectionDate(date);
+    }
+    public IntegerProperty storageLocationProperty() {
+        return storableBeschreibung.storageLocationProperty();
     }
 }

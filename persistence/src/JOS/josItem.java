@@ -2,6 +2,7 @@ package JOS;
 
 import administration.Customer;
 import cargos.dryBulkCargoImpl;
+import cargos.storableCargo;
 import verwaltung.Lager;
 
 import java.io.*;
@@ -23,9 +24,9 @@ public class josItem implements Serializable {
 
     private int maxsize;
     private List<Customer> customerList;
-    private HashMap<Integer, dryBulkCargoImpl> cargoList;
+    private HashMap<Integer, storableCargo> cargoList;
 
-    public josItem(Lager lager, dryBulkCargoImpl cargo) {
+    public josItem(Lager lager, storableCargo cargo) {
         //super();
         this.maxsize = lager.getMaxsize();
         this.customerList = new LinkedList<>(lager.getCustomerList());
@@ -40,7 +41,7 @@ public class josItem implements Serializable {
         return customerList;
     }
 
-    public HashMap<Integer, dryBulkCargoImpl> getCargoList() {
+    public HashMap<Integer, storableCargo> getCargoList() {
         return cargoList;
     }
 }

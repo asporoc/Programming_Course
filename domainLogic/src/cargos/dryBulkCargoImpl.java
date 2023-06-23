@@ -104,8 +104,8 @@ public class dryBulkCargoImpl implements DryBulkCargo, storableCargo, Serializab
         return 0;
     }
 
-    @Override
+    /*@Override
     public String cargoToString() {
         return einfuegenString;
-    }
+    }*/
 }

@@ -9,7 +9,7 @@ import java.util.Collection;
 public class Cargo_Beschreibung implements Cargo {
     BigDecimal value;
     Collection<Hazard> hazards;
-    public Cargo_Beschreibung(BigDecimal value/*,Collection<Hazard> hazards*/){
+    public Cargo_Beschreibung(BigDecimal value,Collection<Hazard> hazards){
         this.value=value;
         this.hazards=hazards;
     }

@@ -2,6 +2,8 @@ package verwaltung;
 
 import administration.Customer;
 import cargo.Hazard;
+import cargos.DryBulkCargoImpl;
+import cargos.UtilityClass;
 import cargos.dryBulkCargoImpl;
 import cargos.storableCargo;
 
@@ -30,6 +32,16 @@ public class Lager implements Serializable {
     }
 
 
+    public boolean einfuegen(String name){
+        for (Customer c : customerList) {
+            if (c.getName().equals(name)) {
+                return false;
+            }
+
+        }
+        customerList.add(new Kunde(name));
+        return true;
+    }
     public <T extends storableCargo> boolean einfuegen(storableCargo cargo) {
         boolean fragile;
         boolean pressurized; //parsen nicht teil der Logic gehört zum view! Warum überhaupt parsen?
@@ -76,8 +88,9 @@ public class Lager implements Serializable {
                                 if (location == maxsize - 1) {
                                 }
                                 cargoList.put(location, cargo);
+                                UtilityClass.setStorageLocation(cargo,location);
 
-                                cargo.setStorageLocation(location);
+                                //cargo.setStorageLocation(location);
                                 return true;
                             }
                         }
@@ -123,7 +136,8 @@ public class Lager implements Serializable {
 
     public Date inspection(int storageLocation) {
         Date newDate = new Date();
-        (cargoList.get(storageLocation)).lastInspectionDate = newDate;
+        UtilityClass.setLastInspectionDate((cargoList.get(storageLocation)),newDate);
+        //(cargoList.get(storageLocation)).setLastInspectionDate(newDate);
         return newDate;
     }
 

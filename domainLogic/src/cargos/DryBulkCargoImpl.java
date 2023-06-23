@@ -5,6 +5,7 @@ import administration.Storable;
 import cargo.Cargo;
 import cargo.DryBulkCargo;
 import cargo.Hazard;
+import javafx.beans.property.IntegerProperty;
 
 import java.math.BigDecimal;
 import java.time.Duration;
@@ -17,7 +18,7 @@ public class DryBulkCargoImpl implements Cargo, Storable, DryBulkCargo, storable
     DryBulkCargo_Beschreibung dryBulkCargoBeschreibung;
     public DryBulkCargoImpl(Customer owner, BigDecimal value, Collection<Hazard> hazards, int grainSize ){
         this.dryBulkCargoBeschreibung = new DryBulkCargo_Beschreibung(grainSize);
-        this.cargoBeschreibung = new Cargo_Beschreibung(value);
+        this.cargoBeschreibung = new Cargo_Beschreibung(value, hazards);
         this.storableBeschreibung = new Storable_Beschreibung(owner);
     }
 
@@ -57,5 +58,11 @@ public class DryBulkCargoImpl implements Cargo, Storable, DryBulkCargo, storable
     }
     public void setStorageLocation(int location){
         storableBeschreibung.setStorageLocation(location);
+    }
+    public void setLastInspectionDate(Date date){
+        storableBeschreibung.setLastInspectionDate(date);
+    }
+    public IntegerProperty storageLocationProperty() {
+        return storableBeschreibung.storageLocationProperty();
     }
 }
