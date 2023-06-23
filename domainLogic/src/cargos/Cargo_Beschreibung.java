@@ -3,10 +3,11 @@ package cargos;
 import cargo.Cargo;
 import cargo.Hazard;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
 
-public class Cargo_Beschreibung implements Cargo {
+public class Cargo_Beschreibung implements Cargo, Serializable {
     BigDecimal value;
     Collection<Hazard> hazards;
     public Cargo_Beschreibung(BigDecimal value,Collection<Hazard> hazards){

@@ -7,12 +7,13 @@ import cargo.Hazard;
 import cargo.UnitisedCargo;
 import javafx.beans.property.IntegerProperty;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
 
-public class UnitisedCargoImpl implements Cargo, Storable, UnitisedCargo, storableCargo {
+public class UnitisedCargoImpl implements Cargo, Storable, UnitisedCargo, storableCargo, Serializable {
     private Storable_Beschreibung storableBeschreibung;
     private Cargo_Beschreibung cargoBeschreibung;
     private UnitisedCargo_Beschreibung unitisedCargoBeschreibung;

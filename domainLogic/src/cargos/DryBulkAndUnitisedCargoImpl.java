@@ -5,12 +5,13 @@ import administration.Storable;
 import cargo.*;
 import javafx.beans.property.IntegerProperty;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
 
-public class DryBulkAndUnitisedCargoImpl implements Cargo, Storable, DryBulkAndUnitisedCargo, storableCargo {
+public class DryBulkAndUnitisedCargoImpl implements Cargo, Storable, DryBulkAndUnitisedCargo, storableCargo, Serializable {
     Cargo_Beschreibung cargoBeschreibung;
     Storable_Beschreibung storableBeschreibung;
     DryBulkCargo_Beschreibung dryBulkCargoBeschreibung;

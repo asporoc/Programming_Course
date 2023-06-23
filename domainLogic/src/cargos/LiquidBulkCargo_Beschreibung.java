@@ -2,7 +2,9 @@ package cargos;
 
 import cargo.LiquidBulkCargo;
 
-public class LiquidBulkCargo_Beschreibung{
+import java.io.Serializable;
+
+public class LiquidBulkCargo_Beschreibung implements Serializable {
     private boolean pressurized;
     public LiquidBulkCargo_Beschreibung(boolean pressurized){
         this.pressurized=pressurized;

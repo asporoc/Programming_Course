@@ -5,10 +5,11 @@ import administration.Storable;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.util.Date;
 
-public class Storable_Beschreibung implements Storable {
+public class Storable_Beschreibung implements Storable, Serializable {
     Customer owner;
     Duration durationOfStorage;
     Date lastInspectionDate;

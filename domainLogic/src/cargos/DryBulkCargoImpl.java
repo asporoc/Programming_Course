@@ -7,12 +7,13 @@ import cargo.DryBulkCargo;
 import cargo.Hazard;
 import javafx.beans.property.IntegerProperty;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
 
-public class DryBulkCargoImpl implements Cargo, Storable, DryBulkCargo, storableCargo {
+public class DryBulkCargoImpl implements Cargo, Storable, DryBulkCargo, storableCargo, Serializable {
     Cargo_Beschreibung cargoBeschreibung;
     Storable_Beschreibung storableBeschreibung;
     DryBulkCargo_Beschreibung dryBulkCargoBeschreibung;

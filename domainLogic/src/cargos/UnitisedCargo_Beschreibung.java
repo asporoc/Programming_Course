@@ -2,7 +2,9 @@ package cargos;
 
 import cargo.UnitisedCargo;
 
-public class UnitisedCargo_Beschreibung {
+import java.io.Serializable;
+
+public class UnitisedCargo_Beschreibung implements Serializable {
     private boolean fragile;
 
     public UnitisedCargo_Beschreibung(boolean fragile) {
