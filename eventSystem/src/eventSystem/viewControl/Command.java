@@ -1,16 +1,18 @@
-package util;
+package eventSystem.viewControl;
 
 public class Command {
     public enum Operator {c, d, r, u, p, Error}
 
     public Operator operator;
     public String commandoString;
+    public String kundeString;
+
     public int commandoInt;
 
     public Command(String text) {
         String op = text.substring(0, 2);
         try {
-            commandoString = text.substring(3);
+                commandoString=text.substring(3);
         } catch (Exception e) {
             commandoString = "";
         }

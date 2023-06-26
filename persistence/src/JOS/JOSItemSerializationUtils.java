@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.Collection;
 
 public class JOSItemSerializationUtils {
-    public static void serialize(String fileName, Lager lager){
+    public static void serialize(String fileName, Lager lager){ //zwei zuständigkeiten speichern und speicherort
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
             oos.writeObject(lager);
         }catch (FileNotFoundException f){
@@ -15,7 +15,6 @@ public class JOSItemSerializationUtils {
         }catch(IOException e){
             e.printStackTrace();
         }
-
     }
     public static Lager deserialize(String filename) {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
@@ -28,6 +27,7 @@ public class JOSItemSerializationUtils {
                 //lager.getCargoList().get(i).setStorageLocation(i);
                 i++;
             }
+            ois.close();
             return lager;
         }catch (FileNotFoundException e) {
             System.err.println("File not found: " + filename);

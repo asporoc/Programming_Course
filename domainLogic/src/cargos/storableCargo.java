@@ -5,6 +5,6 @@ import cargo.Cargo;
 
 import java.io.Serializable;
 
-public interface storableCargo extends Storable,Cargo, Serializable {
+public interface storableCargo extends Storable,Cargo, Serializable, EinfuegenObject {
 
 }

@@ -1,6 +1,8 @@
 import cargo.Hazard;
 import simulation1.SimulationObserver;
+import verwaltung.Kunde;
 import verwaltung.Lager;
+import eventSystem.viewControl.ConsoleEventSystem;
 
 import java.util.Observable;
 import java.util.Random;
@@ -24,7 +26,7 @@ public class Simulation1Main {
 
                 String insertString = generateRandCargo(outerInstance.cargoTypes, outerInstance.kunden, outerInstance.allHazards);
                 synchronized (monitor) {
-                    boolean i = lager.einfuegen(insertString);
+                    boolean i = lager.einfuegen(new Kunde(insertString));
                     if (i) {
                         setChanged();
                         notifyObservers("Objekt wurde erfolgreich eingefuegt");
@@ -104,7 +106,7 @@ public class Simulation1Main {
         Lager simuLager = new Lager();
         Simulation1Main simulation1Main = new Simulation1Main();
         for(String kunde : simulation1Main.kunden){
-            simuLager.einfuegen(kunde);
+            simuLager.einfuegen(new Kunde(kunde));
         }
 
 

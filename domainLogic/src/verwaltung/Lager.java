@@ -8,10 +8,11 @@ import java.io.Serializable;
 import java.util.*;
 
 
-public class Lager implements Serializable {
+public class Lager extends Observable implements Serializable {
     private transient Object monitor = new Object();
     private List<Customer> customerList = new LinkedList<>();
     private HashMap<Integer,storableCargo> cargoList = new HashMap<>();
+
     private int maxsize;
 
     public List<Customer> getCustomerList() {
@@ -28,14 +29,14 @@ public class Lager implements Serializable {
     }
 
 
-    public boolean einfuegen(String name){
+    public boolean einfuegen(Kunde kunde){
         for (Customer c : customerList) {
-            if (c.getName().equals(name)) {
+            if (c.getName().equals(kunde.getName())) {
                 return false;
             }
 
         }
-        customerList.add(new Kunde(name));
+        customerList.add(kunde);
         return true;
     }
     public <T extends storableCargo> boolean einfuegen(storableCargo cargo) {
@@ -49,11 +50,14 @@ public class Lager implements Serializable {
                     if (cargo != null) {
                         for (int location = 0; location < maxsize; location++) {
                             if (cargoList.get(location) == null) {
-                                if (location == maxsize - 1) {
+
+                                //if (location == maxsize - 1) {
                                     cargoList.put(location, cargo);
+                                    this.setChanged();
+                                    this.notifyObservers();
                                     UtilityClass.setStorageLocation(cargo, location);
                                     return true;
-                                }
+                                //}
                             }
                         }
                     } else {

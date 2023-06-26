@@ -1,13 +1,10 @@
 package eventSystem.viewControl;
 
-import administration.Customer;
 import cargo.Hazard;
 import cargos.*;
 import eventSystem.infrastructure.*;
-import util.Command;
 import verwaltung.Kunde;
 import verwaltung.Lager;
-
 
 import java.math.BigDecimal;
 import java.util.EnumSet;
@@ -19,16 +16,24 @@ public class ConsoleEventSystem {
     public ConsoleEventSystem(Lager logic){
         this.logic = logic;
     }
-    public EventHandler<CRUDEventListener<EinfuegenEvent>> einfuegenHandler;
+    public EventHandler<CRUDEventListener<StorableCargoEinfuegenEvent>> storableCargoEinfuegenHandler;
     public EventHandler<CRUDEventListener<AbrufenEvent>> abrufenEventHandler;
-    public EventHandler<CRUDEventListener<StorageLocationEvent>> storageLocationHandler;
+    public EventHandler<CRUDEventListener<EntfernenEvent>> entfernenEventHandler;
+    public EventHandler<CRUDEventListener<KundeEinfuegenEvent>> kundeEinfuegenHandler;
+    public EventHandler<CRUDEventListener<InspectionEvent>> inspectionEventHandler;
 
-    public void setEinfuegenHandler(EventHandler handler) {
-        this.einfuegenHandler = handler;
+    public void setStorableCargoEinfuegenHandler(EventHandler handler) {
+        this.storableCargoEinfuegenHandler = handler;
+    }
+    public void setKundeEinfuegenHandler(EventHandler handler) {
+        this.kundeEinfuegenHandler = handler;
     }
 
-    public void setStorageLocationHandler(EventHandler handler) {
-        this.storageLocationHandler = handler;
+    public void setEntfernenEventHandler(EventHandler handler) {
+        this.entfernenEventHandler = handler;
+    }
+    public void setInspectionEventHandler(EventHandler handler) {
+        this.inspectionEventHandler = handler;
     }
     public void setAbrufenEventHandler(EventHandler handler) {
         this.abrufenEventHandler = handler;
@@ -45,21 +50,28 @@ public class ConsoleEventSystem {
 
 
                 Command c = new Command(sc.nextLine());
-                EinfuegenEvent einfuegenEvent = new EinfuegenEvent(this,parseCargo(c.commandoString));
-                StorageLocationEvent entfernenEvent = new StorageLocationEvent(this,c.commandoInt);
-                StorageLocationEvent inspectionEvent = new StorageLocationEvent(this,c.commandoInt);
+
+
+
                 AbrufenEvent abrufenEvent = new AbrufenEvent(this);
 
                 Scanner u = new Scanner(System.in);
                 switch (c.operator){
                     case c:
-                        if(null != this.einfuegenHandler) {
-                            einfuegenHandler.handleEvent(einfuegenEvent);
+                        if(null != this.storableCargoEinfuegenHandler) {
+                            if(c.commandoString.substring(3).split(" ").length==1){
+                                KundeEinfuegenEvent kundeEinfuegenEvent = new KundeEinfuegenEvent(this,parseKunde(c.commandoString));
+                                kundeEinfuegenHandler.handleEvent(kundeEinfuegenEvent);
+                            }else{
+                                StorableCargoEinfuegenEvent storableCargoEinfuegenEvent = new StorableCargoEinfuegenEvent(this,parseCargo(c.commandoString));
+                                storableCargoEinfuegenHandler.handleEvent(storableCargoEinfuegenEvent);
+                            }
                         }
                         break;
                     case d:
-                        if(null != this.storageLocationHandler) {
-                            storageLocationHandler.handleEvent(entfernenEvent);
+                        if(null != this.entfernenEventHandler) {
+                            EntfernenEvent entfernenEvent = new EntfernenEvent(this,c.commandoInt);
+                            entfernenEventHandler.handleEvent(entfernenEvent);
                         }
                         break;
                     case r:
@@ -68,8 +80,9 @@ public class ConsoleEventSystem {
                         }
                         break;
                     case u:
-                        if(null != this.storageLocationHandler) {
-                            storageLocationHandler.handleEvent(inspectionEvent);
+                        if(null != this.inspectionEventHandler) {
+                            InspectionEvent inspectionEvent = new InspectionEvent(this,c.commandoInt);
+                            inspectionEventHandler.handleEvent(inspectionEvent);
                         }
                         break;
                     case p:
@@ -92,54 +105,56 @@ public class ConsoleEventSystem {
         storableCargo cargo = null;
         String[] text = einfuegenString.split(" ");
 
-        EnumSet<Hazard> hazards = EnumSet.noneOf(Hazard.class);
-        String value = null;
 
-        if (text[2].contains(",")) {
-            String[] hazardText = text[2].split(",");
-            value = hazardText[0];
-            for (int i = 0; i < hazardText.length; i++) {
-                switch (hazardText[i]) {
-                    case "flammable":
-                        hazards.add(Hazard.flammable);
-                        break;
-                    case "toxic":
-                        hazards.add(Hazard.toxic);
-                        break;
-                    case "radioactive":
-                        hazards.add(Hazard.radioactive);
-                        break;
-                    case "explosive":
-                        hazards.add(Hazard.explosive);
-                        break;
-                    default:
+            EnumSet<Hazard> hazards = EnumSet.noneOf(Hazard.class);
+            String value = null;
+
+            if (text[2].contains(",")) {
+                String[] hazardText = text[2].split(",");
+                value = hazardText[0];
+                for (int i = 1; i < hazardText.length; i++) {
+                    switch (hazardText[i]) {
+                        case "flammable":
+                            hazards.add(Hazard.flammable);
+                            break;
+                        case "toxic":
+                            hazards.add(Hazard.toxic);
+                            break;
+                        case "radioactive":
+                            hazards.add(Hazard.radioactive);
+                            break;
+                        case "explosive":
+                            hazards.add(Hazard.explosive);
+                            break;
+                        default:
+                    }
                 }
+            } else {
+                value = text[2];
             }
-        }else{
-            value = text[2];
+            switch (text[0]) {
+                case "DryBulkCargo":
+                    cargo = new DryBulkCargoImpl(new Kunde(text[1]), new BigDecimal(value), hazards, Integer.parseInt(text[text.length - 1]));
+                    break;
+                case "DryBulkAndUnitisedCargo":
+                    cargo = new DryBulkAndUnitisedCargoImpl(new Kunde(text[1]), new BigDecimal(value), hazards, Integer.parseInt(text[text.length - 1]), Boolean.parseBoolean(text[text.length - 2]));
+                    break;
+                case "LiquidAndDryBulkCargo":
+                    cargo = new LiquidAndDryBulkCargoImpl(new Kunde(text[1]), new BigDecimal(value), hazards, Boolean.parseBoolean(text[text.length - 2]), Integer.parseInt(text[text.length - 1]));
+                    break;
+                case "LiquidBulkCargo":
+                    cargo = new LiquidBulkCargoImpl(new Kunde(text[1]), new BigDecimal(value), hazards, Boolean.parseBoolean(text[text.length - 2]));
+                    break;
+                case "UnitisedCargo":
+                    cargo = new UnitisedCargoImpl(new Kunde(text[1]), new BigDecimal(value), hazards, Boolean.parseBoolean(text[text.length - 2]));
+                    break;
+                default:
+                    System.out.println("Einfuegen fehlerhaft bitter versuchen sie es erneut.");
+                    return null;
+            }
+            return cargo;
         }
-        switch(text[0]){
-            case "DryBulkCargo":
-                cargo = new DryBulkCargoImpl(new Kunde(text[1]), new BigDecimal(value),hazards,Integer.parseInt(text[text.length-1]));
-                break;
-            case "DryBulkAndUnitisedCargo":
-                cargo = new DryBulkAndUnitisedCargoImpl(new Kunde(text[1]),new BigDecimal(value),hazards,Integer.parseInt(text[text.length-1]),Boolean.parseBoolean(text[text.length-3]));
-                break;
-            case "LiquidAndDryBulkCargo":
-                cargo = new LiquidAndDryBulkCargoImpl(new Kunde(text[1]),new BigDecimal(value),hazards,Boolean.parseBoolean(text[text.length-2]),Integer.parseInt(text[text.length-1]));
-                break;
-            case "LiquidBulkCargo":
-                cargo = new LiquidBulkCargoImpl(new Kunde(text[1]),new BigDecimal(value),hazards,Boolean.parseBoolean(text[text.length-2]));
-                break;
-            case "UnitisedCargo":
-                cargo = new UnitisedCargoImpl(new Kunde(text[1]),new BigDecimal(value),hazards,Boolean.parseBoolean(text[text.length-3]));
-            default:
-                System.out.println("Einfuegen fehlerhaft bitter versuchen sie es erneut.");
-                execute();
-        }
-        return cargo;
-    }
-    public Customer parseKunde(String einfuegenString){
+    public Kunde parseKunde(String einfuegenString){
         return new Kunde(einfuegenString);
     }
 }

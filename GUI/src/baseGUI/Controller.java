@@ -297,7 +297,6 @@ public class Controller {
                     break;
                 case "DryBulkAndUnitisedCargo":
                     cargo = new DryBulkAndUnitisedCargoImpl(new Kunde(owner), new BigDecimal(value), hazards, Integer.parseInt(grainSizeTextField.getText()), fragileCheckBox.isSelected());
-                    guiLager.einfuegen(cargo);
                     break;
                 case "LiquidAndDryBulkCargo":
                     cargo = new LiquidAndDryBulkCargoImpl(new Kunde(owner), new BigDecimal(value), hazards, pressurizedCheckBox.isSelected(), Integer.parseInt(grainSizeTextField.getText()));
@@ -310,7 +309,7 @@ public class Controller {
             }
             guiLager.einfuegen(cargo);
         } else {
-            guiLager.einfuegen(owner);
+            guiLager.einfuegen(new Kunde(owner));
         }
         einfuegenString="";
         updateItems();
