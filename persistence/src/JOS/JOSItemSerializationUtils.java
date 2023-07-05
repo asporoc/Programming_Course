@@ -9,12 +9,13 @@ import java.util.Collection;
 public class JOSItemSerializationUtils {
     public static void serialize(String fileName, Lager lager){ //zwei zuständigkeiten speichern und speicherort
         try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(fileName))) {
-            oos.writeObject(lager);
-        }catch (FileNotFoundException f){
+            serialize(oos, lager);
+        }catch (IOException f) {
             f.printStackTrace();
-        }catch(IOException e){
-            e.printStackTrace();
         }
+    }
+    public static void serialize(ObjectOutput objectOutput, Lager lager)throws IOException{
+        objectOutput.writeObject(lager);
     }
     public static Lager deserialize(String filename) {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
@@ -24,11 +25,9 @@ public class JOSItemSerializationUtils {
                 lager.getCargoList().get(i).getDurationOfStorage();
                 lager.setMonitor(new Object());
                 UtilityClass.setStorageLocation(lager.getCargoList().get(i),i);
-                //lager.getCargoList().get(i).setStorageLocation(i);
                 i++;
             }
-            ois.close();
-            return lager;
+            return deserialize(ois);
         }catch (FileNotFoundException e) {
             System.err.println("File not found: " + filename);
             e.printStackTrace();
@@ -40,6 +39,9 @@ public class JOSItemSerializationUtils {
             e.printStackTrace();
         }
         return null;
+    }
+    public static Lager deserialize(ObjectInput objectInput) throws IOException, ClassNotFoundException {
+        return (Lager)objectInput.readObject();
     }
 
 }

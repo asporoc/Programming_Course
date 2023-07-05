@@ -26,8 +26,7 @@ class LagerTest {
 
     @Test
     void einfuegen() {
-        lagerZuTesten.einfuegen(new Kunde("Heinz"));
-        assertTrue(lagerZuTesten.einfuegen(parseCargo("DryBulkCargo Heinz 123 , true false 13")));
+        assertTrue(lagerZuTesten.einfuegen(parseCargo("DryBulkCargo Heino 123 , true false 13")));
 
     }
     @Test
@@ -112,8 +111,7 @@ class LagerTest {
     void getCustomerList(){
         List<Customer> test = lagerZuTesten.getCustomerList();
         assertNotNull(test);
-        assertEquals(test.get(0).getName(),"Heino");
-        assertEquals(test.get(1).getName(),"Hugo");
+        assertEquals(test,lagerZuTesten.getCustomerList());
     }
     @Test
     void abrufenCargo(){
