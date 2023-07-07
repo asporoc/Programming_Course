@@ -6,8 +6,8 @@ import verwaltung.Lager;
 
 public class ServerMain {
     public static void main(String[] args) throws Exception {
-        Lager lager = new Lager(5);
-        ConsoleEventSystem CES = new ConsoleEventSystem();
+        Lager lager = new Lager();
+        ConsoleEventSystem CES = new ConsoleEventSystem(lager);
 
         EventHandler kundeEinfuegenHandler = new EventHandler();
         KundeEinfuegenListener kundeEinfuegenListener = new KundeEinfuegenListener(lager);
@@ -33,6 +33,11 @@ public class ServerMain {
         InspectionListener inspectionListener = new InspectionListener(lager);
         inspectionHandler.addListener(inspectionListener);
         CES.setInspectionEventHandler(inspectionHandler);
+
+        EventHandler persistenceHandler = new EventHandler();
+        PersistenceListener persistenceListener = new PersistenceListener(lager);
+        persistenceHandler.addListener(persistenceListener);
+        CES.setPersistenceEventHandler(persistenceHandler);
 
         Server server = new Server(12345, CES);
 

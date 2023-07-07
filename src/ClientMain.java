@@ -16,6 +16,7 @@ public class ClientMain {
         CES.setStorableCargoEinfuegenHandler(eventHandler);
         CES.setEntfernenEventHandler(eventHandler);
         CES.setInspectionEventHandler(eventHandler);
+        CES.setPersistenceEventHandler(eventHandler);
         CES.execute();
 
     }

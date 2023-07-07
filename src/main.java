@@ -8,7 +8,7 @@ public class main {
     public static void main(String[] args) throws Exception {
         Lager testLager = new Lager();
         lagerObserver observer = new lagerObserver(testLager);
-        ConsoleEventSystem testConsoleEventSystem = new ConsoleEventSystem();
+        ConsoleEventSystem testConsoleEventSystem = new ConsoleEventSystem(testLager);
         EventHandler storableCargoEinfuegenHandler = new EventHandler();
         StorableCargoEinfuegenListener storableCargoEinfuegenListener = new StorableCargoEinfuegenListener(testLager);
         storableCargoEinfuegenHandler.addListener(storableCargoEinfuegenListener);
@@ -33,6 +33,12 @@ public class main {
         InspectionListener inspectionListener = new InspectionListener(testLager);
         inspectionHandler.addListener(inspectionListener);
         testConsoleEventSystem.setInspectionEventHandler(inspectionHandler);
+
+        EventHandler persistenceHandler = new EventHandler();
+        PersistenceListener persistenceListener = new PersistenceListener(testLager);
+        persistenceHandler.addListener(persistenceListener);
+        testConsoleEventSystem.setPersistenceEventHandler(persistenceHandler);
+
         testConsoleEventSystem.execute();
     }
 }

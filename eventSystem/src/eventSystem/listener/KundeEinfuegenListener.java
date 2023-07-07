@@ -8,13 +8,13 @@ import verwaltung.Lager;
 import java.util.EventObject;
 
 public class KundeEinfuegenListener implements CRUDEventListener {
-    private Lager cargoList;
+    private Lager lager;
     public KundeEinfuegenListener(Lager cargoList){
-        this.cargoList = cargoList;
+        this.lager = cargoList;
     }
     @Override
     public void onEvent(EventObject event) {
-        this.cargoList.einfuegen(((KundeEinfuegenEvent) event).getObject());
+        this.lager.einfuegen(((KundeEinfuegenEvent) event).getObject());
 
     }
 }

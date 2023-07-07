@@ -4,20 +4,28 @@ import cargo.Hazard;
 import cargos.*;
 import eventSystem.infrastructure.*;
 import verwaltung.Kunde;
+import verwaltung.Lager;
 
 import java.math.BigDecimal;
 import java.util.EnumSet;
 import java.util.Scanner;
 
+
 public class ConsoleEventSystem {
+    private Lager lager;
     Exception notImplementedException = new Exception("Der eingegebene Befehl ist nicht implementiert");
-    public ConsoleEventSystem(){
+    public ConsoleEventSystem(Lager lager){
+        this.lager = lager;
+    }
+    public  ConsoleEventSystem(){
+
     }
     public EventHandler<CRUDEventListener<StorableCargoEinfuegenEvent>> storableCargoEinfuegenHandler;
     public EventHandler<CRUDEventListener<AbrufenEvent>> abrufenEventHandler;
     public EventHandler<CRUDEventListener<EntfernenEvent>> entfernenEventHandler;
     public EventHandler<CRUDEventListener<KundeEinfuegenEvent>> kundeEinfuegenHandler;
     public EventHandler<CRUDEventListener<InspectionEvent>> inspectionEventHandler;
+    public EventHandler<CRUDEventListener<PersistenceEvent>> persistenceEventHandler;
 
     public void setStorableCargoEinfuegenHandler(EventHandler handler) {
         this.storableCargoEinfuegenHandler = handler;
@@ -35,6 +43,7 @@ public class ConsoleEventSystem {
     public void setAbrufenEventHandler(EventHandler handler) {
         this.abrufenEventHandler = handler;
     }
+    public void setPersistenceEventHandler(EventHandler handler){this.persistenceEventHandler = handler;}
 
     public void execute() throws Exception {
         try (Scanner sc = new Scanner(System.in)) {
@@ -50,12 +59,12 @@ public class ConsoleEventSystem {
 
 
 
-                AbrufenEvent abrufenEvent = new AbrufenEvent(this);
+
 
                 Scanner u = new Scanner(System.in);
                 switch (c.operator){
                     case c:
-                        if(null != this) {
+                        if(null != this.kundeEinfuegenHandler) {
                             if(c.commandoString.substring(3).split(" ").length==1){
                                 KundeEinfuegenEvent kundeEinfuegenEvent = new KundeEinfuegenEvent(this,parseKunde(c.commandoString));
                                 kundeEinfuegenHandler.handleEvent(kundeEinfuegenEvent);
@@ -73,6 +82,7 @@ public class ConsoleEventSystem {
                         break;
                     case r:
                         if(null != this.abrufenEventHandler) {
+                            AbrufenEvent abrufenEvent = new AbrufenEvent(this);
                             abrufenEventHandler.handleEvent(abrufenEvent);
                         }
                         break;
@@ -83,7 +93,10 @@ public class ConsoleEventSystem {
                         }
                         break;
                     case p:
-                        //persistenzmodus Implementierung
+                        if(null != this.persistenceEventHandler) {
+                            PersistenceEvent persistenceEvent = new PersistenceEvent(this, c.commandoString, lager );
+                            persistenceEventHandler.handleEvent(persistenceEvent);
+                        }
                         break;
                     case Error:
                         throw notImplementedException;

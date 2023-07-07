@@ -27,8 +27,9 @@ public class JOSItemSerializationUtils {
                 UtilityClass.setStorageLocation(lager.getCargoList().get(i),i);
                 i++;
             }
-            return deserialize(ois);
-        }catch (FileNotFoundException e) {
+            return lager;
+        }
+        catch (FileNotFoundException e) {
             System.err.println("File not found: " + filename);
             e.printStackTrace();
         } catch (IOException e) {

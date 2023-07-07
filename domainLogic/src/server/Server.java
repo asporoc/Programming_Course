@@ -1,8 +1,6 @@
 package server;
 
-import eventSystem.infrastructure.EventHandler;
-import eventSystem.infrastructure.KundeEinfuegenEvent;
-import eventSystem.infrastructure.StorableCargoEinfuegenEvent;
+import eventSystem.infrastructure.*;
 import eventSystem.viewControl.ConsoleEventSystem;
 
 import java.io.*;
@@ -26,9 +24,21 @@ public class Server {
                     EventObject event = (EventObject)ois.readObject();
                     if(event instanceof KundeEinfuegenEvent){
                         CES.kundeEinfuegenHandler.handleEvent(event);
-                    }
-                    if(event instanceof StorableCargoEinfuegenEvent){
+
+                    }else if(event instanceof StorableCargoEinfuegenEvent){
                         CES.storableCargoEinfuegenHandler.handleEvent(event);
+
+                    } else if (event instanceof InspectionEvent) {
+                        CES.inspectionEventHandler.handleEvent(event);
+
+                    } else if (event instanceof AbrufenEvent) {
+                        CES.abrufenEventHandler.handleEvent(event);
+
+                    } else if (event instanceof EntfernenEvent) {
+                        CES.entfernenEventHandler.handleEvent(event);
+
+                    } else if (event instanceof PersistenceEvent) {
+                        CES.persistenceEventHandler.handleEvent(event);
                     }
 
 

@@ -2,6 +2,7 @@ package eventSystem.listener;
 
 import eventSystem.infrastructure.CRUDEventListener;
 import eventSystem.infrastructure.EntfernenEvent;
+import eventSystem.infrastructure.InspectionEvent;
 import verwaltung.Lager;
 
 import java.util.EventObject;
@@ -14,7 +15,7 @@ public class InspectionListener implements CRUDEventListener {
     }
     @Override
     public void onEvent(EventObject event) {
-        this.cargoList.inspection(((EntfernenEvent)event).getStorageLocation());
+        this.cargoList.inspection(((InspectionEvent)event).getStorageLocation());
 
     }
 }
