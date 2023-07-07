@@ -4,17 +4,14 @@ import cargo.Hazard;
 import cargos.*;
 import eventSystem.infrastructure.*;
 import verwaltung.Kunde;
-import verwaltung.Lager;
 
 import java.math.BigDecimal;
 import java.util.EnumSet;
 import java.util.Scanner;
 
 public class ConsoleEventSystem {
-    final Lager logic;
     Exception notImplementedException = new Exception("Der eingegebene Befehl ist nicht implementiert");
-    public ConsoleEventSystem(Lager logic){
-        this.logic = logic;
+    public ConsoleEventSystem(){
     }
     public EventHandler<CRUDEventListener<StorableCargoEinfuegenEvent>> storableCargoEinfuegenHandler;
     public EventHandler<CRUDEventListener<AbrufenEvent>> abrufenEventHandler;
@@ -58,7 +55,7 @@ public class ConsoleEventSystem {
                 Scanner u = new Scanner(System.in);
                 switch (c.operator){
                     case c:
-                        if(null != this.storableCargoEinfuegenHandler) {
+                        if(null != this) {
                             if(c.commandoString.substring(3).split(" ").length==1){
                                 KundeEinfuegenEvent kundeEinfuegenEvent = new KundeEinfuegenEvent(this,parseKunde(c.commandoString));
                                 kundeEinfuegenHandler.handleEvent(kundeEinfuegenEvent);

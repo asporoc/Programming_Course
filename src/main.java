@@ -1,8 +1,5 @@
 import eventSystem.infrastructure.EventHandler;
-import eventSystem.listener.KundeEinfuegenListener;
-import eventSystem.listener.StorableCargoEinfuegenListener;
-import eventSystem.listener.EntfernenListener;
-import eventSystem.listener.InspectionListener;
+import eventSystem.listener.*;
 import eventSystem.viewControl.ConsoleEventSystem;
 import verwaltung.Lager;
 
@@ -11,7 +8,7 @@ public class main {
     public static void main(String[] args) throws Exception {
         Lager testLager = new Lager();
         lagerObserver observer = new lagerObserver(testLager);
-        ConsoleEventSystem testConsoleEventSystem = new ConsoleEventSystem(testLager);
+        ConsoleEventSystem testConsoleEventSystem = new ConsoleEventSystem();
         EventHandler storableCargoEinfuegenHandler = new EventHandler();
         StorableCargoEinfuegenListener storableCargoEinfuegenListener = new StorableCargoEinfuegenListener(testLager);
         storableCargoEinfuegenHandler.addListener(storableCargoEinfuegenListener);
@@ -27,18 +24,15 @@ public class main {
         entfernenHandler.addListener(entfernenListener);
         testConsoleEventSystem.setEntfernenEventHandler(entfernenHandler);
 
+        EventHandler abrufenHandler = new EventHandler();
+        AbrufenListener abrufenListener = new AbrufenListener(testLager);
+        abrufenHandler.addListener(abrufenListener);
+        testConsoleEventSystem.setAbrufenEventHandler(abrufenHandler);
+
         EventHandler inspectionHandler = new EventHandler();
         InspectionListener inspectionListener = new InspectionListener(testLager);
         inspectionHandler.addListener(inspectionListener);
         testConsoleEventSystem.setInspectionEventHandler(inspectionHandler);
         testConsoleEventSystem.execute();
-
-
-
-
-
-
-
-
     }
 }
