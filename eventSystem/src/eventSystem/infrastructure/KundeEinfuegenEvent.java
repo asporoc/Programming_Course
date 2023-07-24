@@ -1,6 +1,5 @@
 package eventSystem.infrastructure;
 
-import cargos.storableCargo;
 import verwaltung.Kunde;
 
 import java.util.EventObject;

@@ -3,8 +3,9 @@ package eventSystem.viewControl;
 import cargo.Hazard;
 import cargos.*;
 import eventSystem.infrastructure.*;
+import eventSystem.listener.CRUDEventListener;
 import verwaltung.Kunde;
-import verwaltung.Lager;
+
 
 import java.math.BigDecimal;
 import java.util.EnumSet;
@@ -12,13 +13,8 @@ import java.util.Scanner;
 
 
 public class ConsoleEventSystem {
-    private Lager lager;
     Exception notImplementedException = new Exception("Der eingegebene Befehl ist nicht implementiert");
-    public ConsoleEventSystem(Lager lager){
-        this.lager = lager;
-    }
-    public  ConsoleEventSystem(){
-
+    public ConsoleEventSystem(){
     }
     public EventHandler<CRUDEventListener<StorableCargoEinfuegenEvent>> storableCargoEinfuegenHandler;
     public EventHandler<CRUDEventListener<AbrufenEvent>> abrufenEventHandler;
@@ -46,62 +42,113 @@ public class ConsoleEventSystem {
     public void setPersistenceEventHandler(EventHandler handler){this.persistenceEventHandler = handler;}
 
     public void execute() throws Exception {
+        boolean[] mode = new boolean[5];
         try (Scanner sc = new Scanner(System.in)) {
             do{
                 System.out.println("Bitte geben sie einen Befehl gemäß folgendem Muster ein:" +
                         "\n :c Name des Kunden den sie hinzufügen wollen"+
                         "\n :c Um ein Frachtstück hinzuzufügen: Fracht-Typ Kunde Wert Gefahren-Stoffe, einzelnes Komma für keine fragile(true/false) pressurized(true/false) grain-Size" +
+                        "\n :r Um die Liste der gelagerten Frachstücke abzurufen"+
                         "\n :d Lagerort des Frachtstücks das sie entfernen möchten" +
-                        "\n :u Lagerort des Frachtstücks das sie inspizieren wollen");
+                        "\n :u Lagerort des Frachtstücks das sie inspizieren wollen"+
+                        "\n :p loadJOS/saveJOS um das Lager zu laden/speichern");
 
 
                 Command c = new Command(sc.nextLine());
 
-
-
-
-
                 Scanner u = new Scanner(System.in);
+                while(true){
                 switch (c.operator){
                     case c:
-                        if(null != this.kundeEinfuegenHandler) {
-                            if(c.commandoString.substring(3).split(" ").length==1){
-                                KundeEinfuegenEvent kundeEinfuegenEvent = new KundeEinfuegenEvent(this,parseKunde(c.commandoString));
+                        while (true) {
+                            System.out.print("Enter a name or cargo: ");
+                            String newInput = u.nextLine();
+
+                            if (newInput.startsWith(":")) {
+                                c = new Command(newInput);
+                                break;
+                            } else if (newInput.split(" ").length == 1) {
+                                KundeEinfuegenEvent kundeEinfuegenEvent = new KundeEinfuegenEvent(this, parseKunde(newInput));
                                 kundeEinfuegenHandler.handleEvent(kundeEinfuegenEvent);
-                            }else{
-                                StorableCargoEinfuegenEvent storableCargoEinfuegenEvent = new StorableCargoEinfuegenEvent(this,parseCargo(c.commandoString));
+                            } else {
+                                StorableCargoEinfuegenEvent storableCargoEinfuegenEvent = new StorableCargoEinfuegenEvent(this, parseCargo(newInput));
                                 storableCargoEinfuegenHandler.handleEvent(storableCargoEinfuegenEvent);
+                                /*if (!addCargo(newInput)) {
+                                    continue;
+                                }*/
                             }
                         }
                         break;
                     case d:
-                        if(null != this.entfernenEventHandler) {
-                            EntfernenEvent entfernenEvent = new EntfernenEvent(this,c.commandoInt);
-                            entfernenEventHandler.handleEvent(entfernenEvent);
+                        while (true) {
+                            System.out.print("Enter the Storage Location of a Cargo to delete ");
+                            String newInput = u.nextLine();
+
+                            if (newInput.startsWith(":")) {
+                                c = new Command(newInput);
+                                break;
+                            } else {
+                                if(null != this.entfernenEventHandler) {
+                                    EntfernenEvent entfernenEvent = new EntfernenEvent(this,Integer.parseInt(newInput));
+                                    entfernenEventHandler.handleEvent(entfernenEvent);
+                                }
+                            }
                         }
                         break;
                     case r:
-                        if(null != this.abrufenEventHandler) {
-                            AbrufenEvent abrufenEvent = new AbrufenEvent(this);
-                            abrufenEventHandler.handleEvent(abrufenEvent);
+                        while (true) {
+                            System.out.print("Enter what you want to review: Customer, Hazards ");
+                            String newInput = u.nextLine();
+
+                            if (newInput.startsWith(":")) {
+                                c = new Command(newInput);
+                                break;
+                            } else {
+                                if(null != this.abrufenEventHandler) {
+                                    AbrufenEvent abrufenEvent = new AbrufenEvent(this);
+                                    abrufenEventHandler.handleEvent(abrufenEvent);
+                                }
+                            }
                         }
                         break;
                     case u:
-                        if(null != this.inspectionEventHandler) {
-                            InspectionEvent inspectionEvent = new InspectionEvent(this,c.commandoInt);
-                            inspectionEventHandler.handleEvent(inspectionEvent);
+                        while (true) {
+                            System.out.print("Enter what you want to review: Customer, Hazards ");
+                            String newInput = u.nextLine();
+
+                            if (newInput.startsWith(":")) {
+                                c = new Command(newInput);
+                                break;
+                            } else {
+                                if(null != this.inspectionEventHandler) {
+                                    InspectionEvent inspectionEvent = new InspectionEvent(this,Integer.parseInt(newInput));
+                                    inspectionEventHandler.handleEvent(inspectionEvent);
+                                }
+                            }
                         }
                         break;
                     case p:
-                        if(null != this.persistenceEventHandler) {
-                            PersistenceEvent persistenceEvent = new PersistenceEvent(this, c.commandoString, lager );
-                            persistenceEventHandler.handleEvent(persistenceEvent);
+                        while (true) {
+                            System.out.print("Enter what you want to review: Customer, Hazards ");
+                            String newInput = u.nextLine();
+
+                            if (newInput.startsWith(":")) {
+                                c = new Command(newInput);
+                                break;
+                            } else {
+                                if(null != this.persistenceEventHandler) {
+                                    PersistenceEvent persistenceEvent = new PersistenceEvent(this, newInput);
+                                    persistenceEventHandler.handleEvent(persistenceEvent);
+                                }
+                            }
                         }
                         break;
-                    case Error:
-                        throw notImplementedException;
+                    default:
+                        System.out.println("Please enter a valid option.");
+                        break;
                 }
                 continue;
+                }
             } while (true);
         }catch (Exception e){
             System.out.println("Something went wrong, the application has been restarted." +
@@ -157,6 +204,9 @@ public class ConsoleEventSystem {
                     break;
                 case "UnitisedCargo":
                     cargo = new UnitisedCargoImpl(new Kunde(text[1]), new BigDecimal(value), hazards, Boolean.parseBoolean(text[text.length - 2]));
+                    break;
+                case "LiquidBulkAndUnitisedCargo":
+                    cargo = new LiquidBulkAndUnitisedCargoImpl(new Kunde(text[1]), new BigDecimal(value), hazards, Boolean.parseBoolean(text[text.length - 1]), Boolean.parseBoolean(text[text.length - 2]));
                     break;
                 default:
                     System.out.println("Einfuegen fehlerhaft bitter versuchen sie es erneut.");

@@ -8,10 +8,10 @@ import java.io.Serializable;
 import java.util.*;
 
 
-public class Lager extends Observable implements Serializable {
+public class Lager extends Observable implements Serializable, Cloneable {
     private transient Object monitor = new Object();
     private List<Customer> customerList = new LinkedList<>();
-    private HashMap<Integer,storableCargo> cargoList = new HashMap<>();
+    private HashMap<Integer, storableCargo> cargoList = new HashMap<>();
 
     private int maxsize;
 
@@ -19,17 +19,18 @@ public class Lager extends Observable implements Serializable {
         return customerList;
     }
 
-    public Lager(int maxsize){
+    public Lager(int maxsize) {
         this.maxsize = maxsize;
-        if(maxsize==0){
+        if (maxsize == 0) {
         }
     }
-    public Lager(){
+
+    public Lager() {
         this(10);
     }
 
 
-    public boolean einfuegen(Kunde kunde){
+    public boolean einfuegen(Kunde kunde) {
         for (Customer c : customerList) {
             if (c.getName().equals(kunde.getName())) {
                 return false;
@@ -39,39 +40,39 @@ public class Lager extends Observable implements Serializable {
         customerList.add(kunde);
         return true;
     }
+
     public <T extends storableCargo> boolean einfuegen(storableCargo cargo) {
         boolean fragile;
         boolean pressurized;
-        if (cargoList.size()==maxsize) {
+        if (cargoList.size() == maxsize) {
             return false;
         }
-            for (Customer o : customerList) {
-                if (o.getName().equals(cargo.getOwner().getName())) {
-                    if (cargo != null) {
-                        for (int location = 0; location < maxsize; location++) {
-                            if (cargoList.get(location) == null) {
+        if (cargo != null) {
+        for (Customer o : customerList) {
+            if (o.getName().equals(cargo.getOwner().getName())) {
+                    for (int location = 0; location < maxsize; location++) {
+                        if (cargoList.get(location) == null) {
+                            cargoList.put(location, cargo);
+                            this.setChanged();
+                            this.notifyObservers();
+                            UtilityClass.setStorageLocation(cargo, location);
+                            return true;
 
-                                //if (location == maxsize - 1) {
-                                    cargoList.put(location, cargo);
-                                    this.setChanged();
-                                    this.notifyObservers();
-                                    UtilityClass.setStorageLocation(cargo, location);
-                                    return true;
-                                //}
-                            }
+                            //}
                         }
-                    } else {
-                        return false;
                     }
+
                 }
             }
-            return false;
         }
-
-    public Object abrufen() {
-        return cargoList.clone();
+        return false;
     }
-    public storableCargo abrufen(int storageLocation){
+
+    public Object abrufen() throws CloneNotSupportedException {
+        return this.clone();
+    }
+
+    public storableCargo abrufen(int storageLocation) {
         return cargoList.get(storageLocation);
     }
 
@@ -90,7 +91,7 @@ public class Lager extends Observable implements Serializable {
 
     public Date inspection(int storageLocation) {
         Date newDate = new Date();
-        UtilityClass.setLastInspectionDate((cargoList.get(storageLocation)),newDate);
+        UtilityClass.setLastInspectionDate((cargoList.get(storageLocation)), newDate);
         //(cargoList.get(storageLocation)).setLastInspectionDate(newDate);
         return newDate;
     }
@@ -106,5 +107,16 @@ public class Lager extends Observable implements Serializable {
     public void setMonitor(Object monitor) {
         this.monitor = monitor;
     }
+
+    public void setStorageLocation(int sourceLocation, int targetLocation) {
+        storableCargo sourceCargo = abrufen(sourceLocation);
+        storableCargo targetCargo = abrufen(targetLocation);
+
+        if (sourceCargo != null && targetCargo != null) {
+            getCargoList().put(sourceLocation, targetCargo);
+            getCargoList().put(targetLocation, sourceCargo);
+        }
+    }
 }
+
 

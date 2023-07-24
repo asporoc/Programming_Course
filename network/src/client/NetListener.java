@@ -1,7 +1,6 @@
-package eventSystem.listener;
+package client;
 
-import eventSystem.infrastructure.CRUDEventListener;
-import eventSystem.viewControl.Client;
+import eventSystem.listener.CRUDEventListener;
 
 import java.io.IOException;
 import java.util.EventObject;
@@ -14,7 +13,7 @@ public class NetListener implements CRUDEventListener {
     @Override
     public void onEvent(EventObject event) {
         try {
-            client.eventAction(event);
+            client.writeEvent(event);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

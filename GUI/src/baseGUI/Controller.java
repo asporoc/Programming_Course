@@ -156,26 +156,7 @@ public class Controller {
                     int draggedIndex = Integer.parseInt(dragboard.getString());
                     int targetIndex = row.getIndex();
 
-                    CargoItem draggedItem = cargoTableView.getItems().get(draggedIndex);
-                    CargoItem targetItem = cargoTableView.getItems().get(targetIndex);
-
-                    IntegerProperty draggedStorageLocation = draggedItem.storageLocationProperty();
-                    IntegerProperty targetStorageLocation = targetItem.storageLocationProperty();
-
-                    draggedStorageLocation.unbindBidirectional(targetStorageLocation);
-
-                    int draggedLocation = draggedStorageLocation.get();
-                    int targetLocation = targetStorageLocation.get();
-                    draggedStorageLocation.set(targetStorageLocation.get());
-                    targetStorageLocation.set(draggedLocation);
-
-                    storableCargo draggedCargo = draggedItem.getDryBulkCargoImpl();
-                    storableCargo targetCargo = targetItem.getDryBulkCargoImpl();
-                    draggedItem.setDryBulkCargoImpl(targetCargo);
-                    targetItem.setDryBulkCargoImpl(draggedCargo);
-
-                    guiLager.getCargoList().put(draggedLocation, targetCargo);
-                    guiLager.getCargoList().put(targetLocation, draggedCargo);
+                    guiLager.setStorageLocation(draggedIndex, targetIndex);
 
                     cargoTableView.getItems().setAll(cargoItems);
                     updateItems();
@@ -183,6 +164,7 @@ public class Controller {
 
                 event.consume();
             });
+
 
             return row;
         });

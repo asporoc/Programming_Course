@@ -1,13 +1,12 @@
 import eventSystem.infrastructure.EventHandler;
-import eventSystem.listener.KundeEinfuegenListener;
-import eventSystem.listener.NetListener;
-import eventSystem.viewControl.Client;
+import client.NetListener;
+import client.Client;
 import eventSystem.viewControl.ConsoleEventSystem;
 
 public class ClientMain {
     public static void main(String[] args) throws Exception {
-        Client client = new Client(12345);
         ConsoleEventSystem CES = new ConsoleEventSystem();
+        Client client = new Client(12345);
         EventHandler eventHandler = new EventHandler();
         NetListener netListener = new NetListener(client);
         eventHandler.addListener(netListener);
@@ -18,6 +17,7 @@ public class ClientMain {
         CES.setInspectionEventHandler(eventHandler);
         CES.setPersistenceEventHandler(eventHandler);
         CES.execute();
+
 
     }
 }

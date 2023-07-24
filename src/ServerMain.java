@@ -1,41 +1,41 @@
 import eventSystem.infrastructure.EventHandler;
-import eventSystem.listener.*;
 import eventSystem.viewControl.ConsoleEventSystem;
-import server.Server;
+import server.*;
 import verwaltung.Lager;
+import verwaltung.LagerFassade;
 
 public class ServerMain {
     public static void main(String[] args) throws Exception {
-        Lager lager = new Lager();
-        ConsoleEventSystem CES = new ConsoleEventSystem(lager);
+        LagerFassade lagerFassade = new LagerFassade();
+        ConsoleEventSystem CES = new ConsoleEventSystem();
 
         EventHandler kundeEinfuegenHandler = new EventHandler();
-        KundeEinfuegenListener kundeEinfuegenListener = new KundeEinfuegenListener(lager);
+        KundeEinfuegenListener kundeEinfuegenListener = new KundeEinfuegenListener(lagerFassade);
         kundeEinfuegenHandler.addListener(kundeEinfuegenListener);
         CES.setKundeEinfuegenHandler(kundeEinfuegenHandler);
 
         EventHandler storableCargoEinfuegenHandler = new EventHandler();
-        StorableCargoEinfuegenListener storableCargoEinfuegenListener = new StorableCargoEinfuegenListener(lager);
+        StorableCargoEinfuegenListener storableCargoEinfuegenListener = new StorableCargoEinfuegenListener(lagerFassade);
         storableCargoEinfuegenHandler.addListener(storableCargoEinfuegenListener);
         CES.setStorableCargoEinfuegenHandler(storableCargoEinfuegenHandler);
 
         EventHandler entfernenHandler = new EventHandler();
-        EntfernenListener entfernenListener = new EntfernenListener(lager);
+        EntfernenListener entfernenListener = new EntfernenListener(lagerFassade);
         entfernenHandler.addListener(entfernenListener);
         CES.setEntfernenEventHandler(entfernenHandler);
 
         EventHandler abrufenHandler = new EventHandler();
-        AbrufenListener abrufenListener = new AbrufenListener(lager);
+        AbrufenListener abrufenListener = new AbrufenListener(lagerFassade);
         abrufenHandler.addListener(abrufenListener);
         CES.setAbrufenEventHandler(abrufenHandler);
 
         EventHandler inspectionHandler = new EventHandler();
-        InspectionListener inspectionListener = new InspectionListener(lager);
+        InspectionListener inspectionListener = new InspectionListener(lagerFassade);
         inspectionHandler.addListener(inspectionListener);
         CES.setInspectionEventHandler(inspectionHandler);
 
         EventHandler persistenceHandler = new EventHandler();
-        PersistenceListener persistenceListener = new PersistenceListener(lager);
+        PersistenceListener persistenceListener = new PersistenceListener(lagerFassade);
         persistenceHandler.addListener(persistenceListener);
         CES.setPersistenceEventHandler(persistenceHandler);
 

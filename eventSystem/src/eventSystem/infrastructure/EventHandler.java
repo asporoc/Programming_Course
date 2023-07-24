@@ -1,5 +1,7 @@
 package eventSystem.infrastructure;
 
+import eventSystem.listener.CRUDEventListener;
+
 import java.util.EventObject;
 import java.util.LinkedList;
 import java.util.List;

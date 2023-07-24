@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/network/network.iml" filepath="$PROJECT_DIR$/network/network.iml" />
       <module fileurl="file://$PROJECT_DIR$/observerPattern/observerPattern.iml" filepath="$PROJECT_DIR$/observerPattern/observerPattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/persistence/persistence.iml" filepath="$PROJECT_DIR$/persistence/persistence.iml" />
+      <module fileurl="file://$PROJECT_DIR$/simulations/simulations.iml" filepath="$PROJECT_DIR$/simulations/simulations.iml" />
     </modules>
   </component>
 </project>

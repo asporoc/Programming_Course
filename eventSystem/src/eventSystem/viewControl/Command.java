@@ -5,7 +5,6 @@ public class Command {
 
     public Operator operator;
     public String commandoString;
-    public String kundeString;
 
     public int commandoInt;
 
@@ -22,14 +21,12 @@ public class Command {
                 break;
             case ":d":
                 this.operator = Operator.d;
-                this.commandoInt = Integer.parseInt(commandoString);
                 break;
             case ":r":
                 this.operator = Operator.r;
                 break;
             case ":u":
                 this.operator = Operator.u;
-                this.commandoInt = Integer.parseInt(commandoString);
                 break;
             case ":p":
                 this.operator = Operator.p;

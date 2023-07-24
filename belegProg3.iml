@@ -44,5 +44,6 @@
         <jarDirectory url="file://$USER_HOME$/Downloads/JavaFX17/javafx-sdk-17.0.7/lib" recursive="false" />
       </library>
     </orderEntry>
+    <orderEntry type="module" module-name="network" />
   </component>
 </module>

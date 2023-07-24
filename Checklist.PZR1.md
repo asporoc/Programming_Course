@@ -5,6 +5,17 @@ Die Zahl in der Klammer sind die jeweiligen Punkte für die Bewertung.
 Die empfohlenen Realisierungen zum Bestehen der Prüfung sind **fett** gesetzt.
 Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nicht zulässig.
 
+## Vorrausetzungen für das Bestehen
+- [ ] Quellen angegeben
+- [ ] zip Archiv mit dem Projekt im root
+- [ ] IntelliJ-Projekt (kein Gradle, Maven o.ä.)
+- [ ] keine weiteren Bibliotheken außer JUnit5, Mockito und JavaFX
+- [ ] keine Umlaute, Sonderzeichen, etc. in Datei- und Pfadnamen
+- [ ] mindestens sechs modules (zu jeder Basisfunktionalität außer I/O + belegProg3)
+- [ ] Trennung zwischen Test- und Produktiv-Code
+- [ ] kompilierbar
+- [ ] geforderte main-Methoden nur im default package des module belegProg3
+
 ## Entwurf (10)
 - [ ] **Schichtenaufteilung** (2)
 - [ ] **Architekturdiagramm** (1)
@@ -15,16 +26,16 @@ Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nic
 
 ## Tests (28)
 - [ ] **Testqualität** (7)
-- [ ] **Testabdeckung GL** (7) _Abdeckung in Prozent angeben_
+- [ ] **Testabdeckung GL (inkl. Abhängigkeiten)** (7) _Abdeckung in Prozent angeben_
 - [ ] **Testabdeckung Rest** (6)
   - [ ] Einfügen von Kund*innen über das CLI _getestete Klassen angeben_
   - [ ] Anzeigen von Kund*innen über das CLI _getestete Klassen angeben_
   - [ ] ein Beobachter bzw. dessen alternative Implementierung _getestete Klassen angeben_
   - [ ] deterministische Funktionalität der Simulationen _getestete Klassen angeben_
-  - [ ] Speichern via JOS.josItem oder JBP _getestete Klassen angeben_
-  - [ ] Laden via JOS.josItem oder JBP _getestete Klassen angeben_
-- [ ] **Mockito richtig verwendet** (4)
-- [ ] Spy- / Verhaltens-Tests (3)
+  - [ ] Speichern via JOS oder JBP _getestete Klassen angeben_
+  - [ ] Laden via JOS oder JBP _getestete Klassen angeben_
+- [ ] **mindestens 5 Unittests, die Mockito verwenden** (4)
+- [ ] mindestens 4 Spy- / Verhaltens-Tests (3)
 - [ ] keine unbeabsichtigt fehlschlagenden Test (1)
 
 ## Fehlerfreiheit (10)
@@ -48,21 +59,28 @@ Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nic
 - [ ] vollständiges CLI (1)
 - [ ] alternatives CLI (1)
   * _angeben welche Funktionalität im alternativen CLI deaktiviert_
-- [ ] skalierbare GUI (1)
-- [ ] vollständige GUI (1)
 - [ ] ausdifferenziertes event-System mit mindestens 3 events (2)
 - [ ] observer oder property change propagation (2)
 - [ ] angemessene Aufzählungstypen (2)
 - [ ] Simulation 2 (1)
 - [ ] Simulation 3 (1)
+- [ ] skalierbare GUI (1)
+- [ ] vollständige GUI (1)
 - [ ] data binding verwendet (1)
-- [ ] Änderung der Fachnummer mittels drag&drop (1)
-- [ ] Einfügen von Kuchen via GUI sperrt nicht (1)
-- [ ] JBP und JOS.josItem (2)
-- [ ] TCP und UDP (1)
+- [ ] Änderung des Lagerplatzes mittels drag&drop (1)
+- [ ] Einfügen von Frachtstücken via GUI erfolgt nebenläufig (1)
+- [ ] sowohl JBP als auch JOS (2)
+- [ ] sowohl TCP als auch UDP (1)
 - [ ] Server unterstützt konkurierende Clients für TCP oder UDP (2)
 
 ## zusätzliche Anforderungen (10)
+- [ ] Logeinträge für Nachrichten an die GL (2)
+- [ ] Logeinträge für Änderungen an der GL (2)
+- [ ] Trennung zwischen bestehender Implementierung und Log (2)
+- [ ] geschützter Zugriff auf die Logdatei (1)
+- [ ] Integration in GUI (1)
+- [ ] Mehrsprachigkeit (1)
+- [ ] erweiterbare Mehrsprachigkeit (1)
 
 ## Architekturdiagramm
 ![Architekturdiagramm](architecture.png)

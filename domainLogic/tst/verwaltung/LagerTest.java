@@ -48,17 +48,12 @@ class LagerTest {
         assertFalse(lagerZuTesten.einfuegen(new Kunde("Jonathan")));
     }
 
-
     @Test
-    void abrufen() {
-        assertEquals(lagerZuTesten.getCargoList().clone(),lagerZuTesten.abrufen());
-    }
-    @Test
-    void abrufenNotNull() {
+    void abrufenNotNull() throws CloneNotSupportedException {
         assertNotNull(lagerZuTesten.abrufen());
     }
     @Test
-    void abrufenNotOriginal() {
+    void abrufenNotOriginal() throws CloneNotSupportedException {
         assertNotSame(lagerZuTesten.abrufen(),lagerZuTesten.getCargoList());
     }
     @Test

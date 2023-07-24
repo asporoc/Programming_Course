@@ -1,9 +1,6 @@
-package eventSystem.viewControl;
+package client;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.EventObject;
@@ -13,12 +10,15 @@ public class Client {
     private DataInputStream dis;
     private DataOutputStream dos;
     private ObjectOutputStream oos;
-    public Client(int port){
+    private ObjectInputStream ois;
+    public Client(int port){ // kaskadierender aufruf implementieren siehe persistence
         try{
                 socket = new Socket("localhost", port);
                 dis = new DataInputStream(socket.getInputStream());
                 dos = new DataOutputStream(socket.getOutputStream());
                 oos = new ObjectOutputStream(dos);
+                ois = new ObjectInputStream(dis);
+
 
 
         } catch (UnknownHostException e) {
@@ -27,8 +27,11 @@ public class Client {
             throw new RuntimeException(e);
         }
     }
-    public void eventAction(EventObject obj) throws IOException {
-        oos.writeObject(obj);
+    public void writeEvent(EventObject obj) throws IOException {
+        serialize(oos, obj);
+    }
+    static void serialize(ObjectOutputStream oos, EventObject event) throws IOException {
+        oos.writeObject(event);
         oos.flush();
     }
 }

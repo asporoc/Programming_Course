@@ -4,7 +4,6 @@ import cargos.UtilityClass;
 import verwaltung.Lager;
 
 import java.io.*;
-import java.util.Collection;
 
 public class JOSItemSerializationUtils {
     public static void serialize(String fileName, Lager lager){ //zwei zuständigkeiten speichern und speicherort

@@ -1,4 +1,4 @@
-package eventSystem.infrastructure;
+package eventSystem.listener;
 
 import java.util.EventListener;
 import java.util.EventObject;
