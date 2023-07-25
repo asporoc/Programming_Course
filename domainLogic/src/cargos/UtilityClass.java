@@ -21,6 +21,9 @@ public class UtilityClass {
         }else if (obj instanceof DryBulkAndUnitisedCargoImpl) {
             DryBulkAndUnitisedCargoImpl dryBulkAndUnitisedCargo = (DryBulkAndUnitisedCargoImpl) obj;
             dryBulkAndUnitisedCargo.setStorageLocation(location);
+        }else if(obj instanceof LiquidBulkAndUnitisedCargoImpl){
+            LiquidBulkAndUnitisedCargoImpl liquidBulkAndUnitisedCargo = (LiquidBulkAndUnitisedCargoImpl) obj;
+            liquidBulkAndUnitisedCargo.setStorageLocation(location);
         }
     }
     public static void setLastInspectionDate(storableCargo obj, Date date) {
@@ -34,6 +37,8 @@ public class UtilityClass {
             ((LiquidAndDryBulkCargoImpl) obj).setLastInspectionDate(date);
         } else if (obj instanceof DryBulkAndUnitisedCargoImpl) {
             ((DryBulkAndUnitisedCargoImpl) obj).setLastInspectionDate(date);
+        }else if(obj instanceof LiquidBulkAndUnitisedCargoImpl) {
+            ((LiquidBulkAndUnitisedCargoImpl) obj).setLastInspectionDate(date);
         }
     }
     public static IntegerProperty storageLocationProperty(storableCargo obj) {
@@ -47,6 +52,8 @@ public class UtilityClass {
             return((LiquidAndDryBulkCargoImpl) obj).storageLocationProperty();
         } else if (obj instanceof DryBulkAndUnitisedCargoImpl) {
             return((DryBulkAndUnitisedCargoImpl) obj).storageLocationProperty();
+        }else if (obj instanceof LiquidBulkAndUnitisedCargoImpl) {
+            return((LiquidBulkAndUnitisedCargoImpl) obj).storageLocationProperty();
         }
         return null;
     }

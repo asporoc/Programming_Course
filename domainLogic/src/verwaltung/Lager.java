@@ -9,7 +9,7 @@ import java.util.*;
 
 
 public class Lager extends Observable implements Serializable, Cloneable {
-    private transient Object monitor = new Object();
+    transient Object monitor = new Object();
     private List<Customer> customerList = new LinkedList<>();
     private HashMap<Integer, storableCargo> cargoList = new HashMap<>();
 
@@ -57,8 +57,6 @@ public class Lager extends Observable implements Serializable, Cloneable {
                             this.notifyObservers();
                             UtilityClass.setStorageLocation(cargo, location);
                             return true;
-
-                            //}
                         }
                     }
 
@@ -77,16 +75,12 @@ public class Lager extends Observable implements Serializable, Cloneable {
     }
 
     public boolean entfernen(int storageLocation) {
-        try {
             if (cargoList.get(storageLocation) == null && cargoList.size() < 1) {
                 return false;
             }
             cargoList.remove(storageLocation);
-            ;
+
             return true;//notify observer so falsch kein arg
-        } catch (Exception e) {
-            return false;
-        }
     }
 
     public Date inspection(int storageLocation) {
@@ -117,6 +111,8 @@ public class Lager extends Observable implements Serializable, Cloneable {
             getCargoList().put(targetLocation, sourceCargo);
         }
     }
+
+
 }
 
 

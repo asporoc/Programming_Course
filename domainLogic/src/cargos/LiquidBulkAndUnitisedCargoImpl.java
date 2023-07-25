@@ -5,6 +5,7 @@ import administration.Storable;
 import cargo.Cargo;
 import cargo.Hazard;
 import cargo.LiquidBulkAndUnitisedCargo;
+import javafx.beans.property.IntegerProperty;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -63,5 +64,14 @@ public class LiquidBulkAndUnitisedCargoImpl implements LiquidBulkAndUnitisedCarg
     @Override
     public boolean isFragile() {
         return unitisedCargoBeschreibung.isFragile();
+    }
+    public IntegerProperty storageLocationProperty() {
+        return storableBeschreibung.storageLocationProperty();
+    }
+    public void setStorageLocation(int location){
+        storableBeschreibung.setStorageLocation(location);
+    }
+    public void setLastInspectionDate(Date date){
+        storableBeschreibung.setLastInspectionDate(date);
     }
 }

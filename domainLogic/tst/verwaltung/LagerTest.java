@@ -3,8 +3,10 @@ package verwaltung;
 import administration.Customer;
 import cargo.Hazard;
 import cargos.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -17,11 +19,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class LagerTest {
     Lager lagerZuTesten;
     @BeforeEach
-            void setUp(){
+    void setUp(){
         lagerZuTesten = new Lager();
         lagerZuTesten.einfuegen(new Kunde("Heino"));
         lagerZuTesten.einfuegen(new Kunde("Hugo"));
         lagerZuTesten.einfuegen(parseCargo("DryBulkCargo Heino 33,flammable,explosive true false 33"));
+        lagerZuTesten.einfuegen(parseCargo("UnitisedCargo Hugo 44,explosive true"));
     }
 
     @Test
@@ -161,4 +164,28 @@ class LagerTest {
             }
             return cargo;
         }
+        @Test
+        void setStorageLocationTest(){
+        storableCargo cargo = lagerZuTesten.getCargoList().get(0);
+        lagerZuTesten.setStorageLocation(0,1);
+        assertSame(lagerZuTesten.getCargoList().get(1),cargo);
+        }
+
+    @Test
+    void setMonitorTest() {
+        Object customMonitor = new Object();
+
+        Lager lagerSpy = Mockito.spy(lagerZuTesten);
+
+        lagerSpy.setMonitor(customMonitor);
+
+        Assertions.assertEquals(customMonitor, lagerSpy.monitor);
+    }
+    @Test
+    void entfernenTestLeeresLager(){
+        Lager lager = new Lager(0);
+        assertFalse(lager.entfernen(0));
+    }
+
+
 }

@@ -26,51 +26,40 @@ public class LiquidBulkCargoImpl implements Cargo, Storable, LiquidBulkCargo, st
 
     }
 
-    public Cargo_Beschreibung getCargoBeschreibung() {
-        return cargoBeschreibung;
-    }
-
-    public Storable_Beschreibung getStorableBeschreibung() {
-        return storableBeschreibung;
-    }
-
-    public LiquidBulkCargo_Beschreibung getLiquidBulkCargoBeschreibung() {
-        return liquidBulkCargoBeschreibung;
-    }
 
     @Override
     public BigDecimal getValue() {
-        return getCargoBeschreibung().getValue();
+        return cargoBeschreibung.getValue();
     }
 
     @Override
     public Collection<Hazard> getHazards() {
-        return null;
+        return cargoBeschreibung.getHazards();
     }
 
     @Override
     public Customer getOwner() {
-        return getStorableBeschreibung().getOwner();
+        return storableBeschreibung.getOwner();
     }
 
     @Override
     public Duration getDurationOfStorage() {
-        return getStorableBeschreibung().getDurationOfStorage();
+        return storableBeschreibung.getDurationOfStorage();
     }
 
     @Override
     public Date getLastInspectionDate() {
-        return getStorableBeschreibung().getLastInspectionDate();
+        return storableBeschreibung.getLastInspectionDate();
     }
 
     @Override
     public int getStorageLocation() {
-        return getStorableBeschreibung().getStorageLocation();
+        return storableBeschreibung.getStorageLocation();
     }
 
     @Override
     public boolean isPressurized() {
-        return getLiquidBulkCargoBeschreibung().isPressurized();
+        return liquidBulkCargoBeschreibung.isPressurized();
     }
     public void setStorageLocation(int location){
         storableBeschreibung.setStorageLocation(location);
