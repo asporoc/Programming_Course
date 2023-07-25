@@ -32,8 +32,8 @@ Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nic
   - [ ] Anzeigen von Kund*innen über das CLI _getestete Klassen angeben_
   - [ ] ein Beobachter bzw. dessen alternative Implementierung _getestete Klassen angeben_
   - [ ] deterministische Funktionalität der Simulationen _getestete Klassen angeben_
-  - [ ] Speichern via JOS oder JBP _getestete Klassen angeben_
-  - [ ] Laden via JOS oder JBP _getestete Klassen angeben_
+  - [X] Speichern via JOS oder JBP _getestete Klassen angeben_
+  - [X] Laden via JOS oder JBP _getestete Klassen angeben_
 - [ ] **mindestens 5 Unittests, die Mockito verwenden** (4)
 - [ ] mindestens 4 Spy- / Verhaltens-Tests (3)
 - [ ] keine unbeabsichtigt fehlschlagenden Test (1)
@@ -44,14 +44,14 @@ Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nic
 
 ## Basisfunktionalität (12)
 - [ ] **CRUD** (2)
-- [ ] **CLI** (2)
+- [X] **CLI** (2)
   * Syntax gemäß Anforderungen
-- [ ] **Simulation** (2)
+- [X] **Simulation** (2)
   * ohne race conditions
-- [ ] **GUI** (2)
-- [ ] **I/O** (2)
+- [X] **GUI** (2)
+- [X] **I/O** (2)
   * in CLI oder GUI integriert
-- [ ] **Net** (2)
+- [X] **Net** (2)
 
 ## Funktionalität (23)
 - [ ] vollständige GL (2)
@@ -60,12 +60,12 @@ Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nic
 - [ ] alternatives CLI (1)
   * _angeben welche Funktionalität im alternativen CLI deaktiviert_
 - [ ] ausdifferenziertes event-System mit mindestens 3 events (2)
-- [ ] observer oder property change propagation (2)
+- [X] observer oder property change propagation (2)
 - [ ] angemessene Aufzählungstypen (2)
-- [ ] Simulation 2 (1)
+- [X] Simulation 2 (1)
 - [ ] Simulation 3 (1)
-- [ ] skalierbare GUI (1)
-- [ ] vollständige GUI (1)
+- [X] skalierbare GUI (1)
+- [X] vollständige GUI (1)
 - [ ] data binding verwendet (1)
 - [ ] Änderung des Lagerplatzes mittels drag&drop (1)
 - [ ] Einfügen von Frachtstücken via GUI erfolgt nebenläufig (1)

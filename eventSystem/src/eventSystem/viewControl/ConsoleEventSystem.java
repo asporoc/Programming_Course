@@ -18,10 +18,11 @@ public class ConsoleEventSystem {
     }
     public EventHandler<CRUDEventListener<StorableCargoEinfuegenEvent>> storableCargoEinfuegenHandler;
     public EventHandler<CRUDEventListener<AbrufenEvent>> abrufenEventHandler;
-    public EventHandler<CRUDEventListener<EntfernenEvent>> entfernenEventHandler;
+    public EventHandler<CRUDEventListener<CargoEntfernenEvent>> entfernenEventHandler;
     public EventHandler<CRUDEventListener<KundeEinfuegenEvent>> kundeEinfuegenHandler;
     public EventHandler<CRUDEventListener<InspectionEvent>> inspectionEventHandler;
     public EventHandler<CRUDEventListener<PersistenceEvent>> persistenceEventHandler;
+    public EventHandler<CRUDEventListener<KundeEntfernenEvent>> kundeEntfernenHandler;
 
     public void setStorableCargoEinfuegenHandler(EventHandler handler) {
         this.storableCargoEinfuegenHandler = handler;
@@ -40,6 +41,7 @@ public class ConsoleEventSystem {
         this.abrufenEventHandler = handler;
     }
     public void setPersistenceEventHandler(EventHandler handler){this.persistenceEventHandler = handler;}
+    public void setKundeEntfernenHandler(EventHandler handler){this.kundeEntfernenHandler = handler;}
 
     public void execute() throws Exception {
         boolean[] mode = new boolean[5];
@@ -73,9 +75,6 @@ public class ConsoleEventSystem {
                             } else {
                                 StorableCargoEinfuegenEvent storableCargoEinfuegenEvent = new StorableCargoEinfuegenEvent(this, parseCargo(newInput));
                                 storableCargoEinfuegenHandler.handleEvent(storableCargoEinfuegenEvent);
-                                /*if (!addCargo(newInput)) {
-                                    continue;
-                                }*/
                             }
                         }
                         break;
@@ -88,10 +87,19 @@ public class ConsoleEventSystem {
                                 c = new Command(newInput);
                                 break;
                             } else {
-                                if(null != this.entfernenEventHandler) {
-                                    EntfernenEvent entfernenEvent = new EntfernenEvent(this,Integer.parseInt(newInput));
-                                    entfernenEventHandler.handleEvent(entfernenEvent);
+                                if(newInput.matches("\\d+")){
+                                    if(null != this.entfernenEventHandler) {
+                                        CargoEntfernenEvent cargoEntfernenEvent = new CargoEntfernenEvent(this,Integer.parseInt(newInput));
+                                        entfernenEventHandler.handleEvent(cargoEntfernenEvent);
+                                    }
+                                }else{
+                                    if(null != this.kundeEntfernenHandler){
+                                        KundeEntfernenEvent kundeEntfernenEvent = new KundeEntfernenEvent(this,newInput);
+                                        kundeEntfernenHandler.handleEvent(kundeEntfernenEvent);
+                                    }
                                 }
+
+
                             }
                         }
                         break;
@@ -217,6 +225,17 @@ public class ConsoleEventSystem {
     public Kunde parseKunde(String einfuegenString){
         return new Kunde(einfuegenString);
     }
+    public void einfuegenKundeErfolgreich(){
+        System.out.println("Das Einfuegen eines Kunden war Erfolgreich.");
+    }
+    public void einfuegenCargoErfolgreich(){
+        System.out.println("Das Einfuegen eines Frachtstücks war Erfolgreich.");
+    }
+    public void einfuegenGescheitert(){
+        System.out.println("Das Einfuegen hat nicht funktioniert.");
+    }
+
+
 }
 
 

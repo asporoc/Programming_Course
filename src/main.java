@@ -1,7 +1,6 @@
 import eventSystem.infrastructure.EventHandler;
 import eventSystem.viewControl.ConsoleEventSystem;
 import server.*;
-import verwaltung.Lager;
 import verwaltung.LagerFassade;
 
 
@@ -11,7 +10,9 @@ public class main {
         lagerObserver observer = new lagerObserver(lagerFassade.getLager());
         ConsoleEventSystem testConsoleEventSystem = new ConsoleEventSystem();
         EventHandler storableCargoEinfuegenHandler = new EventHandler();
-        StorableCargoEinfuegenListener storableCargoEinfuegenListener = new StorableCargoEinfuegenListener(lagerFassade);
+        EventHandler serverEventHandler = new EventHandler();
+
+        StorableCargoEinfuegenListener storableCargoEinfuegenListener = new StorableCargoEinfuegenListener(lagerFassade,serverEventHandler);
         storableCargoEinfuegenHandler.addListener(storableCargoEinfuegenListener);
         testConsoleEventSystem.setStorableCargoEinfuegenHandler(storableCargoEinfuegenHandler);
 
@@ -21,8 +22,8 @@ public class main {
         testConsoleEventSystem.setKundeEinfuegenHandler(kundeEinfuegenHandler);
 
         EventHandler entfernenHandler = new EventHandler();
-        EntfernenListener entfernenListener = new EntfernenListener(lagerFassade);
-        entfernenHandler.addListener(entfernenListener);
+        CargoEntfernenListener cargoEntfernenListener = new CargoEntfernenListener(lagerFassade);
+        entfernenHandler.addListener(cargoEntfernenListener);
         testConsoleEventSystem.setEntfernenEventHandler(entfernenHandler);
 
         EventHandler abrufenHandler = new EventHandler();
@@ -39,6 +40,11 @@ public class main {
         PersistenceListener persistenceListener = new PersistenceListener(lagerFassade);
         persistenceHandler.addListener(persistenceListener);
         testConsoleEventSystem.setPersistenceEventHandler(persistenceHandler);
+
+        EventHandler kundeEntfernenHandler = new EventHandler();
+        KundeEntfernenListener kundeEntfernenListener = new KundeEntfernenListener(lagerFassade);
+        kundeEntfernenHandler.addListener(kundeEntfernenListener);
+        testConsoleEventSystem.setKundeEntfernenHandler(kundeEntfernenHandler);
 
         testConsoleEventSystem.execute();
     }

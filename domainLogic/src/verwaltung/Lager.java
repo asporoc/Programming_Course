@@ -82,6 +82,15 @@ public class Lager extends Observable implements Serializable, Cloneable {
 
             return true;//notify observer so falsch kein arg
     }
+    public boolean entfernen(String name){
+        for(Customer customer: customerList){
+            if(customer.getName().equals(name)){
+                customerList.remove(customer);
+                return true;
+            }
+        }
+        return false;
+    }
 
     public Date inspection(int storageLocation) {
         Date newDate = new Date();
