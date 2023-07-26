@@ -27,7 +27,7 @@ public class ServerMain {
         CES.setEntfernenEventHandler(entfernenHandler);
 
         EventHandler abrufenHandler = new EventHandler();
-        AbrufenListener abrufenListener = new AbrufenListener(lagerFassade);
+        AbrufenListener abrufenListener = new AbrufenListener(lagerFassade,serverEventHandler);
         abrufenHandler.addListener(abrufenListener);
         CES.setAbrufenEventHandler(abrufenHandler);
 

@@ -1,12 +1,18 @@
 package client;
 
+import administration.Customer;
+import cargo.Hazard;
+import cargos.storableCargo;
 import eventSystem.infrastructure.*;
+import verwaltung.Kunde;
+import verwaltung.Lager;
 import viewControl.ConsoleEventSystem;
 
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.EventObject;
+import java.util.List;
 
 public class Client {
     private EventObject eventObject;
@@ -65,10 +71,38 @@ public class Client {
             }else{
                 CES.inspectiongGescheitert();
             }
-        } else if (event instanceof AbrufenEvent) {
-            CES.abrufenEventHandler.handleEvent(event);
-        } else if (event instanceof CargoEntfernenEvent) {
-            CES.entfernenEventHandler.handleEvent(event);
+        } else if (event instanceof CustomerAbrufenEvent) {
+            List<Customer> customerList = ((CustomerAbrufenEvent)event).getLagerFassade().getLager().getCustomerList();
+            Lager lager = ((CustomerAbrufenEvent)event).getLagerFassade().getLager();
+            for(Customer customer: customerList){
+                int i = 0;
+                for(int y=0;y<lager.getCargoList().size();y++){
+                    if(lager.getCargoList().get(y).getOwner().getName().equals(customer.getName())){
+                        i++;
+                    }
+                }
+                CES.customerAbrufen(customer.getName(),i);
+            }
+
+        } else if (event instanceof HazardsAbrufenEvent) {
+            int[] numbHazards = new int[4];
+            Lager lager = ((HazardsAbrufenEvent)event).getLagerFassade().getLager();
+            for(int i = 0; i <lager.getCargoList().size();i++){
+                if(lager.getCargoList().get(i).getHazards().contains(Hazard.explosive)){
+                    numbHazards[0]+=1;
+                }
+                if(lager.getCargoList().get(i).getHazards().contains(Hazard.flammable)){
+                    numbHazards[1]+=1;
+                }
+                if(lager.getCargoList().get(i).getHazards().contains(Hazard.radioactive)){
+                    numbHazards[2]+=1;
+                }
+                if(lager.getCargoList().get(i).getHazards().contains(Hazard.toxic)){
+                    numbHazards[3]+=1;
+                }
+
+            }
+            CES.hazardsAbrufen(numbHazards);
         } else if (event instanceof PersistenceEvent) {
             CES.persistenceEventHandler.handleEvent(event);
         } else if (event instanceof KundeEntfernenEvent) {

@@ -1,5 +1,6 @@
 package viewControl;
 
+import administration.Customer;
 import cargo.Hazard;
 import cargos.*;
 import eventSystem.infrastructure.*;
@@ -115,7 +116,7 @@ public class ConsoleEventSystem {
                                 break;
                             } else {
                                 if(null != this.abrufenEventHandler) {
-                                    AbrufenEvent abrufenEvent = new AbrufenEvent(this);
+                                    AbrufenEvent abrufenEvent = new AbrufenEvent(this,newInput);
                                     abrufenEventHandler.handleEvent(abrufenEvent);
                                 }
                             }
@@ -241,6 +242,14 @@ public class ConsoleEventSystem {
     }
     public void inspectiongGescheitert(){
         System.out.println("Die Inspektion ist gescheitert.");
+    }
+    public void customerAbrufen(String kunde, int numbOfCargos){
+        System.out.println("Kunde: "+kunde+ " hat "+ numbOfCargos+ " Frachtsstücke im Lager.");}
+    public void hazardsAbrufen(int[] hazards){
+        System.out.println("Im Lager befinden sich: "+ hazards[0] + " Frachtstücke die explosive sind");
+        System.out.println("Im Lager befinden sich: "+ hazards[1] + " Frachtstücke die flammable sind");
+        System.out.println("Im Lager befinden sich: "+ hazards[2] + " Frachtstücke die radioactive sind");
+        System.out.println("Im Lager befinden sich: "+ hazards[3] + " Frachtstücke die toxic sind");
     }
 
 

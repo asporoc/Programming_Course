@@ -1,6 +1,8 @@
 package verwaltung;
 
-public class LagerFassade {
+import java.io.Serializable;
+
+public class LagerFassade implements Serializable {
     Lager lager;
     public LagerFassade(int size){
         lager = new Lager(size);
