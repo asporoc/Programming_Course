@@ -54,13 +54,18 @@ public class StorableCargo_Beschreibung implements storableCargo {
     public int getStorageLocation() {
         return storageLocation.get();
     }
-
+    @Override
     public void setStorageLocation(int storageLocation) {
         this.storageLocation = new SimpleIntegerProperty(storageLocation);
 
     }
     public void setLastInspectionDate(Date date) {
         this.lastInspectionDate = date;
+    }
+
+    @Override
+    public IntegerProperty storageLocationProperty() {
+        return storageLocation;
     }
 
 

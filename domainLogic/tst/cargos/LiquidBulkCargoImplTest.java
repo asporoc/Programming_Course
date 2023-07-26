@@ -31,7 +31,8 @@ class LiquidBulkCargoImplTest {
     }
 
     @Test
-    void getLastInspectionDate() {
+    void getLastInspectionDate() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
         Date date = new Date();
         assertTrue(liquidBulkCargo.getLastInspectionDate().before(date));
     }
@@ -67,9 +68,9 @@ class LiquidBulkCargoImplTest {
 
     @Test
     void setLastInspectionDate() {
-        Date date = new Date();
+        Date date = new Date(2023, 6, 26, 12, 0, 0);
         liquidBulkCargo.setLastInspectionDate(date);
-        assertEquals(liquidBulkCargo.getLastInspectionDate(),date);
+        assertEquals(date,liquidBulkCargo.getLastInspectionDate());
     }
 
     @Test

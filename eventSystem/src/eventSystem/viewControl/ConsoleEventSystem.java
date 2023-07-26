@@ -8,6 +8,7 @@ import verwaltung.Kunde;
 
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.EnumSet;
 import java.util.Scanner;
 
@@ -121,7 +122,7 @@ public class ConsoleEventSystem {
                         break;
                     case u:
                         while (true) {
-                            System.out.print("Enter what you want to review: Customer, Hazards ");
+                            System.out.print("Lagerort des zu inspizierenden Frachtstücks eingeben:");
                             String newInput = u.nextLine();
 
                             if (newInput.startsWith(":")) {
@@ -233,6 +234,12 @@ public class ConsoleEventSystem {
     }
     public void einfuegenGescheitert(){
         System.out.println("Das Einfuegen hat nicht funktioniert.");
+    }
+    public void inspectionErfolgreich(Date date){
+        System.out.println("Das Frachtstück wurde inspiziert, und das letzte Inspektionsdatum auf :"+ date+ " gesetzt.");
+    }
+    public void inspectiongGescheitert(){
+        System.out.println("Die Inspektion ist gescheitert.");
     }
 
 

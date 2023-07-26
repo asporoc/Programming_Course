@@ -1,6 +1,5 @@
 package JOS;
 
-import cargos.UtilityClass;
 import verwaltung.Lager;
 
 import java.io.*;
@@ -23,7 +22,8 @@ public class JOSItemSerializationUtils {
             while(lager.getCargoList().get(i) != null){
                 lager.getCargoList().get(i).getDurationOfStorage();
                 lager.setMonitor(new Object());
-                UtilityClass.setStorageLocation(lager.getCargoList().get(i),i);
+                //UtilityClass.setStorageLocation(lager.getCargoList().get(i),i);
+                lager.getCargoList().get(i).setStorageLocation(i);
                 i++;
             }
             return lager;

@@ -33,7 +33,8 @@ class DryBulkAndUnitisedCargoImplTest {
     }
 
     @Test
-    void getLastInspectionDate() {
+    void getLastInspectionDate() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
         Date date = new Date();
         assertTrue(dryBulkAndUnitisedCargo.getLastInspectionDate().before(date));
     }

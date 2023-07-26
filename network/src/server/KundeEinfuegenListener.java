@@ -25,9 +25,10 @@ public class KundeEinfuegenListener implements CRUDEventListener {
     @Override
     public void onEvent(EventObject event) {
         boolean ergebnis = this.lagerFassade.getLager().einfuegen(((KundeEinfuegenEvent) event).getObject());
-        kundeEinfuegenErgebnisEvent = new KundeEinfuegenErgebnisEvent(this,ergebnis);
-        eventHandler.handleEvent(kundeEinfuegenErgebnisEvent);
-
+        if(eventHandler!=null) {
+            kundeEinfuegenErgebnisEvent = new KundeEinfuegenErgebnisEvent(this, ergebnis);
+            eventHandler.handleEvent(kundeEinfuegenErgebnisEvent);
+        }
     }
 }
 

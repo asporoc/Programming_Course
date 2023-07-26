@@ -15,16 +15,14 @@ public class Storable_Beschreibung implements Storable, Serializable {
     Date lastInspectionDate;
     private transient IntegerProperty storageLocation;
     Date storageDate = new Date();
-    public Storable_Beschreibung(Customer owner){
-        this.owner=owner;
-        lastInspectionDate=storageDate;
 
+    public Storable_Beschreibung(Customer owner) {
+        this.owner = owner;
+        lastInspectionDate = storageDate;
 
 
     }
-    public IntegerProperty storageLocationProperty() {
-        return storageLocation;
-    }
+
     @Override
     public Customer getOwner() {
         return owner;
@@ -44,14 +42,5 @@ public class Storable_Beschreibung implements Storable, Serializable {
     @Override
     public int getStorageLocation() {
         return storageLocation.get();
-    }
-
-    public void setStorageLocation(int storageLocation) {
-        this.storageLocation = new SimpleIntegerProperty(storageLocation);
-
-    }
-
-    public void setLastInspectionDate(Date date) {
-        this.lastInspectionDate = date;
     }
 }

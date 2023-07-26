@@ -1,7 +1,6 @@
 package verwaltung;
 
 import administration.Customer;
-import cargos.UtilityClass;
 import cargos.storableCargo;
 
 import java.io.Serializable;
@@ -55,7 +54,8 @@ public class Lager extends Observable implements Serializable, Cloneable {
                             cargoList.put(location, cargo);
                             this.setChanged();
                             this.notifyObservers();
-                            UtilityClass.setStorageLocation(cargo, location);
+                            //UtilityClass.setStorageLocation(cargo, location);
+                            cargo.setStorageLocation(location);
                             return true;
                         }
                     }
@@ -94,8 +94,8 @@ public class Lager extends Observable implements Serializable, Cloneable {
 
     public Date inspection(int storageLocation) {
         Date newDate = new Date();
-        UtilityClass.setLastInspectionDate((cargoList.get(storageLocation)), newDate);
-        //(cargoList.get(storageLocation)).setLastInspectionDate(newDate);
+        //UtilityClass.setLastInspectionDate((cargoList.get(storageLocation)), newDate);
+        (cargoList.get(storageLocation)).setLastInspectionDate(newDate);
         return newDate;
     }
 

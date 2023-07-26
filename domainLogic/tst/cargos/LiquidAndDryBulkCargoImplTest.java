@@ -30,7 +30,8 @@ class LiquidAndDryBulkCargoImplTest {
     }
 
     @Test
-    void getLastInspectionDate() {
+    void getLastInspectionDate() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
         Date date = new Date();
         assertTrue(liquidAndDryBulkCargo.getLastInspectionDate().before(date));
     }

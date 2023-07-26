@@ -32,7 +32,7 @@ public class ServerMain {
         CES.setAbrufenEventHandler(abrufenHandler);
 
         EventHandler inspectionHandler = new EventHandler();
-        InspectionListener inspectionListener = new InspectionListener(lagerFassade);
+        InspectionListener inspectionListener = new InspectionListener(lagerFassade,serverEventHandler);
         inspectionHandler.addListener(inspectionListener);
         CES.setInspectionEventHandler(inspectionHandler);
 

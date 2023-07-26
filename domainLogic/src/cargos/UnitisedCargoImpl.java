@@ -17,40 +17,42 @@ public class UnitisedCargoImpl implements Cargo, Storable, UnitisedCargo, storab
     private Storable_Beschreibung storableBeschreibung;
     private Cargo_Beschreibung cargoBeschreibung;
     private UnitisedCargo_Beschreibung unitisedCargoBeschreibung;
+    private StorableCargo_Beschreibung storableCargoBeschreibung;
     public UnitisedCargoImpl(Customer owner, BigDecimal value, Collection<Hazard> hazards,boolean fragile){
         this.unitisedCargoBeschreibung = new UnitisedCargo_Beschreibung(fragile);
         this.cargoBeschreibung = new Cargo_Beschreibung(value,hazards);
         this.storableBeschreibung = new Storable_Beschreibung(owner);
+        this.storableCargoBeschreibung = new StorableCargo_Beschreibung(owner,value,hazards);
     }
 
     @Override
     public Customer getOwner() {
-        return storableBeschreibung.getOwner();
+        return storableCargoBeschreibung.getOwner();
     }
 
     @Override
     public Duration getDurationOfStorage() {
-        return storableBeschreibung.getDurationOfStorage();
+        return storableCargoBeschreibung.getDurationOfStorage();
     }
 
     @Override
     public Date getLastInspectionDate() {
-        return storableBeschreibung.getLastInspectionDate();
+        return storableCargoBeschreibung.getLastInspectionDate();
     }
 
     @Override
     public int getStorageLocation() {
-        return storableBeschreibung.getStorageLocation();
+        return storableCargoBeschreibung.getStorageLocation();
     }
 
     @Override
     public BigDecimal getValue() {
-        return cargoBeschreibung.getValue();
+        return storableCargoBeschreibung.getValue();
     }
 
     @Override
     public Collection<Hazard> getHazards() {
-        return cargoBeschreibung.getHazards();
+        return storableCargoBeschreibung.getHazards();
     }
 
     @Override
@@ -58,12 +60,12 @@ public class UnitisedCargoImpl implements Cargo, Storable, UnitisedCargo, storab
         return unitisedCargoBeschreibung.isFragile();
     }
     public void setStorageLocation(int location){
-        storableBeschreibung.setStorageLocation(location);
+        storableCargoBeschreibung.setStorageLocation(location);
     }
     public void setLastInspectionDate(Date date){
-        storableBeschreibung.setLastInspectionDate(date);
+        storableCargoBeschreibung.setLastInspectionDate(date);
     }
     public IntegerProperty storageLocationProperty() {
-        return storableBeschreibung.storageLocationProperty();
+        return storableCargoBeschreibung.storageLocationProperty();
     }
 }

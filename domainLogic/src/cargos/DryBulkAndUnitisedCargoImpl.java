@@ -12,45 +12,47 @@ import java.util.Collection;
 import java.util.Date;
 
 public class DryBulkAndUnitisedCargoImpl implements Cargo, Storable, DryBulkAndUnitisedCargo, storableCargo, Serializable {
-    Cargo_Beschreibung cargoBeschreibung;
-    Storable_Beschreibung storableBeschreibung;
-    DryBulkCargo_Beschreibung dryBulkCargoBeschreibung;
+    private StorableCargo_Beschreibung storableCargoBeschreibung;
+    private Cargo_Beschreibung cargoBeschreibung;
+    private Storable_Beschreibung storableBeschreibung;
+    private DryBulkCargo_Beschreibung dryBulkCargoBeschreibung;
     private UnitisedCargo_Beschreibung unitisedCargoBeschreibung;
     public DryBulkAndUnitisedCargoImpl(Customer owner, BigDecimal value, Collection<Hazard> hazards, int grainSize, boolean fragile ){
         this.dryBulkCargoBeschreibung = new DryBulkCargo_Beschreibung(grainSize);
         this.cargoBeschreibung = new Cargo_Beschreibung(value, hazards);
         this.storableBeschreibung = new Storable_Beschreibung(owner);
         this.unitisedCargoBeschreibung = new UnitisedCargo_Beschreibung(fragile);
+        this.storableCargoBeschreibung = new StorableCargo_Beschreibung(owner,value,hazards);
     }
 
     @Override
     public Customer getOwner() {
-        return storableBeschreibung.getOwner();
+        return storableCargoBeschreibung.getOwner();
     }
 
     @Override
     public Duration getDurationOfStorage() {
-        return storableBeschreibung.getDurationOfStorage();
+        return storableCargoBeschreibung.getDurationOfStorage();
     }
 
     @Override
     public Date getLastInspectionDate() {
-        return storableBeschreibung.getLastInspectionDate();
+        return storableCargoBeschreibung.getLastInspectionDate();
     }
 
     @Override
     public int getStorageLocation() {
-        return storableBeschreibung.getStorageLocation();
+        return storableCargoBeschreibung.getStorageLocation();
     }
 
     @Override
     public BigDecimal getValue() {
-        return cargoBeschreibung.getValue();
+        return storableCargoBeschreibung.getValue();
     }
 
     @Override
     public Collection<Hazard> getHazards() {
-        return cargoBeschreibung.getHazards();
+        return storableCargoBeschreibung.getHazards();
     }
 
     @Override
@@ -63,12 +65,12 @@ public class DryBulkAndUnitisedCargoImpl implements Cargo, Storable, DryBulkAndU
         return unitisedCargoBeschreibung.isFragile();
     }
     public void setStorageLocation(int location){
-        storableBeschreibung.setStorageLocation(location);
+        storableCargoBeschreibung.setStorageLocation(location);
     }
     public void setLastInspectionDate(Date date){
-        storableBeschreibung.setLastInspectionDate(date);
+        storableCargoBeschreibung.setLastInspectionDate(date);
     }
     public IntegerProperty storageLocationProperty() {
-        return storableBeschreibung.storageLocationProperty();
+        return storableCargoBeschreibung.storageLocationProperty();
     }
 }

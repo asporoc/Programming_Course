@@ -31,7 +31,8 @@ class UnitisedCargoImplTest {
     }
 
     @Test
-    void getLastInspectionDate() {
+    void getLastInspectionDate() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(1);
         Date date = new Date();
         assertTrue(unitisedCargo.getLastInspectionDate().before(date));
     }

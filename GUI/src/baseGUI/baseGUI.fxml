@@ -10,7 +10,8 @@
          <children>
             <TableView fx:id="cargoTableView" layoutX="47.0" layoutY="53.0" prefHeight="438.0" prefWidth="324.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <columns>
-                <TableColumn fx:id="storageLocationTab" text="Storage Location" />
+                  <TableColumn fx:id="storageLocationTab" text="Storage Location" />
+                  <TableColumn fx:id="cargoTypeTab" text="Cargo Type" />
                  <TableColumn fx:id="ownerTab" text="Owner" />
                  <TableColumn fx:id="lastInspectionDateTab" text="Inspection Date" />
                  <TableColumn fx:id="storageDurationTab" text="Storage Duration" />

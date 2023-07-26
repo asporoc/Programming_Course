@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.Date;
 
 public class LiquidAndDryBulkCargoImpl implements Storable, Cargo, LiquidAndDryBulkCargo,storableCargo, Serializable {
+    private StorableCargo_Beschreibung storableCargoBeschreibung;
     Cargo_Beschreibung cargoBeschreibung;
     Storable_Beschreibung storableBeschreibung;
     DryBulkCargo_Beschreibung dryBulkCargoBeschreibung;
@@ -23,36 +24,37 @@ public class LiquidAndDryBulkCargoImpl implements Storable, Cargo, LiquidAndDryB
         this.storableBeschreibung = new Storable_Beschreibung(owner);
         this.liquidBulkCargoBeschreibung = new LiquidBulkCargo_Beschreibung(pressurized);
         this.dryBulkCargoBeschreibung = new DryBulkCargo_Beschreibung(grainSize);
+        this.storableCargoBeschreibung = new StorableCargo_Beschreibung(owner,value,hazards);
 
     }
     @Override
     public Customer getOwner() {
-        return storableBeschreibung.getOwner();
+        return storableCargoBeschreibung.getOwner();
     }
 
     @Override
     public Duration getDurationOfStorage() {
-        return storableBeschreibung.getDurationOfStorage();
+        return storableCargoBeschreibung.getDurationOfStorage();
     }
 
     @Override
     public Date getLastInspectionDate() {
-        return storableBeschreibung.getLastInspectionDate();
+        return storableCargoBeschreibung.getLastInspectionDate();
     }
 
     @Override
     public int getStorageLocation() {
-        return storableBeschreibung.getStorageLocation();
+        return storableCargoBeschreibung.getStorageLocation();
     }
 
     @Override
     public BigDecimal getValue() {
-        return cargoBeschreibung.getValue();
+        return storableCargoBeschreibung.getValue();
     }
 
     @Override
     public Collection<Hazard> getHazards() {
-        return cargoBeschreibung.getHazards();
+        return storableCargoBeschreibung.getHazards();
     }
 
     @Override
@@ -65,12 +67,12 @@ public class LiquidAndDryBulkCargoImpl implements Storable, Cargo, LiquidAndDryB
         return liquidBulkCargoBeschreibung.isPressurized();
     }
     public void setStorageLocation(int location){
-        storableBeschreibung.setStorageLocation(location);
+        storableCargoBeschreibung.setStorageLocation(location);
     }
     public void setLastInspectionDate(Date date){
-        storableBeschreibung.setLastInspectionDate(date);
+        storableCargoBeschreibung.setLastInspectionDate(date);
     }
     public IntegerProperty storageLocationProperty() {
-        return storableBeschreibung.storageLocationProperty();
+        return storableCargoBeschreibung.storageLocationProperty();
     }
 }

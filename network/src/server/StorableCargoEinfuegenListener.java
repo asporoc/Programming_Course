@@ -17,11 +17,16 @@ public class StorableCargoEinfuegenListener implements CRUDEventListener {
         this.lagerFassade = lagerFassade;
         this.eventHandler = eventHandler;
     }
+    public StorableCargoEinfuegenListener(LagerFassade lagerFassade){
+        this.lagerFassade = lagerFassade;
+
+    }
     @Override
     public void onEvent(EventObject event) {
         boolean ergebnis = this.lagerFassade.getLager().einfuegen(((StorableCargoEinfuegenEvent) event).getObject());
-        storableCargoEinfuegenErgebnisEvent = new StorableCargoEinfuegenErgebnisEvent(this,ergebnis);
-        eventHandler.handleEvent(storableCargoEinfuegenErgebnisEvent);
-
+        if(eventHandler != null) {
+            storableCargoEinfuegenErgebnisEvent = new StorableCargoEinfuegenErgebnisEvent(this, ergebnis);
+            eventHandler.handleEvent(storableCargoEinfuegenErgebnisEvent);
+        }
     }
 }

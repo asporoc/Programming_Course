@@ -59,9 +59,12 @@ public class Client {
             }else{
                 CES.einfuegenGescheitert();
             }
-
-        } else if (event instanceof InspectionEvent) {
-            CES.inspectionEventHandler.handleEvent(event);
+        } else if (event instanceof InspectionErgebnisEvent) {
+            if(((InspectionErgebnisEvent) event).getNewInspectionDate()!=null){
+                CES.inspectionErfolgreich(((InspectionErgebnisEvent) event).getNewInspectionDate());
+            }else{
+                CES.inspectiongGescheitert();
+            }
         } else if (event instanceof AbrufenEvent) {
             CES.abrufenEventHandler.handleEvent(event);
         } else if (event instanceof CargoEntfernenEvent) {

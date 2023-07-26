@@ -1,9 +1,9 @@
 package baseGUI;
 
-import cargos.UtilityClass;
 import cargos.storableCargo;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.*;
+import javafx.beans.value.ObservableValue;
 
 import java.time.Duration;
 
@@ -15,6 +15,7 @@ public class CargoItem {
     private final StringProperty owner;
     private final ObjectProperty<Duration> durationOfStorage;
     private final StringProperty lastInspectionDate;
+    private SimpleStringProperty cargoType;
     private storableCargo cargo;
     private IntegerProperty storageLocation;
     private storableCargo dryBulkCargo;
@@ -25,11 +26,13 @@ public class CargoItem {
         this.owner = new SimpleStringProperty(cargo.getOwner().getName());
         this.durationOfStorage = new SimpleObjectProperty<>(cargo.getDurationOfStorage());
         this.lastInspectionDate = new SimpleStringProperty(cargo.getLastInspectionDate().toString());
+        this.cargoType = new SimpleStringProperty(cargo.getClass().getSimpleName().replaceAll("Impl$", ""));
         Duration duration = cargo.getDurationOfStorage();
         updateDurationOfStorage(duration);
 
 
-        Bindings.bindBidirectional(storageLocation, UtilityClass.storageLocationProperty(cargo));
+        //Bindings.bindBidirectional(storageLocation, UtilityClass.storageLocationProperty(cargo));
+        Bindings.bindBidirectional(storageLocation, cargo.storageLocationProperty());
     }
 
 
@@ -63,4 +66,7 @@ public class CargoItem {
         return lastInspectionDate;
     }
 
+    public ObservableValue<String> cargoTypeProperty() {
+        return cargoType;
+    }
 }

@@ -34,6 +34,7 @@ public class Controller {
     @FXML private ComboBox<String> abrufenComboBox;
     @FXML private AnchorPane anchorpane;
     @FXML private TableColumn<CargoItem,Integer> storageLocationTab;
+    @FXML private TableColumn<CargoItem,String> cargoTypeTab;
     @FXML private TableColumn<CargoItem,String> ownerTab;
     @FXML private TableColumn<CargoItem,String> lastInspectionDateTab;
     @FXML private TableColumn<CargoItem,String> storageDurationTab;
@@ -86,6 +87,7 @@ public class Controller {
         storageLocationTab.setCellValueFactory(new PropertyValueFactory<>("storageLocation"));
         ownerTab.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().ownerProperty().getValue()));
         lastInspectionDateTab.setCellValueFactory(new PropertyValueFactory<>("lastInspectionDate"));
+        cargoTypeTab.setCellValueFactory(cellData -> cellData.getValue().cargoTypeProperty());
         lastInspectionDateTab.setComparator((dateString1, dateString2) -> {
             DateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
             Date date1 = null;
