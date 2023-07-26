@@ -1,11 +1,8 @@
-package eventSystem.viewControl;
+package viewControl;
 
 import cargo.Hazard;
-import cargos.*;
-import eventSystem.infrastructure.*;
 import eventSystem.listener.CRUDEventListener;
 import verwaltung.Kunde;
-
 
 import java.math.BigDecimal;
 import java.util.Date;

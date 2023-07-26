@@ -186,6 +186,15 @@ class LagerTest {
         Lager lager = new Lager(0);
         assertFalse(lager.entfernen(0));
     }
+    @Test
+    void entfernenKunde(){
+        lagerZuTesten.entfernen("Hugo");
+        assertEquals(1,lagerZuTesten.getCustomerList().size());
+    }
+    @Test
+    void entfernenKundeNichtVorhanden(){
+        assertFalse(lagerZuTesten.entfernen("Jens"));
+    }
 
 
 }

@@ -290,6 +290,9 @@ public class Controller {
                     break;
                 case "UnitisedCargo":
                     cargo = new UnitisedCargoImpl(new Kunde(owner), new BigDecimal(value), hazards, fragileCheckBox.isSelected());
+                    break;
+                case "LiquidBulkAndUnitisedCargo":
+                    cargo = new LiquidBulkAndUnitisedCargoImpl((new Kunde(owner)), new BigDecimal(value), hazards, fragileCheckBox.isSelected(),pressurizedCheckBox.isSelected());
             }
             guiLager.einfuegen(cargo);
         } else {

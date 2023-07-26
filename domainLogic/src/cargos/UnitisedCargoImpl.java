@@ -14,14 +14,10 @@ import java.util.Collection;
 import java.util.Date;
 
 public class UnitisedCargoImpl implements Cargo, Storable, UnitisedCargo, storableCargo, Serializable {
-    private Storable_Beschreibung storableBeschreibung;
-    private Cargo_Beschreibung cargoBeschreibung;
     private UnitisedCargo_Beschreibung unitisedCargoBeschreibung;
     private StorableCargo_Beschreibung storableCargoBeschreibung;
     public UnitisedCargoImpl(Customer owner, BigDecimal value, Collection<Hazard> hazards,boolean fragile){
         this.unitisedCargoBeschreibung = new UnitisedCargo_Beschreibung(fragile);
-        this.cargoBeschreibung = new Cargo_Beschreibung(value,hazards);
-        this.storableBeschreibung = new Storable_Beschreibung(owner);
         this.storableCargoBeschreibung = new StorableCargo_Beschreibung(owner,value,hazards);
     }
 

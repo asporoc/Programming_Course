@@ -41,8 +41,7 @@ public class Lager extends Observable implements Serializable, Cloneable {
     }
 
     public <T extends storableCargo> boolean einfuegen(storableCargo cargo) {
-        boolean fragile;
-        boolean pressurized;
+
         if (cargoList.size() == maxsize) {
             return false;
         }

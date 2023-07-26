@@ -25,8 +25,8 @@ Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nic
 - [ ] keine Duplikate (1)
 
 ## Tests (28)
-- [ ] **Testqualität** (7)
-- [ ] **Testabdeckung GL (inkl. Abhängigkeiten)** (7) _Abdeckung in Prozent angeben_
+- [X] **Testqualität** (7)
+- [X] **Testabdeckung GL (inkl. Abhängigkeiten)** (7) _Laut. IntelliJ 100%_
 - [ ] **Testabdeckung Rest** (6)
   - [ ] Einfügen von Kund*innen über das CLI _getestete Klassen angeben_
   - [ ] Anzeigen von Kund*innen über das CLI _getestete Klassen angeben_
@@ -43,7 +43,7 @@ Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nic
 - [ ] **keine Ablauffehler** (5)
 
 ## Basisfunktionalität (12)
-- [ ] **CRUD** (2)
+- [X] **CRUD** (2)
 - [X] **CLI** (2)
   * Syntax gemäß Anforderungen
 - [X] **Simulation** (2)
@@ -59,15 +59,15 @@ Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nic
 - [ ] vollständiges CLI (1)
 - [ ] alternatives CLI (1)
   * _angeben welche Funktionalität im alternativen CLI deaktiviert_
-- [ ] ausdifferenziertes event-System mit mindestens 3 events (2)
+- [X] ausdifferenziertes event-System mit mindestens 3 events (2)
 - [X] observer oder property change propagation (2)
 - [ ] angemessene Aufzählungstypen (2)
 - [X] Simulation 2 (1)
 - [ ] Simulation 3 (1)
 - [X] skalierbare GUI (1)
 - [X] vollständige GUI (1)
-- [ ] data binding verwendet (1)
-- [ ] Änderung des Lagerplatzes mittels drag&drop (1)
+- [X] data binding verwendet (1)
+- [X] Änderung des Lagerplatzes mittels drag&drop (1)
 - [ ] Einfügen von Frachtstücken via GUI erfolgt nebenläufig (1)
 - [ ] sowohl JBP als auch JOS (2)
 - [ ] sowohl TCP als auch UDP (1)

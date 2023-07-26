@@ -15,13 +15,9 @@ import java.util.Date;
 
 public class LiquidAndDryBulkCargoImpl implements Storable, Cargo, LiquidAndDryBulkCargo,storableCargo, Serializable {
     private StorableCargo_Beschreibung storableCargoBeschreibung;
-    Cargo_Beschreibung cargoBeschreibung;
-    Storable_Beschreibung storableBeschreibung;
     DryBulkCargo_Beschreibung dryBulkCargoBeschreibung;
     LiquidBulkCargo_Beschreibung liquidBulkCargoBeschreibung;
     public LiquidAndDryBulkCargoImpl(Customer owner, BigDecimal value, Collection<Hazard> hazards, boolean pressurized, int grainSize){
-        this.cargoBeschreibung = new Cargo_Beschreibung(value,hazards);
-        this.storableBeschreibung = new Storable_Beschreibung(owner);
         this.liquidBulkCargoBeschreibung = new LiquidBulkCargo_Beschreibung(pressurized);
         this.dryBulkCargoBeschreibung = new DryBulkCargo_Beschreibung(grainSize);
         this.storableCargoBeschreibung = new StorableCargo_Beschreibung(owner,value,hazards);
