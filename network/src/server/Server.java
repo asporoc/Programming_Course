@@ -1,7 +1,7 @@
 package server;
 
 import eventSystem.infrastructure.*;
-import eventSystem.viewControl.ConsoleEventSystem;
+import viewControl.ConsoleEventSystem;
 
 import java.io.*;
 import java.net.ServerSocket;

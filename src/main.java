@@ -1,5 +1,5 @@
 import eventSystem.infrastructure.EventHandler;
-import eventSystem.viewControl.ConsoleEventSystem;
+import viewControl.ConsoleEventSystem;
 import server.*;
 import verwaltung.LagerFassade;
 

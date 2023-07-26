@@ -1,7 +1,7 @@
 import eventSystem.infrastructure.EventHandler;
 import client.NetListener;
 import client.Client;
-import eventSystem.viewControl.ConsoleEventSystem;
+import viewControl.ConsoleEventSystem;
 
 public class ClientMain {
     public static void main(String[] args) throws Exception {

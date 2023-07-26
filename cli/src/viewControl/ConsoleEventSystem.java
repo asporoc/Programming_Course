@@ -1,6 +1,10 @@
 package viewControl;
 
 import cargo.Hazard;
+import cargos.*;
+import eventSystem.infrastructure.*;
+import eventSystem.infrastructure.EventHandler;
+import eventSystem.infrastructure.StorableCargoEinfuegenEvent;
 import eventSystem.listener.CRUDEventListener;
 import verwaltung.Kunde;
 
