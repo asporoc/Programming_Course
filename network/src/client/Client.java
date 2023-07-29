@@ -11,6 +11,7 @@ import viewControl.ConsoleEventSystem;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.EnumSet;
 import java.util.EventObject;
 import java.util.List;
 
@@ -85,28 +86,32 @@ public class Client {
             }
 
         } else if (event instanceof HazardsAbrufenEvent) {
-            int[] numbHazards = new int[4];
+            EnumSet<Hazard> hazards = EnumSet.noneOf(Hazard.class);
             Lager lager = ((HazardsAbrufenEvent)event).getLagerFassade().getLager();
             for(int i = 0; i <lager.getCargoList().size();i++){
                 if(lager.getCargoList().get(i).getHazards().contains(Hazard.explosive)){
-                    numbHazards[0]+=1;
+                    hazards.add(Hazard.explosive);
                 }
                 if(lager.getCargoList().get(i).getHazards().contains(Hazard.flammable)){
-                    numbHazards[1]+=1;
+                    hazards.add(Hazard.flammable);
                 }
                 if(lager.getCargoList().get(i).getHazards().contains(Hazard.radioactive)){
-                    numbHazards[2]+=1;
+                    hazards.add(Hazard.radioactive);
                 }
                 if(lager.getCargoList().get(i).getHazards().contains(Hazard.toxic)){
-                    numbHazards[3]+=1;
+                    hazards.add(Hazard.toxic);
                 }
 
             }
-            CES.hazardsAbrufen(numbHazards);
+            CES.hazardsAbrufen(hazards,((HazardsAbrufenEvent)event).getOption());
         } else if (event instanceof PersistenceEvent) {
             CES.persistenceEventHandler.handleEvent(event);
-        } else if (event instanceof KundeEntfernenEvent) {
-            CES.kundeEntfernenHandler.handleEvent(event);
+        } else if (event instanceof KundeEntfernenErgebnisEvent) {
+            CES.kundeEntfernt(((KundeEntfernenErgebnisEvent)event).getErgebnis());
+        }else if(event instanceof CargoEntfernenErgebnisEvent){
+            CES.cargoEntfernt(((CargoEntfernenErgebnisEvent)event).getErgebnis());
+        }else if(event instanceof CargosAbrufenEvent){
+            CES.cargosAbrufen(((CargosAbrufenEvent)event).getCargos());
         }
     }
 }

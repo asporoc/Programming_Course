@@ -10,6 +10,7 @@ import eventSystem.listener.CRUDEventListener;
 import verwaltung.Kunde;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.Scanner;
@@ -45,6 +46,7 @@ public class ConsoleEventSystem {
     }
     public void setPersistenceEventHandler(EventHandler handler){this.persistenceEventHandler = handler;}
     public void setKundeEntfernenHandler(EventHandler handler){this.kundeEntfernenHandler = handler;}
+    private AbrufenEvent abrufenEvent;
 
     public void execute() throws Exception {
         boolean[] mode = new boolean[5];
@@ -83,7 +85,7 @@ public class ConsoleEventSystem {
                         break;
                     case d:
                         while (true) {
-                            System.out.print("Enter the Storage Location of a Cargo to delete ");
+                            System.out.print("Geben sie den Namen des Kunden oder den Lagerort des Frachtstücks das sie Löschen wollen ein: ");
                             String newInput = u.nextLine();
 
                             if (newInput.startsWith(":")) {
@@ -108,15 +110,20 @@ public class ConsoleEventSystem {
                         break;
                     case r:
                         while (true) {
-                            System.out.print("Enter what you want to review: Customer, Hazards ");
+                            System.out.print("Enter what you want to review: customers, hazards, cargos ");
                             String newInput = u.nextLine();
 
                             if (newInput.startsWith(":")) {
                                 c = new Command(newInput);
                                 break;
                             } else {
+                                String inputOptions[] = newInput.split(" ");
                                 if(null != this.abrufenEventHandler) {
-                                    AbrufenEvent abrufenEvent = new AbrufenEvent(this,newInput);
+                                    if(inputOptions.length==1){
+                                        abrufenEvent = new AbrufenEvent(this,inputOptions[0]);
+                                    }else {
+                                        abrufenEvent = new AbrufenEvent(this, inputOptions[0], inputOptions[1]);
+                                    }
                                     abrufenEventHandler.handleEvent(abrufenEvent);
                                 }
                             }
@@ -140,7 +147,7 @@ public class ConsoleEventSystem {
                         break;
                     case p:
                         while (true) {
-                            System.out.print("Enter what you want to review: Customer, Hazards ");
+                            System.out.print("Enter loadJOS or saveJOS: ");
                             String newInput = u.nextLine();
 
                             if (newInput.startsWith(":")) {
@@ -245,11 +252,39 @@ public class ConsoleEventSystem {
     }
     public void customerAbrufen(String kunde, int numbOfCargos){
         System.out.println("Kunde: "+kunde+ " hat "+ numbOfCargos+ " Frachtsstücke im Lager.");}
-    public void hazardsAbrufen(int[] hazards){
-        System.out.println("Im Lager befinden sich: "+ hazards[0] + " Frachtstücke die explosive sind");
-        System.out.println("Im Lager befinden sich: "+ hazards[1] + " Frachtstücke die flammable sind");
-        System.out.println("Im Lager befinden sich: "+ hazards[2] + " Frachtstücke die radioactive sind");
-        System.out.println("Im Lager befinden sich: "+ hazards[3] + " Frachtstücke die toxic sind");
+    public void hazardsAbrufen(EnumSet<Hazard> hazards, String option){
+
+            if(option.equals("i")){
+                for(Hazard hazard: hazards) {
+                    System.out.println("Das Lager enthält mindestens ein Frachtstück das " + hazard.name() + " ist");
+                }
+            }else if(option.equals("e")){
+                EnumSet<Hazard> allHazards = EnumSet.allOf(Hazard.class);
+                allHazards.removeAll(hazards);
+
+                for (Hazard notHazard : allHazards) {
+                    System.out.println("Das Lager enthält keine Frachtstücke die " + notHazard.name() + " sind");
+                }
+            }
+    }
+    public void kundeEntfernt(boolean ergebnis){
+        if(ergebnis){
+            System.out.println("Kunde wurde erfolgreich entfernt.");
+        }else{
+            System.out.println("Kunde konnte nicht entfernt werden.");
+        }
+    }
+    public void cargoEntfernt(boolean ergebnis){
+        if(ergebnis){
+            System.out.println("Frachtstück wurde erfolgreich entfernt.");
+        }else{
+            System.out.println("Frachtstück konnte nicht entfernt werden.");
+        }
+    }
+    public void cargosAbrufen(ArrayList<storableCargo> cargos){
+        for(storableCargo cargo:cargos){
+            System.out.println("Lagerort: "+ cargo.getStorageLocation()+"| Letztes Inspectionsdatum: "+ cargo.getLastInspectionDate()+ "| Einlagerungsdauer: "+ cargo.getDurationOfStorage().getSeconds()+ " Sekunden.");
+        }
     }
 
 

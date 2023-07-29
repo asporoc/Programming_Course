@@ -22,7 +22,7 @@ public class ServerMain {
         CES.setStorableCargoEinfuegenHandler(storableCargoEinfuegenHandler);
 
         EventHandler entfernenHandler = new EventHandler();
-        CargoEntfernenListener cargoEntfernenListener = new CargoEntfernenListener(lagerFassade);
+        CargoEntfernenListener cargoEntfernenListener = new CargoEntfernenListener(lagerFassade,serverEventHandler);
         entfernenHandler.addListener(cargoEntfernenListener);
         CES.setEntfernenEventHandler(entfernenHandler);
 
@@ -42,7 +42,7 @@ public class ServerMain {
         CES.setPersistenceEventHandler(persistenceHandler);
 
         EventHandler kundeEntfernenHandler = new EventHandler();
-        KundeEntfernenListener kundeEntfernenListener = new KundeEntfernenListener(lagerFassade);
+        KundeEntfernenListener kundeEntfernenListener = new KundeEntfernenListener(lagerFassade,serverEventHandler);
         kundeEntfernenHandler.addListener(kundeEntfernenListener);
         CES.setKundeEntfernenHandler(kundeEntfernenHandler);
 
