@@ -5,12 +5,13 @@ import cargo.Hazard;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.Duration;
 import java.util.Collection;
 import java.util.Date;
 
-public class StorableCargo_Beschreibung implements storableCargo {
+public class StorableCargo_Beschreibung implements storableCargo, Serializable {
     Customer owner;
     Duration durationOfStorage;
     Date lastInspectionDate;

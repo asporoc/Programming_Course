@@ -182,12 +182,13 @@ public class ConsoleEventSystem {
 
 
             EnumSet<Hazard> hazards = EnumSet.noneOf(Hazard.class);
-            String value = null;
+            String value = text[2];
 
-            if (text[2].contains(",")) {
-                String[] hazardText = text[2].split(",");
-                value = hazardText[0];
-                for (int i = 1; i < hazardText.length; i++) {
+            if (text[3].equals(",")) {
+
+            }else {
+                String[] hazardText = text[3].split(",");
+                for (int i = 0; i < hazardText.length; i++) {
                     switch (hazardText[i]) {
                         case "flammable":
                             hazards.add(Hazard.flammable);
@@ -204,8 +205,6 @@ public class ConsoleEventSystem {
                         default:
                     }
                 }
-            } else {
-                value = text[2];
             }
             switch (text[0]) {
                 case "DryBulkCargo":
@@ -250,8 +249,8 @@ public class ConsoleEventSystem {
     public void inspectiongGescheitert(){
         System.out.println("Die Inspektion ist gescheitert.");
     }
-    public void customerAbrufen(String kunde, int numbOfCargos){
-        System.out.println("Kunde: "+kunde+ " hat "+ numbOfCargos+ " Frachtsstücke im Lager.");}
+    public void customerAbrufen(String cargoCustomer){
+        System.out.println(cargoCustomer);}
     public void hazardsAbrufen(EnumSet<Hazard> hazards, String option){
 
             if(option.equals("i")){
@@ -285,6 +284,18 @@ public class ConsoleEventSystem {
         for(storableCargo cargo:cargos){
             System.out.println("Lagerort: "+ cargo.getStorageLocation()+"| Letztes Inspectionsdatum: "+ cargo.getLastInspectionDate()+ "| Einlagerungsdauer: "+ cargo.getDurationOfStorage().getSeconds()+ " Sekunden.");
         }
+    }
+    public String[] serverStart(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Zum starten bitte Kapazität und Protokol[TCP/UDP] angeben (UDP nicht implementiert)");
+        String arguments = scanner.nextLine();
+        return arguments.split(" ");
+    }
+    public String[] startClient(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Zum starten entweder Net Protocol oder Kapazität und Log Sprachcode (z.B. DE,ENG) angeben");
+        String arguments = scanner.nextLine();
+        return arguments.split(" ");
     }
 
 

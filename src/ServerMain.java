@@ -6,8 +6,9 @@ import verwaltung.LagerFassade;
 
 public class ServerMain {
     public static void main(String[] args) throws Exception {
-        LagerFassade lagerFassade = new LagerFassade();
         ConsoleEventSystem CES = new ConsoleEventSystem();
+        String[] argumente = CES.serverStart();
+        LagerFassade lagerFassade = new LagerFassade(Integer.parseInt(argumente[0]));
         EventHandler serverEventHandler = new EventHandler();
 
 

@@ -74,13 +74,13 @@ Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nic
 - [ ] Server unterstützt konkurierende Clients für TCP oder UDP (2)
 
 ## zusätzliche Anforderungen (10)
-- [ ] Logeinträge für Nachrichten an die GL (2)
-- [ ] Logeinträge für Änderungen an der GL (2)
-- [ ] Trennung zwischen bestehender Implementierung und Log (2)
+- [X] Logeinträge für Nachrichten an die GL (2)
+- [X] Logeinträge für Änderungen an der GL (2)
+- [X] Trennung zwischen bestehender Implementierung und Log (2)
 - [ ] geschützter Zugriff auf die Logdatei (1)
 - [ ] Integration in GUI (1)
-- [ ] Mehrsprachigkeit (1)
-- [ ] erweiterbare Mehrsprachigkeit (1)
+- [X] Mehrsprachigkeit (1)
+- [X] erweiterbare Mehrsprachigkeit (1)
 
 ## Architekturdiagramm
 ![Architekturdiagramm](architecture.png)

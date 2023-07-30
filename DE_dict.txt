@@ -1,0 +1,17 @@
+CARGO_ABRUFEN=Versuch eine Frachtstueckart abzurufen.
+CUSTOMER_ABRUFEN=Versuch die Kunden abzurufen.
+HAZARDS_ABRUFEN=Versuch die Gefahrenstoffe abzurufen.
+CARGO_ENTFERNEN=Versuch ein Frachtstueck zu entfernen.
+KUNDE_ENTFERNEN=Versuch einen Kunden zu entfernen.
+INSPECTION=Versuch ein Frachtstueck zu inspizieren.
+KUNDE_EINFUEGEN=Versuch einen Kunden einzufuegen.
+PERSISTENCE_LADEN=Versuch ein Lager zu laden.
+PERSISTENCE_SPEICHERN=Versuch ein Lager zu speichern.
+CARGO_EINFUEGEN=Versuch ein Frachtstueck einzufuegen.
+CARGO_EINGEFUEGT=Ein Frachtstueck wurde eingefuegt.
+KUNDE_EINGEFUEGT=Ein Kunde wurde eingefuegt.
+CARGO_ENTFERNT=Ein Frachtstueck wurde entfernt.
+KUNDE_ENTFERNT=Ein Kunde wurde entfernt.
+PERSISTENCE_GELADEN=Ein Lager wurde geladen.
+PERSISTENCE_GESPEICHERT=Ein Lager wurde gespeichert.
+INSPECTION_ERFOLGT=Ein neues Inspektionsdatum wurde gesetzt.

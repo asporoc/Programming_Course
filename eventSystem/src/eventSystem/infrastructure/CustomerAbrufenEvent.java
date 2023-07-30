@@ -6,13 +6,14 @@ import java.util.EventObject;
 
 public class CustomerAbrufenEvent extends EventObject {
     LagerFassade lagerFassade;
+    String[] customerCargo;
 
-    public LagerFassade getLagerFassade() {
-        return lagerFassade;
+    public String[] getCustomerCargo() {
+        return customerCargo;
     }
 
-    public CustomerAbrufenEvent(Object source, LagerFassade lagerFassade) {
+    public CustomerAbrufenEvent(Object source, String[] customerCargo) {
         super(source);
-        this.lagerFassade = lagerFassade;
+        this.customerCargo = customerCargo;
     }
 }

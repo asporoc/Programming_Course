@@ -1,0 +1,18 @@
+CARGO_ABRUFEN=An attempt to review a Cargo was made.
+CUSTOMER_ABRUFEN=An attempt to review a Customer was made.
+HAZARDS_ABRUFEN=An attempt to review the stored Hazards was made.
+CARGO_ENTFERNEN=An attempt to remove a Cargo was made.
+KUNDE_ENTFERNEN=An attempt to remove a Customer was made.
+INSPECTION=An attempt to Inspect a Cargo was made.
+KUNDE_EINFUEGEN=An attempt to add a Customer was made.
+PERSISTENCE_LADEN=An attempt to load a saved Storage was made.
+PERSISTENCE_SPEICHERN=An attempt to save a Storage was made.
+CARGO_EINFUEGEN=An attempt to store a Cargo was made.
+CARGO_EINGEFUEGT=A Cargo was stored.
+KUNDE_EINGEFUEGT=A Customer was added.
+CARGO_ENTFERNT=A Cargo was removed.
+KUNDE_ENTFERNT=A Customer was removed.
+PERSISTENCE_GELADEN=A storage was loaded from memory.
+PERSISTENCE_GESPEICHERT=A storage was saved to memory.
+INSPECTION_ERFOLGT=A new Inspection date was set.
+

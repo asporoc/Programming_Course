@@ -6,6 +6,7 @@ public class AbrufenEvent extends EventObject {
     private String type;
     private String option;
 
+
     public String getType() {
         return type;
     }

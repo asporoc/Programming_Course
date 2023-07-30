@@ -2,9 +2,7 @@ package client;
 
 import administration.Customer;
 import cargo.Hazard;
-import cargos.storableCargo;
 import eventSystem.infrastructure.*;
-import verwaltung.Kunde;
 import verwaltung.Lager;
 import viewControl.ConsoleEventSystem;
 
@@ -73,39 +71,14 @@ public class Client {
                 CES.inspectiongGescheitert();
             }
         } else if (event instanceof CustomerAbrufenEvent) {
-            List<Customer> customerList = ((CustomerAbrufenEvent)event).getLagerFassade().getLager().getCustomerList();
-            Lager lager = ((CustomerAbrufenEvent)event).getLagerFassade().getLager();
-            for(Customer customer: customerList){
-                int i = 0;
-                for(int y=0;y<lager.getCargoList().size();y++){
-                    if(lager.getCargoList().get(y).getOwner().getName().equals(customer.getName())){
-                        i++;
-                    }
-                }
-                CES.customerAbrufen(customer.getName(),i);
+            String[] cargoCustomer = ((CustomerAbrufenEvent)event).getCustomerCargo();
+            for(String customer: cargoCustomer){
+                CES.customerAbrufen(customer);
             }
 
         } else if (event instanceof HazardsAbrufenEvent) {
-            EnumSet<Hazard> hazards = EnumSet.noneOf(Hazard.class);
-            Lager lager = ((HazardsAbrufenEvent)event).getLagerFassade().getLager();
-            for(int i = 0; i <lager.getCargoList().size();i++){
-                if(lager.getCargoList().get(i).getHazards().contains(Hazard.explosive)){
-                    hazards.add(Hazard.explosive);
-                }
-                if(lager.getCargoList().get(i).getHazards().contains(Hazard.flammable)){
-                    hazards.add(Hazard.flammable);
-                }
-                if(lager.getCargoList().get(i).getHazards().contains(Hazard.radioactive)){
-                    hazards.add(Hazard.radioactive);
-                }
-                if(lager.getCargoList().get(i).getHazards().contains(Hazard.toxic)){
-                    hazards.add(Hazard.toxic);
-                }
-
-            }
-            CES.hazardsAbrufen(hazards,((HazardsAbrufenEvent)event).getOption());
+            CES.hazardsAbrufen(((HazardsAbrufenEvent)event).getHazards(),((HazardsAbrufenEvent)event).getOption());
         } else if (event instanceof PersistenceErgebnisEvent) {
-            //CES.persistenceEventHandler.handleEvent(event);
         } else if (event instanceof KundeEntfernenErgebnisEvent) {
             CES.kundeEntfernt(((KundeEntfernenErgebnisEvent)event).getErgebnis());
         }else if(event instanceof CargoEntfernenErgebnisEvent){
