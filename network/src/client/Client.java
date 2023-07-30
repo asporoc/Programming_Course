@@ -104,14 +104,16 @@ public class Client {
 
             }
             CES.hazardsAbrufen(hazards,((HazardsAbrufenEvent)event).getOption());
-        } else if (event instanceof PersistenceEvent) {
-            CES.persistenceEventHandler.handleEvent(event);
+        } else if (event instanceof PersistenceErgebnisEvent) {
+            //CES.persistenceEventHandler.handleEvent(event);
         } else if (event instanceof KundeEntfernenErgebnisEvent) {
             CES.kundeEntfernt(((KundeEntfernenErgebnisEvent)event).getErgebnis());
         }else if(event instanceof CargoEntfernenErgebnisEvent){
             CES.cargoEntfernt(((CargoEntfernenErgebnisEvent)event).getErgebnis());
         }else if(event instanceof CargosAbrufenEvent){
             CES.cargosAbrufen(((CargosAbrufenEvent)event).getCargos());
+        }else{
+
         }
     }
 }

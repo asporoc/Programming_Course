@@ -37,7 +37,7 @@ public class ServerMain {
         CES.setInspectionEventHandler(inspectionHandler);
 
         EventHandler persistenceHandler = new EventHandler();
-        PersistenceListener persistenceListener = new PersistenceListener(lagerFassade);
+        PersistenceListener persistenceListener = new PersistenceListener(lagerFassade,serverEventHandler);
         persistenceHandler.addListener(persistenceListener);
         CES.setPersistenceEventHandler(persistenceHandler);
 
