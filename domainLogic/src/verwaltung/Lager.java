@@ -36,7 +36,8 @@ public class Lager extends Observable implements Serializable, Cloneable {
             }
 
         }
-        customerList.add(kunde);
+        synchronized (monitor){
+        customerList.add(kunde);}
         return true;
     }
 
@@ -50,7 +51,8 @@ public class Lager extends Observable implements Serializable, Cloneable {
             if (o.getName().equals(cargo.getOwner().getName())) {
                     for (int location = 0; location < maxsize; location++) {
                         if (cargoList.get(location) == null) {
-                            cargoList.put(location, cargo);
+                            synchronized (monitor){
+                            cargoList.put(location, cargo);}
                             this.setChanged();
                             this.notifyObservers();
                             //UtilityClass.setStorageLocation(cargo, location);
@@ -77,14 +79,16 @@ public class Lager extends Observable implements Serializable, Cloneable {
             if (cargoList.get(storageLocation) == null && cargoList.size() < 1) {
                 return false;
             }
-            cargoList.remove(storageLocation);
+            synchronized (monitor){
+            cargoList.remove(storageLocation);}
 
-            return true;//notify observer so falsch kein arg
+            return true;
     }
     public boolean entfernen(String name){
         for(Customer customer: customerList){
             if(customer.getName().equals(name)){
-                customerList.remove(customer);
+                synchronized (monitor){
+                customerList.remove(customer);}
                 return true;
             }
         }

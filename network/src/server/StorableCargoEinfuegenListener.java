@@ -29,9 +29,11 @@ public class StorableCargoEinfuegenListener implements CRUDEventListener {
     }
     @Override
     public void onEvent(EventObject event) {
-        logUtil.logChange(LogEnum.CARGO_EINFUEGEN);
+        if(logUtil != null) {
+            logUtil.logChange(LogEnum.CARGO_EINFUEGEN);
+        }
         boolean ergebnis = this.lagerFassade.getLager().einfuegen(((StorableCargoEinfuegenEvent) event).getObject());
-        if(ergebnis){
+        if(ergebnis && logUtil != null){
             logUtil.logChange(LogEnum.CARGO_EINGEFUEGT);
         }
         if(eventHandler != null) {

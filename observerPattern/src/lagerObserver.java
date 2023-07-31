@@ -21,7 +21,7 @@ public class lagerObserver implements Observer{
         if(lager.getCargoList().get(currentSize-1).getHazards().size() != 0){
             System.out.print("Ein Cargo mit den folgenden gefährlichen Eigenschaften wurde hinzugefügt: ");
             for(Hazard hazard:lager.getCargoList().get(currentSize-1).getHazards()){
-                System.out.print(String.valueOf(" "+hazard+"\n"));
+                System.out.print(" "+hazard+"\n");
 
             }
 

@@ -11,17 +11,22 @@ import java.util.concurrent.Executors;
 
 public class Simulation2 {
     public static void main(String[] args) {
-        Lager lager = new Lager();
+
+        System.out.println("Threadanzahl bitte angeben: \n");
+        Scanner sc = new Scanner(System.in);
+        int threadCount = sc.nextInt();
+
+        System.out.println("Lagergroesse bitte angeben: \n");
+        int lagergroesse= sc.nextInt();
+
+
+        Lager lager = new Lager(lagergroesse);
         String[] kunden = generateRandomCargo.getKunden();
         for(String kunde : kunden){
             lager.einfuegen(new Kunde(kunde));
         }
         EinfuegenThread einfuegenThread = new EinfuegenThread(lager);
         EntfernenThread entfernenThread = new EntfernenThread(lager);
-        System.out.println("Please enter amount of threads you want to start: \n");
-        Scanner sc = new Scanner(System.in);
-        int threadCount = sc.nextInt();
-
         ExecutorService executorService = Executors.newFixedThreadPool(threadCount*2);
 
         for (int i = 0; i < threadCount; i++) {

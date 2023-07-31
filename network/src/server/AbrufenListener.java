@@ -107,6 +107,7 @@ public class AbrufenListener implements CRUDEventListener {
             switch (((AbrufenEvent) event).getOption()) {
                 case "DryBulkCargo":
                     targetClass = DryBulkCargoImpl.class;
+
                     break;
                 case "DryBulkAndUnitisedCargo":
                     targetClass = DryBulkAndUnitisedCargoImpl.class;

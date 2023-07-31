@@ -7,7 +7,19 @@ import Utility.generateRandomCargo;
 
 public class Simulation1 {
     public static void main(String[] args) {
-        Lager lager = new Lager();
+        if (args.length == 0) {
+            System.out.println("Bitte gewuenschte Lagergroesse angeben:");
+            return;
+        }
+        int maxsize;
+        try {
+            maxsize = Integer.parseInt(args[0]);
+        } catch (NumberFormatException e) {
+            System.out.println("Ungueltige Lagergroesse angegeben");
+            return;
+        }
+
+        Lager lager = new Lager(maxsize);
         String[] kunden = generateRandomCargo.getKunden();
         for(String kunde : kunden){
             lager.einfuegen(new Kunde(kunde));

@@ -31,7 +31,7 @@ public class alternativesCLI {
 
         EventHandler entfernenHandler = new EventHandler();
         CargoEntfernenListener cargoEntfernenListener = new CargoEntfernenListener(lagerFassade);
-        entfernenHandler.addListener(cargoEntfernenListener);
+        //entfernenHandler.addListener(cargoEntfernenListener);
         testConsoleEventSystem.setEntfernenEventHandler(entfernenHandler);
 
         EventHandler abrufenHandler = new EventHandler();
@@ -51,7 +51,7 @@ public class alternativesCLI {
 
         EventHandler kundeEntfernenHandler = new EventHandler();
         KundeEntfernenListener kundeEntfernenListener = new KundeEntfernenListener(lagerFassade);
-        kundeEntfernenHandler.addListener(kundeEntfernenListener);
+        //kundeEntfernenHandler.addListener(kundeEntfernenListener);
         testConsoleEventSystem.setKundeEntfernenHandler(kundeEntfernenHandler);
 
         testConsoleEventSystem.execute();

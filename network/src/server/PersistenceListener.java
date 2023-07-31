@@ -37,7 +37,9 @@ public class PersistenceListener implements CRUDEventListener {
                 logUtil.logChange(LogEnum.PERSISTENCE_SPEICHERN);
             }
             JOSItemSerializationUtils.serialize("test.ser", lagerFassade.getLager());
-            logUtil.logChange(LogEnum.PERSISTENCE_GESPEICHERT);
+            if(logUtil != null) {
+                logUtil.logChange(LogEnum.PERSISTENCE_GESPEICHERT);
+            }
             if(eventHandler != null) {
                 persistenceErgebnisEvent = new PersistenceErgebnisEvent(this);
                 eventHandler.handleEvent(persistenceErgebnisEvent);
@@ -45,9 +47,13 @@ public class PersistenceListener implements CRUDEventListener {
 
         }
         else if(josString.equals("loadJOS")){
-            logUtil.logChange(LogEnum.PERSISTENCE_LADEN);
+            if(logUtil != null) {
+                logUtil.logChange(LogEnum.PERSISTENCE_LADEN);
+            }
             lagerFassade.setLager(JOSItemSerializationUtils.deserialize("test.ser"));
-            logUtil.logChange(LogEnum.PERSISTENCE_GELADEN);
+            if(logUtil != null) {
+                logUtil.logChange(LogEnum.PERSISTENCE_GELADEN);
+            }
             if(eventHandler != null){
                 persistenceErgebnisEvent = new PersistenceErgebnisEvent(this);
                 eventHandler.handleEvent(persistenceErgebnisEvent);

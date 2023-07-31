@@ -53,12 +53,11 @@ public class ConsoleEventSystem {
         try (Scanner sc = new Scanner(System.in)) {
             do{
                 System.out.println("Bitte geben sie einen Befehl gemäß folgendem Muster ein:" +
-                        "\n :c Name des Kunden den sie hinzufügen wollen"+
-                        "\n :c Um ein Frachtstück hinzuzufügen: Fracht-Typ Kunde Wert Gefahren-Stoffe, einzelnes Komma für keine fragile(true/false) pressurized(true/false) grain-Size" +
-                        "\n :r Um die Liste der gelagerten Frachstücke abzurufen"+
-                        "\n :d Lagerort des Frachtstücks das sie entfernen möchten" +
-                        "\n :u Lagerort des Frachtstücks das sie inspizieren wollen"+
-                        "\n :p loadJOS/saveJOS um das Lager zu laden/speichern");
+                        "\n :c Um in den Kunden/Frachtstueck Einfuegemodus zu kommen."+
+                        "\n :r Um in den Abrufmodus zu kommen."+
+                        "\n :d Um in den Entfernenmodus zu kommen." +
+                        "\n :u Um in den Inspektionsmodus zu kommen."+
+                        "\n :p Um ein Lager zu Speichern/Laden");
 
 
                 Command c = new Command(sc.nextLine());
@@ -77,6 +76,7 @@ public class ConsoleEventSystem {
                             } else if (newInput.split(" ").length == 1) {
                                 KundeEinfuegenEvent kundeEinfuegenEvent = new KundeEinfuegenEvent(this, parseKunde(newInput));
                                 kundeEinfuegenHandler.handleEvent(kundeEinfuegenEvent);
+
                             } else {
                                 StorableCargoEinfuegenEvent storableCargoEinfuegenEvent = new StorableCargoEinfuegenEvent(this, parseCargo(newInput));
                                 storableCargoEinfuegenHandler.handleEvent(storableCargoEinfuegenEvent);
@@ -138,9 +138,13 @@ public class ConsoleEventSystem {
                                 c = new Command(newInput);
                                 break;
                             } else {
+                                try{
                                 if(null != this.inspectionEventHandler) {
-                                    InspectionEvent inspectionEvent = new InspectionEvent(this,Integer.parseInt(newInput));
+                                    InspectionEvent inspectionEvent = new InspectionEvent(this, Integer.parseInt(newInput));
                                     inspectionEventHandler.handleEvent(inspectionEvent);
+                                    }
+                                }catch (Exception e){
+
                                 }
                             }
                         }
@@ -162,10 +166,9 @@ public class ConsoleEventSystem {
                         }
                         break;
                     default:
-                        System.out.println("Please enter a valid option.");
-                        break;
+                        System.out.println("\n\n\n\nEingabe war fehlerhaft bitte versuchen sie es erneut");
+                        execute();
                 }
-                continue;
                 }
             } while (true);
         }catch (Exception e){
@@ -180,13 +183,13 @@ public class ConsoleEventSystem {
         storableCargo cargo = null;
         String[] text = einfuegenString.split(" ");
 
-
+        if (text.length < 3) {
             EnumSet<Hazard> hazards = EnumSet.noneOf(Hazard.class);
-            String value = text[2];
+            String value = text[2].replace(",", ".");
 
             if (text[3].equals(",")) {
 
-            }else {
+            } else {
                 String[] hazardText = text[3].split(",");
                 for (int i = 0; i < hazardText.length; i++) {
                     switch (hazardText[i]) {
@@ -208,29 +211,62 @@ public class ConsoleEventSystem {
             }
             switch (text[0]) {
                 case "DryBulkCargo":
-                    cargo = new DryBulkCargoImpl(new Kunde(text[1]), new BigDecimal(value), hazards, Integer.parseInt(text[text.length - 1]));
-                    break;
+                    try {
+                        cargo = new DryBulkCargoImpl(new Kunde(text[1]), new BigDecimal(value), hazards, Integer.parseInt(text[text.length - 1]));
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("Eingabe nicht zulaessig");
+                        return null;
+                    }
                 case "DryBulkAndUnitisedCargo":
-                    cargo = new DryBulkAndUnitisedCargoImpl(new Kunde(text[1]), new BigDecimal(value), hazards, Integer.parseInt(text[text.length - 1]), Boolean.parseBoolean(text[text.length - 2]));
-                    break;
+                    try {
+                        cargo = new DryBulkAndUnitisedCargoImpl(new Kunde(text[1]), new BigDecimal(value), hazards, Integer.parseInt(text[text.length - 1]), Boolean.parseBoolean(text[text.length - 2]));
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("Eingabe nicht zulaessig");
+                        return null;
+                    }
                 case "LiquidAndDryBulkCargo":
-                    cargo = new LiquidAndDryBulkCargoImpl(new Kunde(text[1]), new BigDecimal(value), hazards, Boolean.parseBoolean(text[text.length - 2]), Integer.parseInt(text[text.length - 1]));
-                    break;
+                    try {
+                        cargo = new LiquidAndDryBulkCargoImpl(new Kunde(text[1]), new BigDecimal(value), hazards, Boolean.parseBoolean(text[text.length - 2]), Integer.parseInt(text[text.length - 1]));
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("Eingabe nicht zulaessig");
+                        return null;
+                    }
                 case "LiquidBulkCargo":
-                    cargo = new LiquidBulkCargoImpl(new Kunde(text[1]), new BigDecimal(value), hazards, Boolean.parseBoolean(text[text.length - 2]));
-                    break;
+                    try {
+                        cargo = new LiquidBulkCargoImpl(new Kunde(text[1]), new BigDecimal(value), hazards, Boolean.parseBoolean(text[text.length - 2]));
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("Eingabe nicht zulaessig");
+                        return null;
+                    }
                 case "UnitisedCargo":
-                    cargo = new UnitisedCargoImpl(new Kunde(text[1]), new BigDecimal(value), hazards, Boolean.parseBoolean(text[text.length - 2]));
-                    break;
+                    try {
+                        cargo = new UnitisedCargoImpl(new Kunde(text[1]), new BigDecimal(value), hazards, Boolean.parseBoolean(text[text.length - 2]));
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("Eingabe nicht zulaessig");
+                        return null;
+                    }
                 case "LiquidBulkAndUnitisedCargo":
-                    cargo = new LiquidBulkAndUnitisedCargoImpl(new Kunde(text[1]), new BigDecimal(value), hazards, Boolean.parseBoolean(text[text.length - 2]), Boolean.parseBoolean(text[text.length - 1]));
-                    break;
+                    try {
+                        cargo = new LiquidBulkAndUnitisedCargoImpl(new Kunde(text[1]), new BigDecimal(value), hazards, Boolean.parseBoolean(text[text.length - 2]), Boolean.parseBoolean(text[text.length - 1]));
+                        break;
+                    } catch (Exception e) {
+                        System.out.println("Eingabe nicht zulaessig");
+                        return null;
+                    }
                 default:
                     System.out.println("Einfuegen fehlerhaft bitter versuchen sie es erneut.");
                     return null;
             }
             return cargo;
         }
+        return null;
+    }
+
     public Kunde parseKunde(String einfuegenString){
         return new Kunde(einfuegenString);
     }

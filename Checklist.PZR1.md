@@ -22,7 +22,7 @@ Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nic
 - [ ] Zuständigkeit (2)
 - [ ] Paketierung (2)
 - [ ] Benennung (2)
-- [ ] keine Duplikate (1)
+- [X] keine Duplikate (1) _Laut IntelliJ Inspection nur zwischen Simulation 1 und 2_
 
 ## Tests (28)
 - [X] **Testqualität** (7)
@@ -40,7 +40,7 @@ Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nic
 
 ## Fehlerfreiheit (10)
 - [ ] **Kapselung** (5)
-- [ ] **keine Ablauffehler** (5)
+- [X] **keine Ablauffehler** (5)
 
 ## Basisfunktionalität (12)
 - [X] **CRUD** (2)
@@ -54,11 +54,11 @@ Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nic
 - [X] **Net** (2)
 
 ## Funktionalität (23)
-- [ ] vollständige GL (2)
-- [ ] threadsichere GL (1)
-- [ ] vollständiges CLI (1)
-- [ ] alternatives CLI (1)
-  * _angeben welche Funktionalität im alternativen CLI deaktiviert_
+- [X] vollständige GL (2)
+- [X] threadsichere GL (1)
+- [X] vollständiges CLI (1)
+- [X] alternatives CLI (1)
+  * _Kunden entfernen, Frachtstuecke entfernen_
 - [X] ausdifferenziertes event-System mit mindestens 3 events (2)
 - [X] observer oder property change propagation (2)
 - [ ] angemessene Aufzählungstypen (2)
@@ -77,7 +77,7 @@ Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nic
 - [X] Logeinträge für Nachrichten an die GL (2)
 - [X] Logeinträge für Änderungen an der GL (2)
 - [X] Trennung zwischen bestehender Implementierung und Log (2)
-- [ ] geschützter Zugriff auf die Logdatei (1)
+- [X] geschützter Zugriff auf die Logdatei (1)
 - [ ] Integration in GUI (1)
 - [X] Mehrsprachigkeit (1)
 - [X] erweiterbare Mehrsprachigkeit (1)

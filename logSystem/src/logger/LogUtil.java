@@ -10,6 +10,7 @@ import java.util.TreeMap;
 
 public class LogUtil {
     private HashMap<String, String> sprachDict;
+    Object monitor = new Object();
 
     public LogUtil(String languageCode) {
         sprachDictLaden(languageCode);
@@ -48,10 +49,12 @@ public class LogUtil {
             }
 
 
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter("log.txt", true))) {
-                writer.write(logMessage);
-                writer.newLine();
-            } catch (IOException e) {
+            synchronized (monitor) {
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter("log.txt", true))) {
+                    writer.write(logMessage);
+                    writer.newLine();
+                } catch (IOException e) {
+                }
             }
         }
     }
