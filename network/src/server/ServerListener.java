@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.EventObject;
 
 public class ServerListener implements CRUDEventListener {
-    private Server server;
+    private final Server server;
     public ServerListener(Server server){
         this.server = server;
     }

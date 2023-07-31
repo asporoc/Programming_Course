@@ -5,12 +5,10 @@ import logger.LogEnum;
 import java.io.*;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
 
 public class LogUtil {
     private HashMap<String, String> sprachDict;
-    Object monitor = new Object();
+    final Object monitor = new Object();
 
     public LogUtil(String languageCode) {
         sprachDictLaden(languageCode);

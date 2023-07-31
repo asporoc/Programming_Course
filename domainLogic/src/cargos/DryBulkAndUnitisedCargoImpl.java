@@ -12,9 +12,9 @@ import java.util.Collection;
 import java.util.Date;
 
 public class DryBulkAndUnitisedCargoImpl implements Cargo, Storable, DryBulkAndUnitisedCargo, storableCargo, Serializable {
-    private StorableCargo_Beschreibung storableCargoBeschreibung;
-    private DryBulkCargo_Beschreibung dryBulkCargoBeschreibung;
-    private UnitisedCargo_Beschreibung unitisedCargoBeschreibung;
+    private final StorableCargo_Beschreibung storableCargoBeschreibung;
+    private final DryBulkCargo_Beschreibung dryBulkCargoBeschreibung;
+    private final UnitisedCargo_Beschreibung unitisedCargoBeschreibung;
     public DryBulkAndUnitisedCargoImpl(Customer owner, BigDecimal value, Collection<Hazard> hazards, int grainSize, boolean fragile ){
         this.dryBulkCargoBeschreibung = new DryBulkCargo_Beschreibung(grainSize);
         this.unitisedCargoBeschreibung = new UnitisedCargo_Beschreibung(fragile);

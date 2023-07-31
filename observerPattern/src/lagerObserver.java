@@ -1,12 +1,12 @@
 import cargo.Hazard;
 import verwaltung.Lager;
-import cargos.*;
+
 import java.util.Observable;
 import java.util.Observer;
 
 public class lagerObserver implements Observer{
-    private Lager lager;
-    private int maxsize;
+    private final Lager lager;
+    private final int maxsize;
     private int currentSize;
     public lagerObserver(Lager lager){
         this.lager = lager;

@@ -1,32 +1,23 @@
 package client;
 
-import administration.Customer;
-import cargo.Hazard;
 import eventSystem.infrastructure.*;
-import verwaltung.Lager;
 import viewControl.ConsoleEventSystem;
 
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.EnumSet;
 import java.util.EventObject;
-import java.util.List;
 
 public class Client {
-    private EventObject eventObject;
-    private Socket socket;
-    private DataInputStream dis;
-    private DataOutputStream dos;
-    private ObjectOutputStream oos;
-    private ObjectInputStream ois;
-    private ConsoleEventSystem CES;
+    private final ObjectOutputStream oos;
+    private final ObjectInputStream ois;
+    private final ConsoleEventSystem CES;
     public Client(int port,ConsoleEventSystem CES){ // kaskadierender aufruf implementieren siehe persistence
         this.CES = CES;
         try{
-                socket = new Socket("localhost", port);
-                dis = new DataInputStream(socket.getInputStream());
-                dos = new DataOutputStream(socket.getOutputStream());
+            Socket socket = new Socket("localhost", port);
+            DataInputStream dis = new DataInputStream(socket.getInputStream());
+            DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
                 oos = new ObjectOutputStream(dos);
                 ois = new ObjectInputStream(dis);
 
@@ -39,7 +30,7 @@ public class Client {
         }
     }
     public void writeEvent(EventObject obj) throws IOException {
-        eventObject = null;
+        EventObject eventObject = null;
         serialize(oos, obj);
         while(eventObject == null){
             try {

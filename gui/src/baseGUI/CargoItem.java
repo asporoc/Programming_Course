@@ -15,10 +15,9 @@ public class CargoItem {
     private final StringProperty owner;
     private final ObjectProperty<Duration> durationOfStorage;
     private final StringProperty lastInspectionDate;
-    private SimpleStringProperty cargoType;
-    private storableCargo cargo;
-    private IntegerProperty storageLocation;
-    private storableCargo dryBulkCargo;
+    private final SimpleStringProperty cargoType;
+    private final storableCargo cargo;
+    private final IntegerProperty storageLocation;
 
     public CargoItem(storableCargo cargo) {
         this.cargo = cargo;
@@ -49,7 +48,6 @@ public class CargoItem {
     }
 
     public void setDryBulkCargoImpl(storableCargo dryBulkCargo) {
-        this.dryBulkCargo = dryBulkCargo;
     }
 
     public void updateDurationOfStorage(Duration duration) {

@@ -1,5 +1,4 @@
 import eventSystem.infrastructure.EventHandler;
-import eventSystem.infrastructure.KundeEntfernenEvent;
 import viewControl.ConsoleEventSystem;
 import server.*;
 import verwaltung.LagerFassade;

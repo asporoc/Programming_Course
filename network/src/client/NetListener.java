@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.EventObject;
 
 public class NetListener implements CRUDEventListener {
-    private Client client;
+    private final Client client;
     public NetListener(Client client){
         this.client = client;
     }

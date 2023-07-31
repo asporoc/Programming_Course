@@ -1,9 +1,6 @@
 package cargos;
 
 import cargo.Hazard;
-import javafx.beans.property.SimpleIntegerProperty;
-import org.junit.Before;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import verwaltung.Kunde;
 import verwaltung.Lager;
@@ -16,11 +13,11 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DryBulkAndUnitisedCargoImplTest {
-    EnumSet<Hazard> hazards = EnumSet.of(Hazard.explosive);
-    Kunde kunde = new Kunde("Henry");
-    Lager lager = new Lager();
+    final EnumSet<Hazard> hazards = EnumSet.of(Hazard.explosive);
+    final Kunde kunde = new Kunde("Henry");
+    final Lager lager = new Lager();
 
-    DryBulkAndUnitisedCargoImpl dryBulkAndUnitisedCargo = new DryBulkAndUnitisedCargoImpl(kunde, new BigDecimal(33),hazards,23,false);
+    final DryBulkAndUnitisedCargoImpl dryBulkAndUnitisedCargo = new DryBulkAndUnitisedCargoImpl(kunde, new BigDecimal(33),hazards,23,false);
     @Test
     void getOwner() {
         assertEquals(dryBulkAndUnitisedCargo.getOwner(),kunde);
@@ -64,7 +61,7 @@ class DryBulkAndUnitisedCargoImplTest {
 
     @Test
     void isFragile() {
-        assertEquals(dryBulkAndUnitisedCargo.isFragile(),false);
+        assertFalse(dryBulkAndUnitisedCargo.isFragile());
     }
 
     @Test

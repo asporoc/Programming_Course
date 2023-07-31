@@ -14,8 +14,8 @@ import java.util.Collection;
 import java.util.Date;
 
 public class UnitisedCargoImpl implements Cargo, Storable, UnitisedCargo, storableCargo, Serializable {
-    private UnitisedCargo_Beschreibung unitisedCargoBeschreibung;
-    private StorableCargo_Beschreibung storableCargoBeschreibung;
+    private final UnitisedCargo_Beschreibung unitisedCargoBeschreibung;
+    private final StorableCargo_Beschreibung storableCargoBeschreibung;
     public UnitisedCargoImpl(Customer owner, BigDecimal value, Collection<Hazard> hazards,boolean fragile){
         this.unitisedCargoBeschreibung = new UnitisedCargo_Beschreibung(fragile);
         this.storableCargoBeschreibung = new StorableCargo_Beschreibung(owner,value,hazards);

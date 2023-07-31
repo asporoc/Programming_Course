@@ -19,11 +19,8 @@ import java.util.EventObject;
 import java.util.List;
 
 public class AbrufenListener implements CRUDEventListener {
-    private CustomerAbrufenEvent customerAbrufenEvent;
-    private HazardsAbrufenEvent hazardsAbrufenEvent;
-    private CargosAbrufenEvent cargosAbrufenEvent;
     private ConsoleEventSystem CES;
-    private LagerFassade lagerFassade;
+    private final LagerFassade lagerFassade;
     private EventHandler eventHandler;
     private LogUtil logUtil;
     
@@ -63,7 +60,7 @@ public class AbrufenListener implements CRUDEventListener {
                 cargoCustomer[y] = ("Kunde: " + customerList.get(y).getName() + " hat " + i + " Frachtsuecke eingelagert.");
             }
             if (eventHandler != null) {
-                customerAbrufenEvent = new CustomerAbrufenEvent(this, cargoCustomer);
+                CustomerAbrufenEvent customerAbrufenEvent = new CustomerAbrufenEvent(this, cargoCustomer);
                 eventHandler.handleEvent(customerAbrufenEvent);
             } else if (CES != null) {
                 if(logUtil!=null) {
@@ -93,7 +90,7 @@ public class AbrufenListener implements CRUDEventListener {
 
             }
             if (eventHandler != null) {
-                hazardsAbrufenEvent = new HazardsAbrufenEvent(this, hazards, ((AbrufenEvent) event).getOption());
+                HazardsAbrufenEvent hazardsAbrufenEvent = new HazardsAbrufenEvent(this, hazards, ((AbrufenEvent) event).getOption());
                 eventHandler.handleEvent(hazardsAbrufenEvent);
             } else if (CES != null) {
                 if(logUtil != null) {
@@ -133,7 +130,7 @@ public class AbrufenListener implements CRUDEventListener {
                 }
             }
             if (eventHandler != null) {
-                cargosAbrufenEvent = new CargosAbrufenEvent(this, cargos);
+                CargosAbrufenEvent cargosAbrufenEvent = new CargosAbrufenEvent(this, cargos);
                 eventHandler.handleEvent(cargosAbrufenEvent);
             } else if (CES != null) {
                 if(logUtil != null) {

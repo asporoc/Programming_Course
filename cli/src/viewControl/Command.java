@@ -3,7 +3,7 @@ package viewControl;
 public class Command {
     public enum Operator {c, d, r, u, p, Error}
 
-    public Operator operator;
+    public final Operator operator;
     public String commandoString;
 
     public int commandoInt;

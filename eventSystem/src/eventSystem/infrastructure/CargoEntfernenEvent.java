@@ -4,7 +4,7 @@ import java.util.EventObject;
 
 public class CargoEntfernenEvent extends EventObject {
 
-    private int storageLocation;
+    private final int storageLocation;
     public CargoEntfernenEvent(Object source, int storageLocation) {
         super(source);
         this.storageLocation = storageLocation;

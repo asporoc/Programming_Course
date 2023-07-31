@@ -7,7 +7,6 @@ import verwaltung.Lager;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
@@ -25,7 +24,7 @@ class JOSItemSerializationUtilsTest {
             verify(oo).writeObject(captorLager.capture());
 
             Lager written = captorLager.getValue();
-            assertTrue(lager == written);
+            assertSame(lager, written);
 
 
         } catch (IOException e) {

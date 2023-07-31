@@ -1,22 +1,19 @@
 package server;
 
-import eventSystem.infrastructure.AbrufenEvent;
 import eventSystem.infrastructure.EventHandler;
 import eventSystem.infrastructure.KundeEinfuegenErgebnisEvent;
 import eventSystem.listener.CRUDEventListener;
 import eventSystem.infrastructure.KundeEinfuegenEvent;
 import logger.LogEnum;
 import logger.LogUtil;
-import verwaltung.Lager;
 import verwaltung.LagerFassade;
 
 import java.util.EventObject;
 
 public class KundeEinfuegenListener implements CRUDEventListener {
     private EventHandler eventHandler;
-    private KundeEinfuegenErgebnisEvent kundeEinfuegenErgebnisEvent;
 
-    private LagerFassade lagerFassade;
+    private final LagerFassade lagerFassade;
     private LogUtil logUtil;
     public KundeEinfuegenListener(LagerFassade lagerFassade, EventHandler eventHandler){
         this.lagerFassade = lagerFassade;
@@ -41,7 +38,7 @@ public class KundeEinfuegenListener implements CRUDEventListener {
             }
 
         if(eventHandler!=null) {
-            kundeEinfuegenErgebnisEvent = new KundeEinfuegenErgebnisEvent(this, ergebnis);
+            KundeEinfuegenErgebnisEvent kundeEinfuegenErgebnisEvent = new KundeEinfuegenErgebnisEvent(this, ergebnis);
             eventHandler.handleEvent(kundeEinfuegenErgebnisEvent);
         }
     }

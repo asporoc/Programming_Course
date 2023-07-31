@@ -1,11 +1,8 @@
 package viewControl;
 
-import administration.Customer;
 import cargo.Hazard;
 import cargos.*;
 import eventSystem.infrastructure.*;
-import eventSystem.infrastructure.EventHandler;
-import eventSystem.infrastructure.StorableCargoEinfuegenEvent;
 import eventSystem.listener.CRUDEventListener;
 import verwaltung.Kunde;
 
@@ -46,9 +43,8 @@ public class ConsoleEventSystem {
     }
     public void setPersistenceEventHandler(EventHandler handler){this.persistenceEventHandler = handler;}
     public void setKundeEntfernenHandler(EventHandler handler){this.kundeEntfernenHandler = handler;}
-    private AbrufenEvent abrufenEvent;
 
-    public void execute() throws Exception {
+    public void execute() {
         boolean[] mode = new boolean[5];
         try (Scanner sc = new Scanner(System.in)) {
             do{
@@ -117,8 +113,9 @@ public class ConsoleEventSystem {
                                 c = new Command(newInput);
                                 break;
                             } else {
-                                String inputOptions[] = newInput.split(" ");
+                                String[] inputOptions = newInput.split(" ");
                                 if(null != this.abrufenEventHandler) {
+                                    AbrufenEvent abrufenEvent;
                                     if(inputOptions.length==1){
                                         abrufenEvent = new AbrufenEvent(this,inputOptions[0]);
                                     }else {
@@ -178,7 +175,7 @@ public class ConsoleEventSystem {
         }
 
     }
-    public storableCargo parseCargo(String einfuegenString) throws Exception {
+    public storableCargo parseCargo(String einfuegenString) {
 
         storableCargo cargo = null;
         String[] text = einfuegenString.split(" ");

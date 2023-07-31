@@ -14,9 +14,9 @@ import java.util.Collection;
 import java.util.Date;
 
 public class DryBulkCargoImpl implements Cargo, Storable, DryBulkCargo, storableCargo, Serializable {
-    private StorableCargo_Beschreibung storableCargoBeschreibung;
+    private final StorableCargo_Beschreibung storableCargoBeschreibung;
 
-    private DryBulkCargo_Beschreibung dryBulkCargoBeschreibung;
+    private final DryBulkCargo_Beschreibung dryBulkCargoBeschreibung;
     public DryBulkCargoImpl(Customer owner, BigDecimal value, Collection<Hazard> hazards, int grainSize ){
         this.dryBulkCargoBeschreibung = new DryBulkCargo_Beschreibung(grainSize);
         this.storableCargoBeschreibung = new StorableCargo_Beschreibung(owner,value,hazards);

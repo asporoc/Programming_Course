@@ -14,11 +14,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LiquidBulkCargoImplTest {
 
-    EnumSet<Hazard> hazards = EnumSet.of(Hazard.explosive);
-    Kunde kunde = new Kunde("Henry");
-    Lager lager = new Lager();
+    final EnumSet<Hazard> hazards = EnumSet.of(Hazard.explosive);
+    final Kunde kunde = new Kunde("Henry");
+    final Lager lager = new Lager();
 
-    LiquidBulkCargoImpl liquidBulkCargo = new LiquidBulkCargoImpl(kunde, new BigDecimal(33),hazards,false);
+    final LiquidBulkCargoImpl liquidBulkCargo = new LiquidBulkCargoImpl(kunde, new BigDecimal(33),hazards,false);
     @Test
     void getOwner() {
         assertEquals(liquidBulkCargo.getOwner(),kunde);
@@ -57,7 +57,7 @@ class LiquidBulkCargoImplTest {
 
     @Test
     void isPressurized() {
-        assertEquals(liquidBulkCargo.isPressurized(),false);
+        assertFalse(liquidBulkCargo.isPressurized());
     }
 
     @Test

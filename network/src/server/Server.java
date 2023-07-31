@@ -9,19 +9,17 @@ import java.net.Socket;
 import java.util.EventObject;
 
 public class Server {
-    private DataInputStream dis;
-    private DataOutputStream dos;
     private ObjectOutputStream oos;
     private ObjectInputStream ois;
-    private ConsoleEventSystem CES;
-    private int port;
+    private final ConsoleEventSystem CES;
+    private final int port;
 
     public Server(int port, ConsoleEventSystem CES) {
         this.CES = CES;
         this.port = port;
     }
 
-    public void start() throws IOException {
+    public void start() {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             System.out.println("Server started. Waiting for clients...");
             while (true) {
@@ -39,8 +37,8 @@ public class Server {
     }
 
     private void setupStreams(Socket socket) throws IOException {
-        dis = new DataInputStream(socket.getInputStream());
-        dos = new DataOutputStream(socket.getOutputStream());
+        DataInputStream dis = new DataInputStream(socket.getInputStream());
+        DataOutputStream dos = new DataOutputStream(socket.getOutputStream());
         oos = new ObjectOutputStream(dos);
         ois = new ObjectInputStream(dis);
     }

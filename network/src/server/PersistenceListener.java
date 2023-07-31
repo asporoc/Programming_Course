@@ -13,9 +13,8 @@ import verwaltung.LagerFassade;
 import java.util.EventObject;
 
 public class PersistenceListener implements CRUDEventListener {
-    private PersistenceErgebnisEvent persistenceErgebnisEvent;
     private EventHandler eventHandler;
-    private LagerFassade lagerFassade;
+    private final LagerFassade lagerFassade;
     private LogUtil logUtil;
     public PersistenceListener(LagerFassade lagerFassade, EventHandler eventHandler) {
         this.lagerFassade = lagerFassade;
@@ -32,6 +31,7 @@ public class PersistenceListener implements CRUDEventListener {
     @Override
     public void onEvent(EventObject event) {
         String josString = ((PersistenceEvent)event).getJos();
+        PersistenceErgebnisEvent persistenceErgebnisEvent;
         if(josString.equals("saveJOS")){
             if(logUtil != null) {
                 logUtil.logChange(LogEnum.PERSISTENCE_SPEICHERN);

@@ -6,7 +6,7 @@ import verwaltung.Lager;
 import java.util.Observable;
 
 public class EntfernenThread extends Observable implements Runnable {
-    Lager lager;
+    final Lager lager;
     private static final Object monitor = new Object();
     public EntfernenThread(Lager lager){
         this.lager = lager;

@@ -13,9 +13,9 @@ import java.util.List;
 public class josItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private int maxsize;
-    private List<Customer> customerList;
-    private HashMap<Integer, storableCargo> cargoList;
+    private final int maxsize;
+    private final List<Customer> customerList;
+    private final HashMap<Integer, storableCargo> cargoList;
 
     public josItem(Lager lager, storableCargo cargo) {
         //super();

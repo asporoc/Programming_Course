@@ -4,7 +4,7 @@ import java.util.EventObject;
 
 public class CargoEntfernenErgebnisEvent extends EventObject {
 
-    Boolean ergebnis;
+    final Boolean ergebnis;
 
     public Boolean getErgebnis() {
         return ergebnis;

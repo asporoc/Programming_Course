@@ -13,11 +13,11 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LiquidBulkAndUnitisedCargoImplTest {
-    EnumSet<Hazard> hazards = EnumSet.of(Hazard.explosive);
-    Kunde kunde = new Kunde("Henry");
-    Lager lager = new Lager();
+    final EnumSet<Hazard> hazards = EnumSet.of(Hazard.explosive);
+    final Kunde kunde = new Kunde("Henry");
+    final Lager lager = new Lager();
 
-    LiquidBulkAndUnitisedCargoImpl liquidBulkAndUnitisedCargo = new LiquidBulkAndUnitisedCargoImpl(kunde, new BigDecimal(33),hazards,true,false);
+    final LiquidBulkAndUnitisedCargoImpl liquidBulkAndUnitisedCargo = new LiquidBulkAndUnitisedCargoImpl(kunde, new BigDecimal(33),hazards,true,false);
 
     @Test
     void getOwner() {
@@ -57,12 +57,12 @@ class LiquidBulkAndUnitisedCargoImplTest {
 
     @Test
     void isPressurized() {
-        assertEquals(liquidBulkAndUnitisedCargo.isPressurized(),false);
+        assertFalse(liquidBulkAndUnitisedCargo.isPressurized());
     }
 
     @Test
     void isFragile() {
-        assertEquals(liquidBulkAndUnitisedCargo.isFragile(),true);
+        assertTrue(liquidBulkAndUnitisedCargo.isFragile());
     }
     @Test
     void setStorageLocation() {

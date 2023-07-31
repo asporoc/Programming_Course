@@ -5,7 +5,7 @@ import verwaltung.Kunde;
 import java.util.EventObject;
 
 public class KundeEinfuegenEvent extends EventObject {
-    private Kunde object;
+    private final Kunde object;
     public KundeEinfuegenEvent(Object source, Kunde object) {
         super(source);
         this.object = object;

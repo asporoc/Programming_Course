@@ -6,15 +6,13 @@ import eventSystem.listener.CRUDEventListener;
 import eventSystem.infrastructure.StorableCargoEinfuegenEvent;
 import logger.LogEnum;
 import logger.LogUtil;
-import verwaltung.Lager;
 import verwaltung.LagerFassade;
 
 import java.util.EventObject;
 
 public class StorableCargoEinfuegenListener implements CRUDEventListener {
     private EventHandler eventHandler;
-    private StorableCargoEinfuegenErgebnisEvent storableCargoEinfuegenErgebnisEvent;
-    private LagerFassade lagerFassade;
+    private final LagerFassade lagerFassade;
     private LogUtil logUtil;
     public StorableCargoEinfuegenListener(LagerFassade lagerFassade, EventHandler eventHandler){
         this.lagerFassade = lagerFassade;
@@ -37,7 +35,7 @@ public class StorableCargoEinfuegenListener implements CRUDEventListener {
             logUtil.logChange(LogEnum.CARGO_EINGEFUEGT);
         }
         if(eventHandler != null) {
-            storableCargoEinfuegenErgebnisEvent = new StorableCargoEinfuegenErgebnisEvent(this, ergebnis);
+            StorableCargoEinfuegenErgebnisEvent storableCargoEinfuegenErgebnisEvent = new StorableCargoEinfuegenErgebnisEvent(this, ergebnis);
             eventHandler.handleEvent(storableCargoEinfuegenErgebnisEvent);
         }
     }

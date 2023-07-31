@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.EventObject;
 
 public class CargosAbrufenEvent extends EventObject {
-    private ArrayList<storableCargo> cargos;
+    private final ArrayList<storableCargo> cargos;
 
     public ArrayList<storableCargo> getCargos() {
         return cargos;

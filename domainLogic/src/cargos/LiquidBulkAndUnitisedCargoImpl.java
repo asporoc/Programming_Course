@@ -14,10 +14,10 @@ import java.util.Collection;
 import java.util.Date;
 
 public class LiquidBulkAndUnitisedCargoImpl implements LiquidBulkAndUnitisedCargo, Cargo, Storable, storableCargo, Serializable {
-    private StorableCargo_Beschreibung storableCargoBeschreibung;
+    private final StorableCargo_Beschreibung storableCargoBeschreibung;
 
-    private LiquidBulkCargo_Beschreibung liquidBulkCargoBeschreibung;
-    private UnitisedCargo_Beschreibung unitisedCargoBeschreibung;
+    private final LiquidBulkCargo_Beschreibung liquidBulkCargoBeschreibung;
+    private final UnitisedCargo_Beschreibung unitisedCargoBeschreibung;
 
     public LiquidBulkAndUnitisedCargoImpl(Customer owner, BigDecimal value, Collection<Hazard> hazards, boolean fragile, boolean pressurized ){
         this.liquidBulkCargoBeschreibung = new LiquidBulkCargo_Beschreibung(pressurized);

@@ -3,7 +3,7 @@ package eventSystem.infrastructure;
 import java.util.EventObject;
 
 public class AbrufenEvent extends EventObject {
-    private String type;
+    private final String type;
     private String option;
 
 

@@ -13,11 +13,11 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DryBulkCargoImplTest {
-    EnumSet<Hazard> hazards = EnumSet.of(Hazard.explosive);
-    Kunde kunde = new Kunde("Henry");
-    Lager lager = new Lager();
+    final EnumSet<Hazard> hazards = EnumSet.of(Hazard.explosive);
+    final Kunde kunde = new Kunde("Henry");
+    final Lager lager = new Lager();
 
-    DryBulkCargoImpl dryBulkCargo = new DryBulkCargoImpl(kunde, new BigDecimal(33),hazards,23);
+    final DryBulkCargoImpl dryBulkCargo = new DryBulkCargoImpl(kunde, new BigDecimal(33),hazards,23);
 
     @Test
     void getOwner() {

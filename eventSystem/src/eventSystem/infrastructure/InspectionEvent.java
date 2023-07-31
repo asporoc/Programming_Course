@@ -4,7 +4,7 @@ import java.util.EventObject;
 
 public class InspectionEvent extends EventObject {
 
-    private int storageLocation;
+    private final int storageLocation;
     public InspectionEvent(Object source, int storageLocation) {
         super(source);
         this.storageLocation = storageLocation;

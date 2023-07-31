@@ -5,7 +5,7 @@ package eventSystem.infrastructure;
 import java.util.EventObject;
 
 public class PersistenceEvent extends EventObject {
-    String jos;
+    final String jos;
 
     public String getJos() {
         return jos;

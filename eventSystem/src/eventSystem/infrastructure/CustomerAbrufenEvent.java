@@ -6,7 +6,7 @@ import java.util.EventObject;
 
 public class CustomerAbrufenEvent extends EventObject {
     LagerFassade lagerFassade;
-    String[] customerCargo;
+    final String[] customerCargo;
 
     public String[] getCustomerCargo() {
         return customerCargo;

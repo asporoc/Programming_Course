@@ -6,16 +6,15 @@ import eventSystem.infrastructure.KundeEntfernenEvent;
 import eventSystem.listener.CRUDEventListener;
 import logger.LogEnum;
 import logger.LogUtil;
-import verwaltung.Lager;
 import verwaltung.LagerFassade;
 
 import java.util.EventObject;
 
 public class KundeEntfernenListener implements CRUDEventListener {
     private EventHandler eventHandler;
-    private LagerFassade lagerFassade;
+    private final LagerFassade lagerFassade;
     private LogUtil logUtil;
-    private KundeEntfernenErgebnisEvent kundeEntfernenErgebnisEvent;
+
     public KundeEntfernenListener(LagerFassade lagerFassade, EventHandler eventHandler){
         this.lagerFassade = lagerFassade;
         this.eventHandler = eventHandler;
@@ -34,12 +33,12 @@ public class KundeEntfernenListener implements CRUDEventListener {
         if(logUtil != null) {
             logUtil.logChange(LogEnum.KUNDE_ENTFERNEN);
         }
-        Boolean ergebnis = lagerFassade.getLager().entfernen(((KundeEntfernenEvent)event).getName());
+        boolean ergebnis = lagerFassade.getLager().entfernen(((KundeEntfernenEvent)event).getName());
         if(ergebnis && logUtil != null){
             logUtil.logChange(LogEnum.KUNDE_ENTFERNT);
         }
         if(eventHandler != null){
-            kundeEntfernenErgebnisEvent = new KundeEntfernenErgebnisEvent(this,ergebnis);
+            KundeEntfernenErgebnisEvent kundeEntfernenErgebnisEvent = new KundeEntfernenErgebnisEvent(this, ergebnis);
             eventHandler.handleEvent(kundeEntfernenErgebnisEvent);
 
         }

@@ -10,7 +10,7 @@ import java.util.EnumSet;
 import java.util.Random;
 
 public class generateRandomCargo {
-    public static String[] kunden = {"Heinz", "Jonathan", "Lennart", "Hugo", "Bernhard", "Maurice", "Hermann"};
+    public static final String[] kunden = {"Heinz", "Jonathan", "Lennart", "Hugo", "Bernhard", "Maurice", "Hermann"};
 
     public static storableCargo generateRandCargo() {
 
@@ -22,9 +22,9 @@ public class generateRandomCargo {
         Random random = new Random();
         String cargoType = cargoTypes[random.nextInt(cargoTypes.length)];
         String kunde = kunden[random.nextInt(kunden.length)];
-        Integer value = random.nextInt(90000);
+        int value = random.nextInt(90000);
         EnumSet<Hazard> hazards = EnumSet.noneOf(Hazard.class);
-        Integer grainSize = random.nextInt(20);
+        int grainSize = random.nextInt(20);
         for (int i = 0; i < hazBool.length; i++) {
             hazBool[i] = random.nextBoolean();
             if (hazBool[i]) {

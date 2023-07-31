@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.EventObject;
 
 public class InspectionErgebnisEvent extends EventObject {
-    private Date newInspectionDate;
+    private final Date newInspectionDate;
 
     public Date getNewInspectionDate() {
         return newInspectionDate;

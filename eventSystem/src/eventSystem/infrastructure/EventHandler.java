@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public class EventHandler<T extends CRUDEventListener> {
-    private List<T> listenerList = new LinkedList<>();
+    private final List<T> listenerList = new LinkedList<>();
 
     public void addListener(T listener) {
         this.listenerList.add(listener);

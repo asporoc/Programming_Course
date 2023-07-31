@@ -3,7 +3,7 @@ package eventSystem.infrastructure;
 import java.util.EventObject;
 
 public class KundeEntfernenErgebnisEvent extends EventObject {
-    Boolean ergebnis;
+    final Boolean ergebnis;
 
     public Boolean getErgebnis() {
         return ergebnis;

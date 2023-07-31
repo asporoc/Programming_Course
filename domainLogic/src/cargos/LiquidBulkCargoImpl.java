@@ -14,9 +14,9 @@ import java.util.Collection;
 import java.util.Date;
 
 public class LiquidBulkCargoImpl implements Cargo, Storable, LiquidBulkCargo, storableCargo, Serializable {
-    private StorableCargo_Beschreibung storableCargoBeschreibung;
+    private final StorableCargo_Beschreibung storableCargoBeschreibung;
 
-    private LiquidBulkCargo_Beschreibung liquidBulkCargoBeschreibung;
+    private final LiquidBulkCargo_Beschreibung liquidBulkCargoBeschreibung;
 
     public LiquidBulkCargoImpl(Customer owner, BigDecimal value, Collection<Hazard> hazards, boolean pressurized){
         this.liquidBulkCargoBeschreibung = new LiquidBulkCargo_Beschreibung(pressurized);

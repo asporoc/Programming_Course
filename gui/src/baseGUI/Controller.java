@@ -3,7 +3,6 @@ package baseGUI;
 import administration.Customer;
 import cargo.Hazard;
 import cargos.*;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -55,11 +54,8 @@ public class Controller {
 
 
     Lager guiLager = new Lager();
-    private ArrayList<Integer> keys = new ArrayList<>();
-    private ObservableList<CargoItem> cargoItems = FXCollections.observableArrayList();
+    private final ObservableList<CargoItem> cargoItems = FXCollections.observableArrayList();
     private String einfuegenString="";
-
-    private ObservableList<Integer> storageLocations;
 
     public void updateItems() {
         cargoItems.clear();
@@ -73,8 +69,8 @@ public class Controller {
     }
 
     public void updateStorageLocations(){
-        keys = new ArrayList<>(guiLager.getCargoList().keySet());
-        storageLocations = FXCollections.observableArrayList(keys);
+        ArrayList<Integer> keys = new ArrayList<>(guiLager.getCargoList().keySet());
+        ObservableList<Integer> storageLocations = FXCollections.observableArrayList(keys);
         entfernenLagerOrt.setItems(storageLocations);
         ueberpruefenLagerOrt.setItems(storageLocations);
     }

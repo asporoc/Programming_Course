@@ -12,8 +12,7 @@ import java.util.EventObject;
 
 public class CargoEntfernenListener implements CRUDEventListener {
     private EventHandler eventHandler;
-    private LagerFassade lagerFassade;
-    private CargoEntfernenErgebnisEvent cargoEntfernenErgebnisEvent;
+    private final LagerFassade lagerFassade;
     private LogUtil logUtil;
     public CargoEntfernenListener(LagerFassade lagerFassade,EventHandler eventHandler){
         this.lagerFassade = lagerFassade;
@@ -31,12 +30,12 @@ public class CargoEntfernenListener implements CRUDEventListener {
         if(logUtil != null) {
             logUtil.logChange(LogEnum.CARGO_ENTFERNEN);
         }
-        Boolean ergebnis = this.lagerFassade.getLager().entfernen(((CargoEntfernenEvent)event).getStorageLocation());
+        boolean ergebnis = this.lagerFassade.getLager().entfernen(((CargoEntfernenEvent)event).getStorageLocation());
         if(ergebnis && logUtil != null){
             logUtil.logChange(LogEnum.CARGO_ENTFERNT);
         }
         if(eventHandler != null) {
-            cargoEntfernenErgebnisEvent = new CargoEntfernenErgebnisEvent(this, ergebnis);
+            CargoEntfernenErgebnisEvent cargoEntfernenErgebnisEvent = new CargoEntfernenErgebnisEvent(this, ergebnis);
             eventHandler.handleEvent(cargoEntfernenErgebnisEvent);
         }
     }

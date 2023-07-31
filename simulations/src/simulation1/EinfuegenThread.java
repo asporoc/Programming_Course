@@ -7,7 +7,7 @@ import java.util.Observable;
 
 public class EinfuegenThread extends Observable implements Runnable {
     private static final Object monitor = new Object();
-    private Lager lager;
+    private final Lager lager;
     public EinfuegenThread(Lager lager){
         this.lager = lager;
     }

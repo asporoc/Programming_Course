@@ -3,7 +3,7 @@ package eventSystem.infrastructure;
 import java.util.EventObject;
 
 public class KundeEntfernenEvent extends EventObject{
-    private String name;
+    private final String name;
 
     public KundeEntfernenEvent(Object source, String name) {
         super(source);

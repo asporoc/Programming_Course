@@ -6,7 +6,7 @@ import java.util.EventObject;
 
 public class StorableCargoEinfuegenEvent extends EventObject {
 
-    private storableCargo object;
+    private final storableCargo object;
     public StorableCargoEinfuegenEvent(Object source, storableCargo object) {
         super(source);
         this.object = object;

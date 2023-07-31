@@ -9,10 +9,10 @@ import java.util.*;
 
 public class Lager extends Observable implements Serializable, Cloneable {
     transient Object monitor = new Object();
-    private List<Customer> customerList = new LinkedList<>();
-    private HashMap<Integer, storableCargo> cargoList = new HashMap<>();
+    private final List<Customer> customerList = new LinkedList<>();
+    private final HashMap<Integer, storableCargo> cargoList = new HashMap<>();
 
-    private int maxsize;
+    private final int maxsize;
 
     public List<Customer> getCustomerList() {
         return customerList;

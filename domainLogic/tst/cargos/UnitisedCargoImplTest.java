@@ -13,11 +13,11 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.*;
 
 class UnitisedCargoImplTest {
-    EnumSet<Hazard> hazards = EnumSet.of(Hazard.explosive);
-    Kunde kunde = new Kunde("Henry");
-    Lager lager = new Lager();
+    final EnumSet<Hazard> hazards = EnumSet.of(Hazard.explosive);
+    final Kunde kunde = new Kunde("Henry");
+    final Lager lager = new Lager();
 
-    UnitisedCargoImpl unitisedCargo = new UnitisedCargoImpl(kunde, new BigDecimal(33),hazards,false);
+    final UnitisedCargoImpl unitisedCargo = new UnitisedCargoImpl(kunde, new BigDecimal(33),hazards,false);
 
     @Test
     void getOwner() {
@@ -31,8 +31,7 @@ class UnitisedCargoImplTest {
     }
 
     @Test
-    void getLastInspectionDate() throws InterruptedException {
-        TimeUnit.SECONDS.sleep(1);
+    void getLastInspectionDate(){
         Date date = new Date();
         assertTrue(unitisedCargo.getLastInspectionDate().before(date));
     }
@@ -57,7 +56,7 @@ class UnitisedCargoImplTest {
 
     @Test
     void isFragile() {
-        assertEquals(unitisedCargo.isFragile(),false);
+        assertFalse(unitisedCargo.isFragile());
     }
 
     @Test
