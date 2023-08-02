@@ -28,5 +28,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" scope="TEST" name="mockito.core" level="project" />
+    <orderEntry type="module" module-name="network" scope="TEST" />
   </component>
 </module>

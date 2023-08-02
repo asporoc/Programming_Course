@@ -64,7 +64,7 @@ public class ConsoleEventSystem {
                     case c:
                         while (true) {
                             System.out.print("Enter a name or cargo: ");
-                            String newInput = u.nextLine();
+                            String newInput = sc.nextLine();
 
                             if (newInput.startsWith(":")) {
                                 c = new Command(newInput);
@@ -82,7 +82,7 @@ public class ConsoleEventSystem {
                     case d:
                         while (true) {
                             System.out.print("Geben sie den Namen des Kunden oder den Lagerort des Frachtstücks das sie Löschen wollen ein: ");
-                            String newInput = u.nextLine();
+                            String newInput = sc.nextLine();
 
                             if (newInput.startsWith(":")) {
                                 c = new Command(newInput);
@@ -107,7 +107,7 @@ public class ConsoleEventSystem {
                     case r:
                         while (true) {
                             System.out.print("Enter what you want to review: customers, hazards, cargos ");
-                            String newInput = u.nextLine();
+                            String newInput = sc.nextLine();
 
                             if (newInput.startsWith(":")) {
                                 c = new Command(newInput);
@@ -129,7 +129,7 @@ public class ConsoleEventSystem {
                     case u:
                         while (true) {
                             System.out.print("Lagerort des zu inspizierenden Frachtstücks eingeben:");
-                            String newInput = u.nextLine();
+                            String newInput = sc.nextLine();
 
                             if (newInput.startsWith(":")) {
                                 c = new Command(newInput);
@@ -149,7 +149,7 @@ public class ConsoleEventSystem {
                     case p:
                         while (true) {
                             System.out.print("Enter loadJOS or saveJOS: ");
-                            String newInput = u.nextLine();
+                            String newInput = sc.nextLine();
 
                             if (newInput.startsWith(":")) {
                                 c = new Command(newInput);

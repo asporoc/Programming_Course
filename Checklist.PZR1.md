@@ -28,8 +28,8 @@ Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nic
 - [X] **Testqualität** (7)
 - [X] **Testabdeckung GL (inkl. Abhängigkeiten)** (7) _Laut. IntelliJ 100%_
 - [ ] **Testabdeckung Rest** (6)
-  - [ ] Einfügen von Kund*innen über das CLI _getestete Klassen angeben_
-  - [ ] Anzeigen von Kund*innen über das CLI _getestete Klassen angeben_
+  - [X] Einfügen von Kund*innen über das CLI _getestete Klassen angeben_
+  - [X] Anzeigen von Kund*innen über das CLI _getestete Klassen angeben_
   - [X] ein Beobachter bzw. dessen alternative Implementierung _LagerObserver_
   - [ ] deterministische Funktionalität der Simulationen _getestete Klassen angeben_
   - [X] Speichern via JOS oder JBP _JOSItemSerializationUtils_

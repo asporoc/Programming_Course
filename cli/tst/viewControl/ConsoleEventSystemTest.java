@@ -1,10 +1,15 @@
 package viewControl;
 
+import eventSystem.infrastructure.AbrufenEvent;
 import eventSystem.infrastructure.EventHandler;
 import eventSystem.infrastructure.KundeEinfuegenEvent;
 import eventSystem.listener.CRUDEventListener;
 import org.junit.jupiter.api.BeforeEach;
 import org.mockito.Mockito;
+import server.AbrufenListener;
+import server.KundeEinfuegenListener;
+import verwaltung.Kunde;
+import verwaltung.LagerFassade;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -16,29 +21,56 @@ import static org.mockito.Mockito.*;
 class ConsoleEventSystemTest {
 
     private ConsoleEventSystem consoleEventSystem;
-    private EventHandler<CRUDEventListener<KundeEinfuegenEvent>> kundeEinfuegenHandler;
+    private EventHandler<CRUDEventListener<KundeEinfuegenEvent>> kundeEinfuegenHandler = new EventHandler<>();
+    EventHandler<CRUDEventListener<KundeEinfuegenEvent>> spyEinfuegeHandler = Mockito.spy(kundeEinfuegenHandler);
+
+    private EventHandler<CRUDEventListener<AbrufenEvent>> abrufenHandler = new EventHandler<>();
+    EventHandler<CRUDEventListener<AbrufenEvent>> spyAbrufenHandler = Mockito.spy(abrufenHandler);
+
 
     @BeforeEach
     public void setUp() {
+        LagerFassade lagerFassade = new LagerFassade();
+        lagerFassade.getLager().einfuegen(new Kunde("Hugo"));
         consoleEventSystem = new ConsoleEventSystem();
-        kundeEinfuegenHandler = mock(EventHandler.class);
-        consoleEventSystem.setKundeEinfuegenHandler(kundeEinfuegenHandler);
-    }
 
+        // Initialize kundeEinfuegenHandler before creating the spy
+        kundeEinfuegenHandler = new EventHandler<>();
+        KundeEinfuegenListener kundeEinfuegenListener = new KundeEinfuegenListener(lagerFassade);
+        kundeEinfuegenHandler.addListener(kundeEinfuegenListener);
+
+        // Now create the spy for kundeEinfuegenHandler
+        spyEinfuegeHandler = Mockito.spy(kundeEinfuegenHandler);
+        consoleEventSystem.setKundeEinfuegenHandler(spyEinfuegeHandler);
+
+        abrufenHandler = new EventHandler<>();
+        AbrufenListener abrufenListener = new AbrufenListener(lagerFassade, consoleEventSystem);
+        abrufenHandler.addListener(abrufenListener);
+        spyAbrufenHandler = Mockito.spy(abrufenHandler);
+        consoleEventSystem.setAbrufenEventHandler(spyAbrufenHandler);
+    }
     @org.junit.jupiter.api.Test
     void kundeEinfuegenTestCLI() {
-        String userInput = ":c\nJohn Doe"; // Input for the user, separated by newline
+        String userInput = ":c\nHeinz";
 
-        // Create an InputStream with the desired user input
         InputStream inputStream = new ByteArrayInputStream(userInput.getBytes());
 
-        // Redirect System.in to the ByteArrayInputStream
         System.setIn(inputStream);
 
-        // Invoke the execute method, which will read from the redirected input stream
         consoleEventSystem.execute();
 
-        // Verify that the handleEvent method of the handler is called with the correct event object
-        verify(kundeEinfuegenHandler, times(1)).handleEvent(any(KundeEinfuegenEvent.class));
+        verify(spyEinfuegeHandler, times(1)).handleEvent(any(KundeEinfuegenEvent.class));
+    }
+    @org.junit.jupiter.api.Test
+    void kundeAbrufenTestCLI() {
+        String userInput = ":r\ncustomers";
+
+        InputStream inputStream = new ByteArrayInputStream(userInput.getBytes());
+
+        System.setIn(inputStream);
+
+        consoleEventSystem.execute();
+
+        verify(spyAbrufenHandler, times(1)).handleEvent(any(AbrufenEvent.class));
     }
 }
