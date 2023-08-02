@@ -36,6 +36,7 @@
       </library>
     </orderEntry>
     <orderEntry type="library" scope="TEST" name="mockito.core" level="project" />
+    <orderEntry type="module" module-name="domainLogic" scope="TEST" />
     <orderEntry type="module" module-name="domainLogic" />
   </component>
 </module>

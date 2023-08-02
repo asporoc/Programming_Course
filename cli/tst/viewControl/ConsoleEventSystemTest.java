@@ -34,12 +34,10 @@ class ConsoleEventSystemTest {
         lagerFassade.getLager().einfuegen(new Kunde("Hugo"));
         consoleEventSystem = new ConsoleEventSystem();
 
-        // Initialize kundeEinfuegenHandler before creating the spy
         kundeEinfuegenHandler = new EventHandler<>();
         KundeEinfuegenListener kundeEinfuegenListener = new KundeEinfuegenListener(lagerFassade);
         kundeEinfuegenHandler.addListener(kundeEinfuegenListener);
 
-        // Now create the spy for kundeEinfuegenHandler
         spyEinfuegeHandler = Mockito.spy(kundeEinfuegenHandler);
         consoleEventSystem.setKundeEinfuegenHandler(spyEinfuegeHandler);
 
