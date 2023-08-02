@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.*;
 
 
-public class Lager extends Observable implements Serializable, Cloneable {
+public class Lager extends Observable implements Serializable {
 
     transient Object monitor = new Object();
     private final List<Customer> customerList = new LinkedList<>();

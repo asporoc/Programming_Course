@@ -18,7 +18,7 @@ Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nic
 
 ## Entwurf (10)
 - [ ] **Schichtenaufteilung** (2)
-- [ ] **Architekturdiagramm** (1)
+- [X] **Architekturdiagramm** (1)
 - [ ] Zuständigkeit (2)
 - [ ] Paketierung (2)
 - [ ] Benennung (2)

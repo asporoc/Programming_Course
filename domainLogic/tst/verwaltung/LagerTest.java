@@ -6,7 +6,6 @@ import cargos.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -109,7 +108,7 @@ class LagerTest {
         storableCargo cargo = null;
         String[] text = einfuegenString.split(" ");
             EnumSet<Hazard> hazards = EnumSet.noneOf(Hazard.class);
-            String value = null;
+            String value;
 
             if (text[2].contains(",")) {
                 String[] hazardText = text[2].split(",");

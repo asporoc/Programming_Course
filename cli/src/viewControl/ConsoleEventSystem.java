@@ -177,7 +177,7 @@ public class ConsoleEventSystem {
     }
     public storableCargo parseCargo(String einfuegenString) {
 
-        storableCargo cargo = null;
+        storableCargo cargo;
         String[] text = einfuegenString.split(" ");
 
         if (3<text.length && text.length<7) {

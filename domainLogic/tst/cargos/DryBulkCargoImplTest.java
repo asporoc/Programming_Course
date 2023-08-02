@@ -9,10 +9,8 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.EnumSet;
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.spy;
 
 class DryBulkCargoImplTest {
     final EnumSet<Hazard> hazards = EnumSet.of(Hazard.explosive);

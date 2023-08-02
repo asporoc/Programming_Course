@@ -13,9 +13,7 @@ import verwaltung.LagerFassade;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class ConsoleEventSystemTest {

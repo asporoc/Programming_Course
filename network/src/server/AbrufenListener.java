@@ -53,7 +53,7 @@ public class AbrufenListener implements CRUDEventListener {
             for (int y = 0; y < customerList.size(); y++) {
                 int i = 0;
                 for (z = 0; z < lager.getCargoList().size(); z++) {
-                    if (lager.getCargoList().get(y).getOwner().getName().equals(customerList.get(y).getName())) {
+                    if (lager.getCargoList().get(z).getOwner().getName().equals(customerList.get(y).getName())) {
                         i++;
                     }
                 }
@@ -137,8 +137,6 @@ public class AbrufenListener implements CRUDEventListener {
                     logUtil.logChange(LogEnum.CARGO_ABRUFEN);
                 }
                 CES.cargosAbrufen(cargos);
-
-            }else{
 
             }
         }

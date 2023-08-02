@@ -2,7 +2,6 @@ import cargo.Hazard;
 import cargos.DryBulkCargoImpl;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
-import org.mockito.Mockito;
 import verwaltung.Kunde;
 import verwaltung.Lager;
 
@@ -11,7 +10,7 @@ import java.util.EnumSet;
 
 import static org.mockito.Mockito.*;
 class lagerObserverTest {
-    private Lager lager = new Lager();
+    private final Lager lager = new Lager();
     @BeforeEach
     void setup(){
         lager.einfuegen(new Kunde("Heinz"));

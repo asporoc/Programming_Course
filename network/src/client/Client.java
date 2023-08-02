@@ -76,8 +76,6 @@ public class Client {
             CES.cargoEntfernt(((CargoEntfernenErgebnisEvent)event).getErgebnis());
         }else if(event instanceof CargosAbrufenEvent){
             CES.cargosAbrufen(((CargosAbrufenEvent)event).getCargos());
-        }else{
-
         }
     }
 }
