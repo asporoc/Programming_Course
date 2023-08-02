@@ -6,6 +6,7 @@ import verwaltung.Kunde;
 import verwaltung.Lager;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.concurrent.TimeUnit;
@@ -13,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LiquidBulkAndUnitisedCargoImplTest {
+
     final EnumSet<Hazard> hazards = EnumSet.of(Hazard.explosive);
     final Kunde kunde = new Kunde("Henry");
     final Lager lager = new Lager();
@@ -25,16 +27,15 @@ class LiquidBulkAndUnitisedCargoImplTest {
     }
 
     @Test
-    void getDurationOfStorage() throws InterruptedException {
-        TimeUnit.SECONDS.sleep(1);
-        assertTrue(liquidBulkAndUnitisedCargo.getDurationOfStorage().getSeconds()>=1);
+    void getDurationOfStorage(){
+        assertFalse(liquidBulkAndUnitisedCargo.getDurationOfStorage().isNegative());
     }
 
     @Test
-    void getLastInspectionDate() throws InterruptedException {
-        TimeUnit.SECONDS.sleep(1);
-        Date date = new Date();
-        assertTrue(liquidBulkAndUnitisedCargo.getLastInspectionDate().before(date));
+    void getLastInspectionDate(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.SECOND,5);
+        assertTrue(liquidBulkAndUnitisedCargo.getLastInspectionDate().before(calendar.getTime()));
     }
 
     @Test

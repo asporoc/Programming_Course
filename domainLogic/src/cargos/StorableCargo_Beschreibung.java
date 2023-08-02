@@ -12,13 +12,13 @@ import java.util.Collection;
 import java.util.Date;
 
 public class StorableCargo_Beschreibung implements storableCargo, Serializable {
-    final Customer owner;
-    Duration durationOfStorage;
-    Date lastInspectionDate;
-    final BigDecimal value;
-    final Collection<Hazard> hazards;
+    private final Customer owner;
+    private Duration durationOfStorage;
+    private Date lastInspectionDate;
+    private final BigDecimal value;
+    private final Collection<Hazard> hazards;
     private int storageLocation;
-    final Date storageDate = new Date();
+    private final Date storageDate = new Date();
     public StorableCargo_Beschreibung(Customer owner,BigDecimal value,Collection<Hazard> hazards){
         this.owner=owner;
         lastInspectionDate=storageDate;

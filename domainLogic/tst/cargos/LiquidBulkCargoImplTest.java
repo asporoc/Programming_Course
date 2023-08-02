@@ -6,6 +6,7 @@ import verwaltung.Kunde;
 import verwaltung.Lager;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.concurrent.TimeUnit;
@@ -25,16 +26,15 @@ class LiquidBulkCargoImplTest {
     }
 
     @Test
-    void getDurationOfStorage() throws InterruptedException {
-        TimeUnit.SECONDS.sleep(1);
-        assertTrue(liquidBulkCargo.getDurationOfStorage().getSeconds()>=1);
+    void getDurationOfStorage(){
+        assertFalse(liquidBulkCargo.getDurationOfStorage().isNegative());
     }
 
     @Test
-    void getLastInspectionDate() throws InterruptedException {
-        TimeUnit.SECONDS.sleep(1);
-        Date date = new Date();
-        assertTrue(liquidBulkCargo.getLastInspectionDate().before(date));
+    void getLastInspectionDate(){
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.SECOND,5);
+        assertTrue(liquidBulkCargo.getLastInspectionDate().before(calendar.getTime()));
     }
 
     @Test

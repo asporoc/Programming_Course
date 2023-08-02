@@ -180,7 +180,7 @@ public class ConsoleEventSystem {
         storableCargo cargo = null;
         String[] text = einfuegenString.split(" ");
 
-        if (text.length < 3) {
+        if (3<text.length && text.length<7) {
             EnumSet<Hazard> hazards = EnumSet.noneOf(Hazard.class);
             String value = text[2].replace(",", ".");
 

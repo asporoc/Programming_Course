@@ -8,6 +8,7 @@ import java.util.*;
 
 
 public class Lager extends Observable implements Serializable, Cloneable {
+
     transient Object monitor = new Object();
     private final List<Customer> customerList = new LinkedList<>();
     private final HashMap<Integer, storableCargo> cargoList = new HashMap<>();
@@ -67,10 +68,6 @@ public class Lager extends Observable implements Serializable, Cloneable {
         return false;
     }
 
-    public Object abrufen() throws CloneNotSupportedException {
-        return this.clone();
-    }
-
     public storableCargo abrufen(int storageLocation) {
         return cargoList.get(storageLocation);
     }
@@ -81,7 +78,6 @@ public class Lager extends Observable implements Serializable, Cloneable {
             }
             synchronized (monitor){
             cargoList.remove(storageLocation);}
-
             return true;
     }
     public boolean entfernen(String name){
@@ -94,14 +90,11 @@ public class Lager extends Observable implements Serializable, Cloneable {
         }
         return false;
     }
-
     public Date inspection(int storageLocation) {
         Date newDate = new Date();
-        //UtilityClass.setLastInspectionDate((cargoList.get(storageLocation)), newDate);
         (cargoList.get(storageLocation)).setLastInspectionDate(newDate);
         return newDate;
     }
-
     public HashMap<Integer, storableCargo> getCargoList() {
         return cargoList;
     }
@@ -113,7 +106,6 @@ public class Lager extends Observable implements Serializable, Cloneable {
     public void setMonitor(Object monitor) {
         this.monitor = monitor;
     }
-
     public void setStorageLocation(int sourceLocation, int targetLocation) {
         storableCargo sourceCargo = abrufen(sourceLocation);
         storableCargo targetCargo = abrufen(targetLocation);
@@ -123,8 +115,4 @@ public class Lager extends Observable implements Serializable, Cloneable {
             getCargoList().put(targetLocation, sourceCargo);
         }
     }
-
-
 }
-
-

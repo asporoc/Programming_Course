@@ -4,11 +4,11 @@ import verwaltung.Lager;
 import java.util.Observable;
 import java.util.Observer;
 
-public class lagerObserver implements Observer{
+public class LagerObserver implements Observer{
     private final Lager lager;
     private final int maxsize;
     private int currentSize;
-    public lagerObserver(Lager lager){
+    public LagerObserver(Lager lager){
         this.lager = lager;
         this.lager.addObserver(this);
         this.maxsize = lager.getMaxsize();

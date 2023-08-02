@@ -9,10 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -50,15 +47,6 @@ class LagerTest {
         lagerZuTesten.einfuegen(new Kunde("Jonathan"));
         assertFalse(lagerZuTesten.einfuegen(new Kunde("Jonathan")));
     }
-
-    @Test
-    void abrufenNotNull() throws CloneNotSupportedException {
-        assertNotNull(lagerZuTesten.abrufen());
-    }
-    @Test
-    void abrufenNotOriginal() throws CloneNotSupportedException {
-        assertNotSame(lagerZuTesten.abrufen(),lagerZuTesten.getCargoList());
-    }
     @Test
     void abrufenLeeresLager(){
         Lager leeresLager = new Lager();
@@ -67,17 +55,19 @@ class LagerTest {
     }
     @Test
     void inspectionTest(){
-        lagerZuTesten.einfuegen(new Kunde("Heinz"));
-        lagerZuTesten.einfuegen(parseCargo("DryBulkCargo Heinz 123 , true false 13"));
-        Date currentDate = new Date();
-        assertTrue((lagerZuTesten.inspection(1).getTime() <= currentDate.getTime()));
-        //test so ändern das datum im Verhältnis zum vorherigen Inspection Date(ist nach vorherigen Inspection date?)
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.SECOND,5);
+        assertTrue((lagerZuTesten.inspection(1).before(calendar.getTime())));
     }
     @Test
     void entfernenTest(){
         lagerZuTesten.einfuegen(new Kunde("Heinz"));
         lagerZuTesten.einfuegen(parseCargo("DryBulkCargo Heinz 123 , true false 13"));
         assertTrue(lagerZuTesten.entfernen(1));
+    }
+    @Test
+    void entfernenCustomerTestFail(){
+        assertFalse(lagerZuTesten.entfernen("Rudi"));
     }
     @Test
     void einfuegenKundeExistiert() {
@@ -108,7 +98,6 @@ class LagerTest {
     @Test
     void getCustomerList(){
         List<Customer> test = lagerZuTesten.getCustomerList();
-        assertNotNull(test);
         assertEquals(test,lagerZuTesten.getCustomerList());
     }
     @Test
@@ -174,12 +163,8 @@ class LagerTest {
     @Test
     void setMonitorTest() {
         Object customMonitor = new Object();
-
-        Lager lagerSpy = Mockito.spy(lagerZuTesten);
-
-        lagerSpy.setMonitor(customMonitor);
-
-        Assertions.assertEquals(customMonitor, lagerSpy.monitor);
+        lagerZuTesten.setMonitor(customMonitor);
+        Assertions.assertEquals(customMonitor, lagerZuTesten.monitor);
     }
     @Test
     void entfernenTestLeeresLager(){

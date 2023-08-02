@@ -15,7 +15,7 @@ public class alternativesCLI {
             return;
         }
         LagerFassade lagerFassade = new LagerFassade(capacity);
-        lagerObserver observer = new lagerObserver(lagerFassade.getLager());
+        LagerObserver observer = new LagerObserver(lagerFassade.getLager());
         ConsoleEventSystem testConsoleEventSystem = new ConsoleEventSystem();
         EventHandler storableCargoEinfuegenHandler = new EventHandler();
         EventHandler serverEventHandler = new EventHandler();

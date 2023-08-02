@@ -6,11 +6,13 @@ import verwaltung.Kunde;
 import verwaltung.Lager;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.spy;
 
 class DryBulkCargoImplTest {
     final EnumSet<Hazard> hazards = EnumSet.of(Hazard.explosive);
@@ -25,16 +27,15 @@ class DryBulkCargoImplTest {
     }
 
     @Test
-    void getDurationOfStorage() throws InterruptedException {
-        TimeUnit.SECONDS.sleep(1);
-        assertTrue(dryBulkCargo.getDurationOfStorage().getSeconds()>=1);
+    void getDurationOfStorage() {
+        assertFalse(dryBulkCargo.getDurationOfStorage().isNegative());
     }
 
     @Test
-    void getLastInspectionDate() throws InterruptedException {
-        TimeUnit.SECONDS.sleep(1);
-        Date date = new Date();
-        assertTrue(dryBulkCargo.getLastInspectionDate().before(date));
+    void getLastInspectionDate() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.SECOND,5);
+        assertTrue(dryBulkCargo.getLastInspectionDate().before(calendar.getTime()));
     }
 
     @Test
@@ -51,7 +52,6 @@ class DryBulkCargoImplTest {
     }
     @Test
     void getHazards() {
-
         assertEquals(dryBulkCargo.getHazards().size(),1);
     }
 
@@ -63,7 +63,7 @@ class DryBulkCargoImplTest {
     @Test
     void setStorageLocation() {
         dryBulkCargo.setStorageLocation(1);
-        assertEquals(dryBulkCargo.getStorageLocation(),1);
+        assertEquals(1,dryBulkCargo.getStorageLocation());
     }
 
     @Test

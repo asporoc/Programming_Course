@@ -30,13 +30,13 @@ Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nic
 - [ ] **Testabdeckung Rest** (6)
   - [ ] Einfügen von Kund*innen über das CLI _getestete Klassen angeben_
   - [ ] Anzeigen von Kund*innen über das CLI _getestete Klassen angeben_
-  - [ ] ein Beobachter bzw. dessen alternative Implementierung _getestete Klassen angeben_
+  - [X] ein Beobachter bzw. dessen alternative Implementierung _LagerObserver_
   - [ ] deterministische Funktionalität der Simulationen _getestete Klassen angeben_
-  - [X] Speichern via JOS oder JBP _getestete Klassen angeben_
-  - [X] Laden via JOS oder JBP _getestete Klassen angeben_
-- [ ] **mindestens 5 Unittests, die Mockito verwenden** (4)
-- [ ] mindestens 4 Spy- / Verhaltens-Tests (3)
-- [ ] keine unbeabsichtigt fehlschlagenden Test (1)
+  - [X] Speichern via JOS oder JBP _JOSItemSerializationUtils_
+  - [X] Laden via JOS oder JBP _JOSItemSerializationUtils_
+- [X] **mindestens 5 Unittests, die Mockito verwenden** (4)
+- [X] mindestens 4 Spy- / Verhaltens-Tests (3)
+- [X] keine unbeabsichtigt fehlschlagenden Test (1)
 
 ## Fehlerfreiheit (10)
 - [ ] **Kapselung** (5)

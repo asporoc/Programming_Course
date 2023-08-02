@@ -8,7 +8,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="domainLogic" />
     <orderEntry type="module" module-name="contract" />
     <orderEntry type="module-library" scope="TEST">
       <library name="JUnit4">
@@ -37,5 +36,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" scope="TEST" name="mockito.core" level="project" />
+    <orderEntry type="module" module-name="domainLogic" />
   </component>
 </module>

@@ -55,5 +55,6 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="mockito.core" level="project" />
+    <orderEntry type="module" module-name="observerPattern" />
   </component>
 </module>

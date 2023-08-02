@@ -38,7 +38,7 @@ public class main {
             LagerFassade lagerFassade = new LagerFassade(capacity);
             if (arguments.length == 2) {
                 LogUtil logSystem = new LogUtil(arguments[1]);
-                lagerObserver observer = new lagerObserver(lagerFassade.getLager());
+                LagerObserver observer = new LagerObserver(lagerFassade.getLager());
                 ConsoleEventSystem testConsoleEventSystem = new ConsoleEventSystem();
                 EventHandler storableCargoEinfuegenHandler = new EventHandler();
 
@@ -79,7 +79,7 @@ public class main {
                 testConsoleEventSystem.execute();
             } else if (arguments.length == 1) {
 
-                lagerObserver observer = new lagerObserver(lagerFassade.getLager());
+                LagerObserver observer = new LagerObserver(lagerFassade.getLager());
                 ConsoleEventSystem testConsoleEventSystem = new ConsoleEventSystem();
                 EventHandler storableCargoEinfuegenHandler = new EventHandler();
                 EventHandler serverEventHandler = new EventHandler();
