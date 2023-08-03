@@ -46,5 +46,6 @@
     <orderEntry type="module" module-name="cli" />
     <orderEntry type="module" module-name="simulations" />
     <orderEntry type="module" module-name="logSystem" />
+    <orderEntry type="module" module-name="persistence" />
   </component>
 </module>

@@ -15,4 +15,3 @@ KUNDE_ENTFERNT=A Customer was removed.
 PERSISTENCE_GELADEN=A storage was loaded from memory.
 PERSISTENCE_GESPEICHERT=A storage was saved to memory.
 INSPECTION_ERFOLGT=A new Inspection date was set.
-

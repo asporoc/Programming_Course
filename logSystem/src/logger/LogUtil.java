@@ -13,6 +13,12 @@ public class LogUtil {
     public LogUtil(String languageCode) {
         sprachDictLaden(languageCode);
     }
+    /***********************************************/
+    /*Zum Hinzufügen neuer Sprachen muss nur eine  */
+    /*[Sprachcode]_dict.txt nach dem Muster der    */
+    /*bisherigen Sprach Implementationen erfolgen  */
+    /*eine Änderung am SourceCode ist nicht von    */
+    /* nöten                                       */
 
     public LogUtil() {
         sprachDictLaden("DE");
@@ -35,16 +41,6 @@ public class LogUtil {
     public void logChange(LogEnum changeType) {
         String logMessage = sprachDict.get(changeType.toString()) + " - " + new Date();
         File logFile = new File("log.txt");
-        if (!logFile.exists()) {
-            try {
-                if (logFile.createNewFile()) {
-                    if (!logFile.setReadable(true, false) || !logFile.setWritable(true, true)) {
-                        System.err.println("Fehler beim Setzen der Zugriffsrechte für die Log-Datei.");
-                    }
-                }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
 
 
             synchronized (monitor) {
@@ -56,5 +52,4 @@ public class LogUtil {
             }
         }
     }
-}
 

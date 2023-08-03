@@ -6,28 +6,28 @@ Die empfohlenen Realisierungen zum Bestehen der Prüfung sind **fett** gesetzt.
 Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nicht zulässig.
 
 ## Vorrausetzungen für das Bestehen
-- [ ] Quellen angegeben
-- [ ] zip Archiv mit dem Projekt im root
-- [ ] IntelliJ-Projekt (kein Gradle, Maven o.ä.)
-- [ ] keine weiteren Bibliotheken außer JUnit5, Mockito und JavaFX
-- [ ] keine Umlaute, Sonderzeichen, etc. in Datei- und Pfadnamen
-- [ ] mindestens sechs modules (zu jeder Basisfunktionalität außer I/O + belegProg3)
-- [ ] Trennung zwischen Test- und Produktiv-Code
-- [ ] kompilierbar
-- [ ] geforderte main-Methoden nur im default package des module belegProg3
+- [X] Quellen angegeben
+- [X] zip Archiv mit dem Projekt im root
+- [X] IntelliJ-Projekt (kein Gradle, Maven o.ä.)
+- [X] keine weiteren Bibliotheken außer JUnit5, Mockito und JavaFX
+- [X] keine Umlaute, Sonderzeichen, etc. in Datei- und Pfadnamen
+- [X] mindestens sechs modules (zu jeder Basisfunktionalität außer I/O + belegProg3)
+- [X] Trennung zwischen Test- und Produktiv-Code
+- [X] kompilierbar
+- [X] geforderte main-Methoden nur im default package des module belegProg3
 
 ## Entwurf (10)
-- [ ] **Schichtenaufteilung** (2)
+- [X] **Schichtenaufteilung** (2)
 - [X] **Architekturdiagramm** (1)
-- [ ] Zuständigkeit (2)
-- [ ] Paketierung (2)
-- [ ] Benennung (2)
+- [X] Zuständigkeit (2)
+- [X] Paketierung (2)
+- [X] Benennung (2)
 - [X] keine Duplikate (1) _Laut IntelliJ Inspection nur zwischen Simulation 1 und 2_
 
 ## Tests (28)
 - [X] **Testqualität** (7)
 - [X] **Testabdeckung GL (inkl. Abhängigkeiten)** (7) _Laut. IntelliJ 100%_
-- [ ] **Testabdeckung Rest** (6)
+- [X] **Testabdeckung Rest** (6)
   - [X] Einfügen von Kund*innen über das CLI _getestete Klassen angeben_
   - [X] Anzeigen von Kund*innen über das CLI _getestete Klassen angeben_
   - [X] ein Beobachter bzw. dessen alternative Implementierung _LagerObserver_
@@ -39,7 +39,7 @@ Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nic
 - [X] keine unbeabsichtigt fehlschlagenden Test (1)
 
 ## Fehlerfreiheit (10)
-- [ ] **Kapselung** (5)
+- [X] **Kapselung** (5)
 - [X] **keine Ablauffehler** (5)
 
 ## Basisfunktionalität (12)
@@ -61,7 +61,7 @@ Ergänzende Anmerkungen bitte immer _kursiv_ setzen. Andere Änderungen sind nic
   * _Kunden entfernen, Frachtstuecke entfernen_
 - [X] ausdifferenziertes event-System mit mindestens 3 events (2)
 - [X] observer oder property change propagation (2)
-- [ ] angemessene Aufzählungstypen (2)
+- [X] angemessene Aufzählungstypen (2)
 - [X] Simulation 2 (1)
 - [ ] Simulation 3 (1)
 - [X] skalierbare GUI (1)
